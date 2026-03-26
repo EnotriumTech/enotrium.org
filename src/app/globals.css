@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* CRITICAL: Configure Tailwind 4 for class-based dark mode (required for next-themes) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme CSS Variables — always dark */
+:root,
+.dark {
+  --background: #000000;
+  --foreground: #ededed;
+  --muted: #171717;
+  --muted-foreground: #a3a3a3;
+  --border: #262626;
+  --accent: #60a5fa;
+  --dot-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Tailwind Theme Bindings */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Global Styles */
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Dot Grid Background - Uses CSS variable for theme-aware dot color */
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: radial-gradient(circle at center, var(--dot-color) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .background-grid-mask {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+}
+
+/* Gradient overlays for sections */
+.section-gradient {
+  background: linear-gradient(180deg,
+      transparent 0%,
+      var(--background) 100%);
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Glow effects */
+.glow-accent {
+  box-shadow: 0 0 40px -10px var(--accent);
+}
+
+/* Selection Colors */
+::selection {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+/* Ambient gradient blob animations */
+@keyframes blob-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(40px, -30px) scale(1.08); }
+  66%       { transform: translate(-25px, 20px) scale(0.94); }
+}
+@keyframes blob-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-35px, 25px) scale(1.1); }
+  70%       { transform: translate(20px, -15px) scale(0.92); }
+}
+@keyframes blob-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(20px, -35px) scale(1.06); }
+}
+
+/* ============================================================
+   ENOTRIUM title: CSS-only switch between HTML and SVG renders.
+   - Touch/mobile devices → show HTML text (guaranteed to work)
+   - Desktop with mouse   → show SVG (interactive hover effects)
+   ============================================================ */
+
+/* DEFAULT (mobile / touch): show HTML, hide SVG */
+.enotrium-svg-text {
+  display: none;
+}
+.enotrium-html-text {
+  display: flex;
+}
+
+/* DESKTOP with mouse: show SVG, hide HTML */
+@media (hover: hover) and (pointer: fine) {
+  .enotrium-svg-text {
+    display: block;
+  }
+  .enotrium-html-text {
+    display: none;
+  }
+}
