@@ -36,7 +36,7 @@ export function HeroSection() {
           Enotrium
         </h1>
           <h2
-            className="text-[1rem] sm:text-[1.3rem] md:text-[1.6rem] lg:text-[2rem] xl:text-[2.4rem] font-[family-name:var(--font-iceland)] text-white/80 tracking-[0.2em] uppercase mt-4"
+            className="text-[1rem] sm:text-[1.3rem] md:text-[1.6rem] lg:text-[2rem] xl:text-[2.4rem] font-[family-name:var(--font-inter)] text-white/80 tracking-[0.2em] uppercase mt-4"
               style={{ textShadow: "0 0 20px rgba(255,255,255,0.15)" }}
             >
             A New Mesopotamia
