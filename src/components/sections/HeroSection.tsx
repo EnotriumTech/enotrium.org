@@ -46,11 +46,11 @@ export function HeroSection() {
       {/* Bordered panel */}
       <div className="flex-1 mx-0 mb-0 sm:mx-3 sm:mb-3  sm:border-b sm:border-x border-white/15 flex flex-col overflow-hidden min-h-0">
         {/* Subtitle + info row */}
-        <div className="px-6 pt-8 pb-6 shrink-0 flex flex-col items-center">
-          <p className="text-center text-sm sm:text-base md:text-lg lg:text-xl text-white/30 leading-snug font-[family-name:var(--font-iceland)] mb-8">
-            Autonomous Coordination
+        <div className="px-6 pt-12 pb-10 shrink-0 flex flex-col items-center">
+         <p className="text-center text-[1.2rem] sm:text-[1.6rem] md:text-[2rem] lg:text-[2.6rem] text-white/80 leading-snug font-[family-name:var(--font-iceland)] mt-10 mb-12">
+            Transforming Agriculture 
             <br />
-            for Critical Supply Chains
+            through Autonomous Systems
           </p>
 
           <div className="grid grid-cols-3 items-center w-full max-w-xs mx-auto">
@@ -63,9 +63,9 @@ export function HeroSection() {
               <Image
                 src="/logo.png"
                 alt="Enotrium"
-                width={96}
-                height={96}
-                className="opacity-80"
+                width={110}
+                height={110}
+                className="opacity-96"
               />
             </div>
             <div className="text-right font-[family-name:var(--font-space-grotesk)]">
