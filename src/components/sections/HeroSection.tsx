@@ -85,13 +85,6 @@ export function HeroSection() {
           />
         </div>
 
-        {/* 4. Transforming Agriculture — pinned to bottom of panel */}
-        <div className="text-center py-6">
-          <p className="text-[1.2rem] sm:text-[1.6rem] md:text-[2rem] lg:text-[2.6rem] text-white/85 leading-tight font-[family-name:var(--font-iceland)]">
-            Transforming Agriculture through Autonomous Systems
-          </p>
-        </div>
-
       </div>
     </section>
   );
