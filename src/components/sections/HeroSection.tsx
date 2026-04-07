@@ -32,85 +32,49 @@ export function HeroSection() {
 
       {/* Title block */}
       <div className="flex flex-col items-center justify-center pt-32 sm:pt-44 pb-10 px-4 text-center shrink-0">
-       <h1 className="text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] 2xl:text-[14rem] font-[family-name:var(--font-iceland)] text-white leading-[1.05] tracking-wide">
+        {/* 1. Enotrium */}
+        <h1 className="text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] 2xl:text-[14rem] font-[family-name:var(--font-iceland)] text-white leading-[1.05] tracking-wide">
           Enotrium
         </h1>
-          <h2
-            className="text-[1rem] sm:text-[1.3rem] md:text-[1.6rem] lg:text-[2rem] xl:text-[2.4rem] font-[family-name:var(--font-inter)] text-white/80 tracking-[0.2em] uppercase mt-4"
-              style={{ textShadow: "0 0 20px rgba(255,255,255,0.15)" }}
-            >
-            A New Mesopotamia
-          </h2>
-      </div>
+        {/* 2. A New Mesopotamia */}
+        <h2
+          className="text-[1rem] sm:text-[1.3rem] md:text-[1.6rem] lg:text-[2rem] xl:text-[2.4rem] font-[family-name:var(--font-inter)] text-white/80 tracking-[0.2em] uppercase mt-4"
+          style={{ textShadow: "0 0 20px rgba(255,255,255,0.15)" }}
+        >
+          A New Mesopotamia
+        </h2>
 
-      {/* Bordered panel */}
-      <div className="flex-1 mx-0 mb-0 sm:mx-3 sm:mb-3  sm:border-b sm:border-x border-white/15 flex flex-col overflow-hidden min-h-0">
-        {/* Subtitle + info row */}
-        <div className="px-6 pt-12 pb-10 shrink-0 flex flex-col items-center">
-         <div className="flex flex-col items-center text-center mt-10 mb-12">
-
-  {/* Top line */}
-  <p className="text-[1.2rem] sm:text-[1.6rem] md:text-[2rem] lg:text-[2.6rem] text-white/85 leading-tight font-[family-name:var(--font-iceland)]">
-    Transforming Agriculture
-  </p>
-
-  {/* Middle row with logo */}
-  <div className="flex items-center justify-center gap-6 my-4">
-
-    {/* Left text */}
-    <span className="text-white/60 text-sm font-[family-name:var(--font-space-grotesk)] text-right">
-      Defend the<br />Earth
-    </span>
-
-    {/* Logo */}
-    <Image
-      src="/logo.png"
-      alt="Enotrium"
-      width={110}
-      height={110}
-      className="opacity-95"
-    />
-
-    {/* Right text */}
-    <div className="text-left font-[family-name:var(--font-space-grotesk)]">
-      <div className="text-white/70 text-sm font-bold tracking-[0.2em]">
-        EST. 2025
-      </div>
-      <div className="text-white/50 text-sm">Future of Farming</div>
-    </div>
-  </div>
-
-  {/* Bottom line */}
-  <p className="text-[1.2rem] sm:text-[1.6rem] md:text-[2rem] lg:text-[2.6rem] text-white/85 leading-tight font-[family-name:var(--font-iceland)]">
-    through Autonomous Systems
-  </p>
-
-</div>
-
-          <div className="grid grid-cols-3 items-center w-full max-w-xs mx-auto">
-            <span className="text-white/55 text-sm font-[family-name:var(--font-space-grotesk)] leading-snug">
-              Defend the
-              <br />
-              Earth
-            </span>
-            <div className="flex justify-center">
-              <Image
-                src="/logo.png"
-                alt="Enotrium"
-                width={110}
-                height={110}
-                className="opacity-96"
-              />
-            </div>
-            <div className="text-right font-[family-name:var(--font-space-grotesk)]">
-              <div className="text-white/60 text-sm font-bold tracking-[0.2em]">
-                EST. 2025
-              </div>
-              <div className="text-white/55 text-sm">Future of Farming</div>
-            </div>
+        {/* 3. Logo block */}
+        <div className="flex items-center justify-center gap-6 mt-10">
+          <span className="text-white/60 text-sm font-[family-name:var(--font-space-grotesk)] text-right">
+            Defend the<br />Earth
+          </span>
+          <Image
+            src="/logo.png"
+            alt="Enotrium"
+            width={110}
+            height={110}
+            className="opacity-95"
+          />
+          <div className="text-left font-[family-name:var(--font-space-grotesk)]">
+            <div className="text-white/70 text-sm font-bold tracking-[0.2em]">EST. 2025</div>
+            <div className="text-white/50 text-sm">Future of Farming</div>
           </div>
         </div>
 
+        {/* 4. Transforming Agriculture through Autonomous Systems */}
+        <div className="mt-6 text-center">
+          <p className="text-[1.2rem] sm:text-[1.6rem] md:text-[2rem] lg:text-[2.6rem] text-white/85 leading-tight font-[family-name:var(--font-iceland)]">
+            Transforming Agriculture
+          </p>
+          <p className="text-[1.2rem] sm:text-[1.6rem] md:text-[2rem] lg:text-[2.6rem] text-white/85 leading-tight font-[family-name:var(--font-iceland)] mt-1">
+            through Autonomous Systems
+          </p>
+        </div>
+      </div>
+
+      {/* Bordered panel */}
+      <div className="flex-1 mx-0 mb-0 sm:mx-3 sm:mb-3 sm:border-b sm:border-x border-white/15 flex flex-col overflow-hidden min-h-0">
         <div className="relative overflow-hidden" style={{ minHeight: "180px", maxHeight: "clamp(180px, 40vw, 500px)", flex: 1 }}>
           <img
             src="/hero-backdrop.jpg"
