@@ -47,8 +47,8 @@ export function HeroSection() {
         </h2>
 
         {/* 3. Logo block */}
-        <div className="flex items-center justify-center gap-6 mt-8">
-          <span className="text-neutral-400 text-sm font-[family-name:var(--font-inter)] font-semibold text-right">
+        <div className="flex items-center justify-center gap-8 mt-8">
+          <span className="text-neutral-400 text-sm font-[family-name:var(--font-inter)] font-semibold text-right leading-tight">
             Defend the<br />Earth
           </span>
           <Image
@@ -56,9 +56,9 @@ export function HeroSection() {
             alt="Enotrium"
             width={110}
             height={110}
-            className="opacity-95"
+            className="opacity-95 shrink-0"
           />
-          <div className="text-left font-[family-name:var(--font-space-grotesk)]">
+          <div className="text-left font-[family-name:var(--font-space-grotesk)] leading-tight">
             <div className="text-white/70 text-sm font-bold tracking-[0.2em]">EST. 2025</div>
             <div className="text-white/50 text-sm">The Future of Farming</div>
           </div>

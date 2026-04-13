@@ -51,15 +51,15 @@ export function Footer() {
 
         {/* Logo */}
         <div className="pb-12 text-center sm:text-left">
-          <Link href="/" className="inline-flex items-center gap-0">
+          <Link href="/" className="inline-flex items-center -space-x-2">
             <Image
               src="/logo.jpg"
               alt="Enotrium"
               width={240}
               height={64}
-              className="h-20 w-auto"
+              className="h-14 w-auto"
             />
-            <span className="text-white text-5xl font-[family-name:var(--font-iceland)]">
+            <span className="text-white text-6xl font-[family-name:var(--font-iceland)]">
               Enotrium
             </span>
           </Link>
