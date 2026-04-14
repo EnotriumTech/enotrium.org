@@ -12,6 +12,7 @@ export default function ManifestoPage() {
             <div className="fixed top-6 left-6 z-50">
                 <Link
                     href="/"
+                    target="_self"
                     className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors font-[family-name:var(--font-space-grotesk)]"
                 >
                     <ArrowLeft className="w-4 h-4" />

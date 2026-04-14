@@ -14,6 +14,7 @@ export function ManifestoSection() {
                     <ScrollReveal>
                         <Link 
                             href="/manifesto"
+                            target="_self"
                             className="block group"
                         >
                             {/* Manifesto Card */}

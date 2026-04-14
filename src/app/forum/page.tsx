@@ -31,6 +31,7 @@ export default function ForumPage() {
           <Link
             key={post.slug}
             href={`/forum/${post.slug}`}
+            target="_self"
             className={`group flex items-start justify-between gap-8 py-10 ${
               i < posts.length - 1 ? "border-b border-foreground/10" : ""
             }`}

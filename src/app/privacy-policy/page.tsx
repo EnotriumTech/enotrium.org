@@ -213,7 +213,7 @@ export default function PrivacyPolicyPage() {
 
             <h3 className="text-sm font-bold text-white mb-2 mt-4">To Exercise Your Rights</h3>
             <p>
-              Contact: <a href="mailto:contact@enotrium.org" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
+              Contact: <a href="mailto:contact@enotrium.org" target="_self" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
             </p>
             <p className="mt-2">We may verify your identity before processing requests.</p>
           </section>
@@ -258,7 +258,7 @@ export default function PrivacyPolicyPage() {
           <section>
             <h2 className="text-base font-bold text-white mb-4">16. Contact</h2>
             <p>
-              <a href="mailto:contact@enotrium.org" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
+              <a href="mailto:contact@enotrium.org" target="_self" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
             </p>
           </section>
         </div>

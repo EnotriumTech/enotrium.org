@@ -226,7 +226,7 @@ export default function TermsOfUsePage() {
           <section>
             <h2 className="text-base font-bold text-white mb-4">Dispute Resolution</h2>
             <p>
-              You agree to first attempt informal resolution by contacting: <a href="mailto:contact@enotrium.org" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
+              You agree to first attempt informal resolution by contacting: <a href="mailto:contact@enotrium.org" target="_self" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
             </p>
           </section>
 
@@ -258,7 +258,7 @@ export default function TermsOfUsePage() {
           <section>
             <h2 className="text-base font-bold text-white mb-4">Contact</h2>
             <p>
-              <a href="mailto:contact@enotrium.org" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
+              <a href="mailto:contact@enotrium.org" target="_self" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
             </p>
           </section>
         </div>

@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/config/content";
 import { BackgroundGrid } from "@/components/ui/background-grid";
+import { LinkBehavior } from "@/components/ui/LinkBehavior";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -61,6 +62,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${spaceGrotesk.variable} ${iceland.variable} ${inter.variable} ${tektur.variable} font-sans antialiased`}>
+        <LinkBehavior />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

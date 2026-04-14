@@ -74,6 +74,7 @@ export default function CareersPage() {
               </p>
               <a
                 href="mailto:enotrium@atomicmail.io"
+                target="_self"
                 className="inline-block mt-4 text-xl sm:text-2xl font-bold text-black hover:opacity-50 transition-opacity"
               >
                 enotrium@atomicmail.io
@@ -98,6 +99,7 @@ export default function CareersPage() {
               <p className="text-sm font-medium text-black/60 mb-2">Send your resume to</p>
               <a
                 href="mailto:enotrium@atomicmail.io"
+                target="_self"
                 className="text-xl sm:text-2xl font-bold text-black hover:opacity-50 transition-opacity"
               >
                 enotrium@atomicmail.io

@@ -51,7 +51,7 @@ export function Footer() {
 
         {/* Logo */}
         <div className="pb-12 text-center sm:text-left">
-          <Link href="/" className="inline-flex items-center -space-x-2">
+          <Link href="/" target="_self" className="inline-flex items-center -space-x-2">
             <Image
               src="/logo.jpg"
               alt="Enotrium"
@@ -77,6 +77,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
+                      target="_self"
                       className="text-sm text-white hover:text-neutral-400 transition-colors"
                     >
                       {link.label}
@@ -96,17 +97,17 @@ export function Footer() {
             </p>
             <ul className="space-y-0 leading-none">
               <li className="leading-none">
-                <Link href="/privacy-policy" className="text-xs text-neutral-500 hover:text-white transition-colors inline leading-none">
+                <Link href="/privacy-policy" target="_self" className="text-xs text-neutral-500 hover:text-white transition-colors inline leading-none">
                   Privacy Policy
                 </Link>
               </li>
               <li className="leading-none">
-                <Link href="/terms-of-use" className="text-xs text-neutral-500 hover:text-white transition-colors inline leading-none">
+                <Link href="/terms-of-use" target="_self" className="text-xs text-neutral-500 hover:text-white transition-colors inline leading-none">
                   Terms Of Use
                 </Link>
               </li>
               <li className="leading-none">
-                <Link href="/anti-slavery-policy" className="text-xs text-neutral-500 hover:text-white transition-colors inline leading-none">
+                <Link href="/anti-slavery-policy" target="_self" className="text-xs text-neutral-500 hover:text-white transition-colors inline leading-none">
                   Modern Anti-Slavery Policy
                 </Link>
               </li>

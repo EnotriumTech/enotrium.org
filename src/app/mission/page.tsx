@@ -109,6 +109,7 @@ export default function MissionPage() {
               <p className="text-sm font-semibold">The Agrarian Republic</p>
               <Link
                 href="/manifesto"
+                target="_self"
                 className="text-xs font-semibold text-black hover:text-black transition-colors flex items-center gap-1"
               >
                 Read More <span>↗</span>
@@ -116,6 +117,7 @@ export default function MissionPage() {
             </div>
             <Link
               href="/manifesto"
+              target="_self"
               className="block rounded-sm overflow-hidden relative bg-black"
               style={{ height: "300px" }}
             >
@@ -134,6 +136,7 @@ export default function MissionPage() {
               <p className="text-sm font-semibold">Control Your Supply Chain</p>
               <Link
                 href="/aip"
+                target="_self"
                 className="text-xs font-semibold text-black hover:text-black transition-colors flex items-center gap-1"
               >
                 Enotrium AIP <span>↗</span>
@@ -141,6 +144,7 @@ export default function MissionPage() {
             </div>
             <Link
               href="/aip"
+              target="_self"
               className="block rounded-sm overflow-hidden flex items-center justify-center p-8"
               style={{
                 height: "300px",

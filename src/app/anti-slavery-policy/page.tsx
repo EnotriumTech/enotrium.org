@@ -111,7 +111,7 @@ export default function AntiSlaveryPolicyPage() {
             </ul>
             <p className="mt-4 mb-2">Reports can be made confidentially via:</p>
             <p>
-              <a href="mailto:contact@enotrium.org" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
+              <a href="mailto:contact@enotrium.org" target="_self" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
             </p>
             <p className="mt-4">
               We prohibit retaliation against anyone who raises concerns in good faith.
@@ -159,7 +159,7 @@ export default function AntiSlaveryPolicyPage() {
             <h2 className="text-base font-bold text-white mb-4">12. Contact</h2>
             <p className="mb-2">For questions or concerns regarding this Policy:</p>
             <p>
-              <a href="mailto:contact@enotrium.org" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
+              <a href="mailto:contact@enotrium.org" target="_self" className="text-white hover:text-neutral-400 transition-colors">contact@enotrium.org</a>
             </p>
           </section>
         </div>

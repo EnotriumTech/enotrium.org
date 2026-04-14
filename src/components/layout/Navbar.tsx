@@ -85,7 +85,7 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-[1fr_auto_1fr] items-center h-16 md:h-20">
             {/* Logo */}
-            <Link href="/" className="z-10">
+            <Link href="/" target="_self" className="z-10">
               <div className="flex flex-row items-center">
                 <Image
                   src="/logo.jpg"
@@ -111,6 +111,7 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
                 <Link
                   key={item.href}
                   href={item.href}
+                  target="_self"
                   className="text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors uppercase font-[family-name:var(--font-space-grotesk)]"
                 >
                   {item.title}
@@ -163,6 +164,7 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
                 <Link
                   key={item.href}
                   href={item.href}
+                  target="_self"
                   onClick={() => setMenuOpen(false)}
                   className="block py-3 text-sm tracking-widest text-muted-foreground hover:text-foreground transition-colors uppercase font-[family-name:var(--font-space-grotesk)]"
                 >
@@ -197,6 +199,7 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
                     <li key={link.label}>
                       <Link
                         href={link.href}
+                        target="_self"
                         onClick={() => setMegaOpen(false)}
                         className="text-white text-sm font-light hover:text-neutral-400 transition-colors duration-150 font-[family-name:var(--font-space-grotesk)]"
                       >

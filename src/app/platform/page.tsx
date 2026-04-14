@@ -120,6 +120,7 @@ export default function PlatformPage() {
           Reach out to us at{" "}
           <a
             href="mailto:enotriumtech@atomicmail.io"
+            target="_self"
             className="text-black underline hover:text-neutral-600 transition-colors"
           >
             enotriumtech@atomicmail.io

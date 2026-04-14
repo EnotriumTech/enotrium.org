@@ -22,6 +22,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         <div className="mb-10">
           <Link
             href="/forum"
+            target="_self"
             className="text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors"
           >
             Forum

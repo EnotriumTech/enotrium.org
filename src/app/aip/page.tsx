@@ -173,6 +173,7 @@ export default function AIPPage() {
             </div>
             <Link
               href="/"
+              target="_self"
               className="flex items-center gap-2 text-sm tracking-wide text-white hover:text-neutral-400 transition-colors mt-1 shrink-0"
             >
               Access Here <span className="text-lg">↗</span>
