@@ -147,33 +147,15 @@ export function Navbar({
   const onTabEnter = useCallback((tabName: string) => {
     setActiveTab(tabName);
     
-    // Clear any existing hover timer
-    if (hoverTimer.current) {
-      clearTimeout(hoverTimer.current);
-      hoverTimer.current = null;
+    if (tabName === 'company') {
+      // Company enters command mode immediately on hover
+      setCommandMode(true);
+      onEnterZone();
+      setMegaOpen(true);
     }
-    
-    // Start 2-second timer for deliberate interaction
-    hoverTimer.current = setTimeout(() => {
-      if (tabName === 'company') {
-        // Company enters command mode
-        setCommandMode(true);
-        onEnterZone();
-        setMegaOpen(true);
-      } else {
-        // Other tabs open normally
-        setMegaOpen(true);
-      }
-    }, HOVER_DELAY);
   }, [onEnterZone]);
   
   const onTabLeave = useCallback(() => {
-    // Cancel hover timer if cursor leaves before 2 seconds
-    if (hoverTimer.current) {
-      clearTimeout(hoverTimer.current);
-      hoverTimer.current = null;
-    }
-    
     // Only close if not in command mode (Company persistence)
     if (!commandMode && activeTab !== 'company') {
       setActiveTab(null);
