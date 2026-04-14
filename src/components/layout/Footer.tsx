@@ -1,6 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 
+function isExternalUrl(href: string): boolean {
+  try {
+    const url = new URL(href, "https://enotrium.org");
+    return url.origin !== "https://enotrium.org";
+  } catch {
+    return false;
+  }
+}
+
 export const EnotriumMark = ({ size = 40 }: { size?: number }) => (
   <svg
     width={size}
@@ -74,11 +83,7 @@ export function Footer() {
               </p>
               <ul className="space-y-1">
                 {col.links.map((link) => {
-                  const isSocialMedia = link.href.includes('x.com') || 
-                                       link.href.includes('linkedin.com') || 
-                                       link.href.includes('bsky.app') || 
-                                       link.href.includes('medium.com') || 
-                                       link.href.includes('github.com');
+                  const isSocialMedia = isExternalUrl(link.href);
                   return (
                     <li key={link.label}>
                       <Link

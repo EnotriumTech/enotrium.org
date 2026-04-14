@@ -5,6 +5,15 @@ import Link from "next/link";
 import { siteConfig } from "@/config/content";
 import { useState, useEffect, useCallback, useRef } from "react";
 
+function isExternalUrl(href: string): boolean {
+  try {
+    const url = new URL(href, "https://enotrium.org");
+    return url.origin !== "https://enotrium.org";
+  } catch {
+    return false;
+  }
+}
+
 const navItems = [
   { title: "Platform", href: "/platform" },
   { title: "AIP", href: "/aip" },
@@ -314,8 +323,7 @@ export function Navbar({
               <div className="border-t border-border mt-2 pt-2">
                 {megaMenuColumns.map((col) =>
                   col.links.map((link) => {
-                    const isExternal =
-                      link.href.startsWith("https://") || link.href.startsWith("http://");
+                    const isExternal = isExternalUrl(link.href);
                     return (
                       <Link
                         key={link.label}
@@ -369,8 +377,7 @@ export function Navbar({
                 </p>
                 <ul className="space-y-2" role="group" aria-label={col.heading}>
                   {col.links.map((link) => {
-                    const isExternal =
-                      link.href.startsWith("https://") || link.href.startsWith("http://");
+                    const isExternal = isExternalUrl(link.href);
                     return (
                       <li key={link.label} role="none">
                         <Link
