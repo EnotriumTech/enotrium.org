@@ -359,7 +359,7 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
       <div
         id="mega-menu"
         ref={dropdownRef}
-        className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ease-out ${megaOpen
+        className={`fixed inset-x-0 top-16 md:top-20 z-40 transition-all duration-300 ease-out ${megaOpen
           ? "opacity-100 translate-y-0 pointer-events-auto"
           : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
