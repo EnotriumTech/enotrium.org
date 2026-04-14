@@ -75,10 +75,12 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${!noScrollBg && scrolled && !megaOpen
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${!noScrollBg && !megaOpen
           ? lightScrollBg
             ? "bg-white border-b border-black/10"
-            : "bg-background/80 backdrop-blur-md border-b border-border"
+            : scrolled
+              ? "bg-background/80 backdrop-blur-md border-b border-border"
+              : ""
           : ""
           }`}
       >
