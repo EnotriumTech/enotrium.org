@@ -147,7 +147,7 @@ export function Navbar({
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           lightScrollBg
-            ? "bg-white !bg-white border-b border-black/10"
+            ? "bg-white border-b border-black/10"
             : "bg-background border-b border-border md:bg-transparent md:border-transparent"
         } ${
           !lightScrollBg && !noScrollBg && !megaOpen && scrolled
@@ -191,7 +191,11 @@ export function Navbar({
                   href={item.href}
                   target="_self"
                   role="menuitem"
-                  className="text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors uppercase font-[family-name:var(--font-space-grotesk)]"
+                  className={`text-xs tracking-widest transition-colors uppercase font-[family-name:var(--font-space-grotesk)] ${
+                    darkText && !megaOpen
+                      ? "text-gray-500 hover:text-black"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                   tabIndex={0}
                 >
                   {item.title}
@@ -313,7 +317,11 @@ export function Navbar({
                   href={item.href}
                   target="_self"
                   onClick={() => setMenuOpen(false)}
-                  className="block py-3 text-sm tracking-widest text-muted-foreground hover:text-foreground transition-colors uppercase font-[family-name:var(--font-space-grotesk)]"
+                  className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[family-name:var(--font-space-grotesk)] ${
+                    darkText && !megaOpen
+                      ? "text-gray-500 hover:text-black"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                   role="menuitem"
                 >
                   {item.title}
@@ -331,7 +339,11 @@ export function Navbar({
                         target={isExternal ? "_blank" : "_self"}
                         rel={isExternal ? "noopener noreferrer" : undefined}
                         onClick={() => setMenuOpen(false)}
-                        className="block py-3 text-sm tracking-widest text-muted-foreground hover:text-foreground transition-colors uppercase font-[family-name:var(--font-space-grotesk)]"
+                        className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[family-name:var(--font-space-grotesk)] ${
+                          darkText && !megaOpen
+                            ? "text-gray-500 hover:text-black"
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
                         role="menuitem"
                       >
                         {link.label}
