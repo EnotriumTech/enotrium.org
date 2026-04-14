@@ -221,6 +221,7 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
             : "bg-background border-b border-border md:bg-transparent md:border-transparent"
         } ${!lightScrollBg && !noScrollBg && !megaOpen && scrolled ? "md:bg-background/80 md:backdrop-blur-md md:border-border" : ""}
         `}
+        onMouseLeave={handleNavLeave}
         role="navigation"
         aria-label="Main navigation"
       >
@@ -257,9 +258,7 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
                   role="menuitem"
                   className="text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors uppercase font-[family-name:var(--font-space-grotesk)]"
                   onMouseEnter={() => handleNavEnter(index)}
-                  onMouseLeave={handleNavLeave}
                   onFocus={() => handleNavEnter(index)}
-                  onBlur={handleNavLeave}
                   aria-expanded={megaOpen && activeNavIndex === index}
                   aria-haspopup="true"
                   tabIndex={0}
@@ -274,7 +273,6 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
               ref={megaMenuRef}
               className="hidden md:flex items-center justify-end"
               onMouseEnter={() => handleNavEnter(-1)}
-              onMouseLeave={handleNavLeave}
             >
               <button
                 onFocus={() => handleNavEnter(-1)}
