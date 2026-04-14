@@ -53,7 +53,7 @@ export default function BadlandsPage() {
       {/* Hero */}
       <section className="pt-28 pb-6 px-6 lg:px-16 max-w-[1400px] mx-auto">
         <h1
-          className="text-4xl sm:text-8xl lg:text-8xl font-medium"
+          className="text-4xl sm:text-8xl lg:text-8xl font-normal font-[family-name:var(--font-tektur)]"
           style={{ color: "#111" }}
         >
           Badlands
