@@ -404,7 +404,6 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
       {megaOpen && (
         <div
           className="fixed inset-0 z-30 bg-black/40 transition-opacity duration-300"
-          onMouseEnter={closeMega}
           aria-hidden="true"
         />
       )}
