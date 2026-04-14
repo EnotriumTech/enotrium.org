@@ -37,7 +37,7 @@ export default function MissionPage() {
 
       {/* Hero */}
       <section className="pt-32 pb-16 px-6 lg:px-16 max-w-[1400px] mx-auto">
-        <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-black mb-8 font-[family-name:var(--font-inter)]">
+        <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-black mb-8 font-[family-name:var(--font-inter)]">
           Mission
         </p>
         <div className="flex items-start justify-between gap-8">
