@@ -99,7 +99,7 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
   const isHoveringNav = useRef(false);
   const isHoveringDropdown = useRef(false);
 
-  const CLOSE_DELAY = 500; // ms before closing (increased for horizontal transitions)
+  const CLOSE_DELAY = 250; // ms before closing
   const OPEN_DELAY = 50;   // ms before opening (minimal delay)
 
   const handleScroll = useCallback(() => {
@@ -248,11 +248,6 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
               ref={navRef}
               className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2"
               role="menubar"
-              onMouseEnter={() => isHoveringNav.current = true}
-              onMouseLeave={() => {
-                isHoveringNav.current = false;
-                closeMega();
-              }}
             >
               {navItems.map((item, index) => (
                 <Link
