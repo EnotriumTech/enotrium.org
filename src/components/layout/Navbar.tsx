@@ -79,7 +79,7 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
           ? lightScrollBg
             ? "bg-white border-b border-black/10"
             : "bg-background/80 backdrop-blur-md border-b border-border"
-          : ""
+          : "bg-background border-b border-border"
           }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
