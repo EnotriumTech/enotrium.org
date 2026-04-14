@@ -75,17 +75,12 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${lightScrollBg
-          ? "bg-white border-b border-black/10"
-          : "bg-background border-b border-border"
-          } md:bg-transparent md:border-transparent ${!noScrollBg && !megaOpen
-          ? lightScrollBg
-            ? "md:bg-white md:border-black/10"
-            : scrolled
-              ? "md:bg-background/80 md:backdrop-blur-md md:border-border"
-              : ""
-          : ""
-          }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          lightScrollBg
+            ? "bg-white border-b border-black/10"
+            : "bg-background border-b border-border md:bg-transparent md:border-transparent"
+        } ${!lightScrollBg && !noScrollBg && !megaOpen && scrolled ? "md:bg-background/80 md:backdrop-blur-md md:border-border" : ""}
+        `}
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-16 md:h-20">
