@@ -193,13 +193,16 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
   const handleNavEnter = useCallback((index: number) => {
     isHoveringNav.current = true;
     setActiveNavIndex(index);
-    openMega(index);
+    // Only open mega menu for Company (index -1), not for regular nav items
+    if (index === -1) {
+      openMega(index);
+    }
   }, [openMega]);
 
   const handleNavLeave = useCallback(() => {
     isHoveringNav.current = false;
-    closeMega();
-  }, [closeMega]);
+    // Don't close immediately - let the dropdown handle closing
+  }, []);
 
   // Handle dropdown hover
   const handleDropdownEnter = useCallback(() => {
@@ -221,7 +224,6 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
             : "bg-background border-b border-border md:bg-transparent md:border-transparent"
         } ${!lightScrollBg && !noScrollBg && !megaOpen && scrolled ? "md:bg-background/80 md:backdrop-blur-md md:border-border" : ""}
         `}
-        onMouseLeave={handleNavLeave}
         role="navigation"
         aria-label="Main navigation"
       >
