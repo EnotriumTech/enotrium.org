@@ -345,6 +345,16 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
         </div>
       </nav>
 
+      {/* Hover Bridge - invisible area to keep menu open when moving from Company to dropdown */}
+      {megaOpen && (
+        <div
+          className="fixed inset-x-0 top-16 md:top-20 z-40 h-8 bg-transparent"
+          onMouseEnter={handleDropdownEnter}
+          onMouseLeave={handleDropdownLeave}
+          aria-hidden="true"
+        />
+      )}
+
       {/* Mega Menu Overlay - With hover intent */}
       <div
         id="mega-menu"
