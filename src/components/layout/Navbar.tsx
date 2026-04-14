@@ -71,6 +71,8 @@ export function Navbar({
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [commandMode, setCommandMode] = useState(false);
 
   // Single close timer — the only state machine we need
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -80,11 +82,39 @@ export function Navbar({
   // We use a simple counter so re-entrant enter/leave events can't desync.
   const hoverZoneCount = useRef(0);
 
+  // Hover activation timer for 2-second deliberate interaction
+  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const CLOSE_DELAY = 150; // ms — short enough to feel snappy, long enough to cross the seam
+  const HOVER_DELAY = 2000; // 2 seconds for deliberate interaction
 
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 50);
-  }, []);
+    
+    // Check if user reached near bottom of page
+    const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
+    
+    // Close Company dropdown when reaching bottom (unless in command mode)
+    if (nearBottom && megaOpen && activeTab === 'company' && !commandMode) {
+      setMegaOpen(false);
+      setActiveTab(null);
+      hoverZoneCount.current = 0;
+      if (closeTimer.current) {
+        clearTimeout(closeTimer.current);
+        closeTimer.current = null;
+      }
+    }
+    
+    // For other tabs, close dropdown on any scroll
+    if (megaOpen && activeTab !== 'company' && !commandMode) {
+      setMegaOpen(false);
+      setActiveTab(null);
+      if (hoverTimer.current) {
+        clearTimeout(hoverTimer.current);
+        hoverTimer.current = null;
+      }
+    }
+  }, [megaOpen, activeTab, commandMode]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -113,11 +143,52 @@ export function Navbar({
     }
   }, []);
 
-  // ── Open on Company hover ───────────────────────────────────────────────────
-  const onCompanyEnter = useCallback(() => {
-    onEnterZone();
-    setMegaOpen(true);
+  // ── Deliberate hover activation (2-second delay) ─────────────────────────────
+  const onTabEnter = useCallback((tabName: string) => {
+    setActiveTab(tabName);
+    
+    // Clear any existing hover timer
+    if (hoverTimer.current) {
+      clearTimeout(hoverTimer.current);
+      hoverTimer.current = null;
+    }
+    
+    // Start 2-second timer for deliberate interaction
+    hoverTimer.current = setTimeout(() => {
+      if (tabName === 'company') {
+        // Company enters command mode
+        setCommandMode(true);
+        onEnterZone();
+        setMegaOpen(true);
+      } else {
+        // Other tabs open normally
+        setMegaOpen(true);
+      }
+    }, HOVER_DELAY);
   }, [onEnterZone]);
+  
+  const onTabLeave = useCallback(() => {
+    // Cancel hover timer if cursor leaves before 2 seconds
+    if (hoverTimer.current) {
+      clearTimeout(hoverTimer.current);
+      hoverTimer.current = null;
+    }
+    
+    // Only close if not in command mode (Company persistence)
+    if (!commandMode && activeTab !== 'company') {
+      setActiveTab(null);
+    }
+  }, [commandMode, activeTab]);
+  
+  // ── Open on Company hover (legacy compatibility) ───────────────────────────
+  const onCompanyEnter = useCallback(() => {
+    onTabEnter('company');
+  }, [onTabEnter]);
+  
+  const onCompanyLeave = useCallback(() => {
+    onTabLeave();
+    onLeaveZone();
+  }, [onTabLeave, onLeaveZone]);
 
   // ── Keyboard accessibility ──────────────────────────────────────────────────
   useEffect(() => {
@@ -139,6 +210,7 @@ export function Navbar({
   useEffect(() => {
     return () => {
       if (closeTimer.current) clearTimeout(closeTimer.current);
+      if (hoverTimer.current) clearTimeout(hoverTimer.current);
     };
   }, []);
 
@@ -191,11 +263,13 @@ export function Navbar({
                   href={item.href}
                   target="_self"
                   role="menuitem"
-                  className={`text-xs tracking-widest transition-colors uppercase font-[family-name:var(--font-space-grotesk)] ${
+                  onMouseEnter={() => onTabEnter(item.title.toLowerCase())}
+                  onMouseLeave={onTabLeave}
+                  className={`text-xs tracking-widest transition-colors uppercase font-[family-name:var(--font-inter)] ${
                     darkText && !megaOpen
                       ? "text-gray-500 hover:text-black"
                       : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  } ${activeTab === item.title.toLowerCase() ? "text-foreground" : ""}`}
                   tabIndex={0}
                 >
                   {item.title}
@@ -207,19 +281,34 @@ export function Navbar({
             <div className="hidden md:flex items-center justify-end">
               <button
                 onMouseEnter={onCompanyEnter}
-                onMouseLeave={onLeaveZone}
-                onFocus={() => setMegaOpen(true)}
+                onMouseLeave={onCompanyLeave}
+                onFocus={() => {
+                  setCommandMode(true);
+                  setMegaOpen(true);
+                }}
                 onBlur={() => {
-                  // Only close on blur if pointer isn't in the zone
-                  if (hoverZoneCount.current === 0) {
+                  // Only close on blur if pointer isn't in the zone and not in command mode
+                  if (hoverZoneCount.current === 0 && !commandMode) {
                     closeTimer.current = setTimeout(() => setMegaOpen(false), CLOSE_DELAY);
                   }
                 }}
-                className={`text-xs tracking-widest uppercase transition-colors flex items-center gap-1 font-[family-name:var(--font-space-grotesk)] ${
+                onClick={() => {
+                  // Explicit click toggles command mode
+                  if (commandMode) {
+                    setCommandMode(false);
+                    setMegaOpen(false);
+                    setActiveTab(null);
+                  } else {
+                    setCommandMode(true);
+                    setMegaOpen(true);
+                    setActiveTab('company');
+                  }
+                }}
+                className={`text-xs tracking-widest uppercase transition-colors flex items-center gap-1 font-[family-name:var(--font-inter)] ${
                   darkText && !megaOpen
                     ? "text-gray-500 hover:text-black"
                     : "text-muted-foreground hover:text-foreground"
-                }`}
+                } ${commandMode ? "text-foreground" : ""}`}
                 aria-expanded={megaOpen}
                 aria-haspopup="true"
                 aria-controls="mega-menu"
@@ -317,7 +406,7 @@ export function Navbar({
                   href={item.href}
                   target="_self"
                   onClick={() => setMenuOpen(false)}
-                  className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[family-name:var(--font-space-grotesk)] ${
+                  className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[family-name:var(--font-inter)] ${
                     darkText && !megaOpen
                       ? "text-gray-500 hover:text-black"
                       : "text-muted-foreground hover:text-foreground"
@@ -339,7 +428,7 @@ export function Navbar({
                         target={isExternal ? "_blank" : "_self"}
                         rel={isExternal ? "noopener noreferrer" : undefined}
                         onClick={() => setMenuOpen(false)}
-                        className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[family-name:var(--font-space-grotesk)] ${
+                        className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[family-name:var(--font-inter)] ${
                           darkText && !megaOpen
                             ? "text-gray-500 hover:text-black"
                             : "text-muted-foreground hover:text-foreground"
@@ -366,16 +455,23 @@ export function Navbar({
         The seam between the navbar and the panel (any subpixel gap) is covered by
         the close delay — 150 ms is imperceptible to humans but long enough for the
         browser to fire the panel's onMouseEnter before the close timer fires.
+        
+        Command Mode: When Company is activated, the menu behaves as a persistent
+        system panel with enhanced dimming and slower animations.
       */}
       <div
         id="mega-menu"
-        className={`fixed inset-x-0 top-16 md:top-20 z-40 transition-all duration-200 ease-out ${
+        className={`fixed inset-x-0 top-16 md:top-20 z-40 transition-all ${
+          commandMode
+            ? "duration-300 ease-out"
+            : "duration-200 ease-out"
+        } ${
           megaOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-2 pointer-events-none"
         }`}
-        onMouseEnter={onEnterZone}
-        onMouseLeave={onLeaveZone}
+        onMouseEnter={commandMode ? undefined : onEnterZone}
+        onMouseLeave={commandMode ? undefined : onLeaveZone}
         role="menu"
         aria-label="Company menu"
         style={{ backgroundColor: "#0a0a0a" }}
@@ -398,6 +494,8 @@ export function Navbar({
                           rel={isExternal ? "noopener noreferrer" : undefined}
                           onClick={() => {
                             setMegaOpen(false);
+                            setCommandMode(false);
+                            setActiveTab(null);
                             hoverZoneCount.current = 0;
                             if (closeTimer.current) {
                               clearTimeout(closeTimer.current);
@@ -423,10 +521,16 @@ export function Navbar({
         ── Backdrop ─────────────────────────────────────────────────────────────
         pointer-events-none so it never intercepts mouse events that should reach
         the dropdown or the nav. Clicking anywhere outside closes via the onClick.
+        
+        Command Mode: Enhanced dimming for system layer feel.
       */}
       {megaOpen && (
         <div
-          className="fixed inset-0 z-30 bg-black/40 transition-opacity duration-300 pointer-events-none"
+          className={`fixed inset-0 z-30 transition-opacity pointer-events-none ${
+            commandMode
+              ? "bg-black/60 duration-300"
+              : "bg-black/40 duration-300"
+          }`}
           aria-hidden="true"
         />
       )}
@@ -435,6 +539,8 @@ export function Navbar({
         Transparent click-away layer — sits above the backdrop but below the
         dropdown (z-35). Only captures clicks, never mouse-enter/leave events,
         so it can't accidentally close the menu during normal hover movement.
+        
+        Command Mode: Only closes on explicit click, not on scroll.
       */}
       {megaOpen && (
         <div
@@ -442,6 +548,8 @@ export function Navbar({
           style={{ zIndex: 35 }}
           onClick={() => {
             setMegaOpen(false);
+            setCommandMode(false);
+            setActiveTab(null);
             hoverZoneCount.current = 0;
           }}
           aria-hidden="true"
