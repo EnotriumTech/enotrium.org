@@ -202,7 +202,7 @@ export function Navbar({
   // ── Derived: should text/logo be dark? ───────────────────────────────────
   // When mega is open, always use dark-bg styling (white text on dark panel).
   // On white-bg pages (darkText=true), use dark text when mega is closed.
-  const useDarkText = darkText && !megaOpen;
+  const useDarkText = (darkText || lightScrollBg) && !megaOpen;
 
   return (
     <>
