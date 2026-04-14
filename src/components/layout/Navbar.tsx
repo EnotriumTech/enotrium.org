@@ -274,12 +274,14 @@ export function Navbar({
                     closeTimer.current = setTimeout(() => setMegaOpen(false), CLOSE_DELAY);
                   }
                 }}
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   // Explicit click toggles command mode
-                  if (commandMode) {
+                  if (megaOpen) {
                     setCommandMode(false);
                     setMegaOpen(false);
                     setActiveTab(null);
+                    hoverZoneCount.current = 0;
                   } else {
                     setCommandMode(true);
                     setMegaOpen(true);
