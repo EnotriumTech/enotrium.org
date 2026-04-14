@@ -41,9 +41,7 @@ const megaMenuColumns = [
   },
   {
     heading: "WORK WITH US",
-    links: [
-      { label: "Careers", href: "/careers" },
-    ],
+    links: [{ label: "Careers", href: "/careers" }],
   },
   {
     heading: "SOCIAL",
@@ -72,45 +70,55 @@ export function Navbar({
   const [menuOpen, setMenuOpen] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<string | null>(null);
-  const [commandMode, setCommandMode] = useState(false);
+  // clickLocked = mega menu was opened via click and stays open until scroll/click-away
+  const [clickLocked, setClickLocked] = useState(false);
 
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hoverZoneCount = useRef(0);
-  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const CLOSE_DELAY = 400; // ms — long enough for diagonal mouse movement across the seam
-  const HOVER_DELAY = 2000; // 2 seconds for deliberate interaction
+  const CLOSE_DELAY = 300;
 
+  // ── Helpers ───────────────────────────────────────────────────────────────
+  const closeMega = useCallback(() => {
+    setMegaOpen(false);
+    setClickLocked(false);
+    setActiveTab(null);
+    hoverZoneCount.current = 0;
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  }, []);
+
+  const scheduleClose = useCallback(() => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => {
+      // Only auto-close if not click-locked
+      if (!hoverZoneCount.current) {
+        setMegaOpen((prev) => {
+          // respect click-lock — don't close if locked
+          return prev;
+        });
+      }
+    }, CLOSE_DELAY);
+  }, []);
+
+  // ── Scroll handler ────────────────────────────────────────────────────────
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 50);
 
-    const nearBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 10;
-
-    if (nearBottom && megaOpen && activeTab === "company" && !commandMode) {
-      setMegaOpen(false);
-      setActiveTab(null);
-      hoverZoneCount.current = 0;
-      if (closeTimer.current) {
-        clearTimeout(closeTimer.current);
-        closeTimer.current = null;
-      }
+    // Always close on scroll (even click-locked)
+    if (window.scrollY > 80 && megaOpen) {
+      closeMega();
     }
-
-    if (megaOpen && activeTab !== "company" && !commandMode) {
-      setMegaOpen(false);
-      setActiveTab(null);
-      if (hoverTimer.current) {
-        clearTimeout(hoverTimer.current);
-        hoverTimer.current = null;
-      }
-    }
-  }, [megaOpen, activeTab, commandMode]);
+  }, [megaOpen, closeMega]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
+  // ── Zone tracking (hover intent) ──────────────────────────────────────────
   const onEnterZone = useCallback(() => {
     hoverZoneCount.current += 1;
     if (closeTimer.current) {
@@ -121,62 +129,80 @@ export function Navbar({
 
   const onLeaveZone = useCallback(() => {
     hoverZoneCount.current = Math.max(0, hoverZoneCount.current - 1);
-    if (hoverZoneCount.current === 0) {
+    if (hoverZoneCount.current === 0 && !clickLocked) {
       closeTimer.current = setTimeout(() => {
-        setMegaOpen(false);
+        if (hoverZoneCount.current === 0 && !clickLocked) {
+          setMegaOpen(false);
+          setActiveTab(null);
+        }
       }, CLOSE_DELAY);
     }
-  }, []);
+  }, [clickLocked]);
 
-  const onTabEnter = useCallback(
+  // ── Nav item hover — opens mega for ANY item ───────────────────────────────
+  const onNavItemEnter = useCallback(
     (tabName: string) => {
       setActiveTab(tabName);
-
-      if (tabName === "company") {
-        setCommandMode(true);
-        onEnterZone();
-        setMegaOpen(true);
-      }
+      onEnterZone();
+      setMegaOpen(true);
     },
     [onEnterZone]
   );
 
-  // ── FIXED: removed commandMode/activeTab condition — clears activeTab unconditionally
-  const onTabLeave = useCallback(() => {
+  const onNavItemLeave = useCallback(() => {
     setActiveTab(null);
-  }, []);
-  
-  // ── Open on Company hover (legacy compatibility) ───────────────────────────
+    onLeaveZone();
+  }, [onLeaveZone]);
+
+  // ── Company button ────────────────────────────────────────────────────────
   const onCompanyEnter = useCallback(() => {
-    onTabEnter("company");
-  }, [onTabEnter]);
+    setActiveTab("company");
+    onEnterZone();
+    setMegaOpen(true);
+  }, [onEnterZone]);
 
   const onCompanyLeave = useCallback(() => {
-    onTabLeave();
+    setActiveTab(null);
     onLeaveZone();
-  }, [onTabLeave, onLeaveZone]);
+  }, [onLeaveZone]);
 
+  const onCompanyClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (clickLocked && megaOpen) {
+        // Toggle off
+        closeMega();
+      } else {
+        // Lock open
+        setClickLocked(true);
+        setMegaOpen(true);
+        setActiveTab("company");
+        hoverZoneCount.current = 1; // treat as "inside zone"
+      }
+    },
+    [clickLocked, megaOpen, closeMega]
+  );
+
+  // ── Escape key ────────────────────────────────────────────────────────────
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && megaOpen) {
-        setMegaOpen(false);
-        hoverZoneCount.current = 0;
-        if (closeTimer.current) {
-          clearTimeout(closeTimer.current);
-          closeTimer.current = null;
-        }
-      }
+      if (e.key === "Escape" && megaOpen) closeMega();
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [megaOpen]);
+  }, [megaOpen, closeMega]);
 
+  // ── Cleanup timers ────────────────────────────────────────────────────────
   useEffect(() => {
     return () => {
       if (closeTimer.current) clearTimeout(closeTimer.current);
-      if (hoverTimer.current) clearTimeout(hoverTimer.current);
     };
   }, []);
+
+  // ── Derived: should text/logo be dark? ───────────────────────────────────
+  // When mega is open, always use dark-bg styling (white text on dark panel).
+  // On white-bg pages (darkText=true), use dark text when mega is closed.
+  const useDarkText = darkText && !megaOpen;
 
   return (
     <>
@@ -195,6 +221,7 @@ export function Navbar({
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-16 md:h-20">
+
             {/* Logo */}
             <Link href="/" target="_self" className="z-10" aria-label="Enotrium home">
               <div className="flex flex-row items-center">
@@ -208,8 +235,8 @@ export function Navbar({
                 />
                 <span
                   className={`${
-                    darkText && !megaOpen ? "text-black" : "text-white"
-                  } text-4xl font-[family-name:var(--font-iceland)]`}
+                    useDarkText ? "text-black" : "text-white"
+                  } text-4xl font-[family-name:var(--font-iceland)] transition-colors duration-200`}
                 >
                   Enotrium
                 </span>
@@ -227,13 +254,13 @@ export function Navbar({
                   href={item.href}
                   target="_self"
                   role="menuitem"
-                  onMouseEnter={() => onTabEnter(item.title.toLowerCase())}
-                  onMouseLeave={onTabLeave}
-                  className={`text-xs tracking-widest transition-colors uppercase font-[family-name:var(--font-inter)] ${
-                    darkText && !megaOpen
+                  onMouseEnter={() => onNavItemEnter(item.title.toLowerCase())}
+                  onMouseLeave={onNavItemLeave}
+                  className={`text-xs tracking-widest transition-colors duration-200 uppercase font-[family-name:var(--font-inter)] ${
+                    useDarkText
                       ? "text-gray-500 hover:text-black"
                       : "text-muted-foreground hover:text-foreground"
-                  } ${activeTab === item.title.toLowerCase() ? "text-foreground" : ""}`}
+                  } ${activeTab === item.title.toLowerCase() ? (useDarkText ? "text-black" : "text-foreground") : ""}`}
                   tabIndex={0}
                 >
                   {item.title}
@@ -246,39 +273,19 @@ export function Navbar({
               <button
                 onMouseEnter={onCompanyEnter}
                 onMouseLeave={onCompanyLeave}
-                onFocus={() => {
-                  setCommandMode(true);
-                  setMegaOpen(true);
-                }}
-                onBlur={() => {
-                  if (hoverZoneCount.current === 0 && !commandMode) {
-                    closeTimer.current = setTimeout(() => setMegaOpen(false), CLOSE_DELAY);
-                  }
-                }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (megaOpen) {
-                    setCommandMode(false);
-                    setMegaOpen(false);
-                    setActiveTab(null);
-                    hoverZoneCount.current = 0;
-                  } else {
-                    setCommandMode(true);
-                    setMegaOpen(true);
-                    setActiveTab("company");
-                  }
-                }}
-                className={`text-xs tracking-widest uppercase transition-colors flex items-center gap-1 font-[family-name:var(--font-inter)] ${
-                  darkText && !megaOpen
+                onClick={onCompanyClick}
+                className={`text-xs tracking-widest uppercase transition-colors duration-200 flex items-center gap-1 font-[family-name:var(--font-inter)] ${
+                  useDarkText
                     ? "text-gray-500 hover:text-black"
                     : "text-muted-foreground hover:text-foreground"
-                } ${commandMode ? "text-foreground" : ""}`}
+                } ${activeTab === "company" || clickLocked ? (useDarkText ? "text-black" : "text-foreground") : ""}`}
                 aria-expanded={megaOpen}
                 aria-haspopup="true"
                 aria-controls="mega-menu"
               >
                 Company
-                {megaOpen ? (
+                {/* Icon: shows X when click-locked, chevron otherwise */}
+                {clickLocked ? (
                   <svg
                     className="w-3 h-3"
                     fill="none"
@@ -286,12 +293,17 @@ export function Navbar({
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 6v12M6 12h12"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : megaOpen ? (
+                  <svg
+                    className="w-3 h-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                   </svg>
                 ) : (
                   <svg
@@ -301,12 +313,7 @@ export function Navbar({
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 )}
               </button>
@@ -321,34 +328,12 @@ export function Navbar({
               aria-controls="mobile-menu"
             >
               {menuOpen ? (
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
             </button>
@@ -371,7 +356,7 @@ export function Navbar({
                   target="_self"
                   onClick={() => setMenuOpen(false)}
                   className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[family-name:var(--font-inter)] ${
-                    darkText && !megaOpen
+                    useDarkText
                       ? "text-gray-500 hover:text-black"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
@@ -393,7 +378,7 @@ export function Navbar({
                         rel={isExternal ? "noopener noreferrer" : undefined}
                         onClick={() => setMenuOpen(false)}
                         className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[family-name:var(--font-inter)] ${
-                          darkText && !megaOpen
+                          useDarkText
                             ? "text-gray-500 hover:text-black"
                             : "text-muted-foreground hover:text-foreground"
                         }`}
@@ -413,15 +398,13 @@ export function Navbar({
       {/* Mega Menu Panel */}
       <div
         id="mega-menu"
-        className={`fixed inset-x-0 top-16 md:top-20 z-40 transition-all ${
-          commandMode ? "duration-300 ease-out" : "duration-200 ease-out"
-        } ${
+        onMouseEnter={onEnterZone}
+        onMouseLeave={onLeaveZone}
+        className={`fixed inset-x-0 top-16 md:top-20 z-40 transition-all duration-200 ease-out ${
           megaOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-2 pointer-events-none"
         }`}
-        onMouseEnter={onEnterZone}
-        onMouseLeave={onLeaveZone}
         role="menu"
         aria-label="Company menu"
         style={{ backgroundColor: "#0a0a0a" }}
@@ -442,16 +425,7 @@ export function Navbar({
                           href={link.href}
                           target={isExternal ? "_blank" : "_self"}
                           rel={isExternal ? "noopener noreferrer" : undefined}
-                          onClick={() => {
-                            setMegaOpen(false);
-                            setCommandMode(false);
-                            setActiveTab(null);
-                            hoverZoneCount.current = 0;
-                            if (closeTimer.current) {
-                              clearTimeout(closeTimer.current);
-                              closeTimer.current = null;
-                            }
-                          }}
+                          onClick={closeMega}
                           className="text-white text-sm font-light hover:text-neutral-400 transition-colors duration-150 font-[family-name:var(--font-space-grotesk)] block"
                           role="menuitem"
                         >
@@ -470,24 +444,17 @@ export function Navbar({
       {/* Backdrop */}
       {megaOpen && (
         <div
-          className={`fixed inset-0 z-30 transition-opacity pointer-events-none ${
-            commandMode ? "bg-black/60 duration-300" : "bg-black/40 duration-300"
-          }`}
+          className="fixed inset-0 z-30 bg-black/50 transition-opacity duration-300 pointer-events-none"
           aria-hidden="true"
         />
       )}
 
-      {/* Click-away layer */}
-      {megaOpen && (
+      {/* Click-away layer — only active when click-locked (hover doesn't need it) */}
+      {megaOpen && clickLocked && (
         <div
           className="fixed inset-0 z-35"
           style={{ zIndex: 35 }}
-          onClick={() => {
-            setMegaOpen(false);
-            setCommandMode(false);
-            setActiveTab(null);
-            hoverZoneCount.current = 0;
-          }}
+          onClick={closeMega}
           aria-hidden="true"
         />
       )}
