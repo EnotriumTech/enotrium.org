@@ -345,11 +345,10 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
         </div>
       </nav>
 
-      {/* Hover Bridge - spans from Company button to dropdown */}
+      {/* Hover Bridge - invisible area to keep menu open when moving from Company to dropdown */}
       {megaOpen && (
         <div
-          className="fixed left-0 right-0 z-[45] h-48 bg-transparent"
-          style={{ top: '48px' }}
+          className="fixed inset-x-0 top-16 md:top-20 z-40 h-8 bg-transparent"
           onMouseEnter={handleDropdownEnter}
           onMouseLeave={handleDropdownLeave}
           aria-hidden="true"
