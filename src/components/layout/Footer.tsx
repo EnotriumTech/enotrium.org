@@ -73,17 +73,25 @@ export function Footer() {
                 {col.heading}
               </p>
               <ul className="space-y-1">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      target="_self"
-                      className="text-sm text-white hover:text-neutral-400 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
+                {col.links.map((link) => {
+                  const isSocialMedia = link.href.includes('x.com') || 
+                                       link.href.includes('linkedin.com') || 
+                                       link.href.includes('bsky.app') || 
+                                       link.href.includes('medium.com') || 
+                                       link.href.includes('github.com');
+                  return (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        target={isSocialMedia ? "_blank" : "_self"}
+                        rel={isSocialMedia ? "noopener noreferrer" : undefined}
+                        className="text-sm text-white hover:text-neutral-400 transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

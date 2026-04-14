@@ -195,18 +195,27 @@ export function Navbar({ invertLogo = false, noScrollBg = false, lightScrollBg =
                   {col.heading}
                 </p>
                 <ul className="space-y-2">
-                  {col.links.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        target="_self"
-                        onClick={() => setMegaOpen(false)}
-                        className="text-white text-sm font-light hover:text-neutral-400 transition-colors duration-150 font-[family-name:var(--font-space-grotesk)]"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
+                  {col.links.map((link) => {
+                    const isSocialMedia = link.href.includes('x.com') || 
+                                         link.href.includes('linkedin.com') || 
+                                         link.href.includes('bsky.app') || 
+                                         link.href.includes('medium.com') || 
+                                         link.href.includes('github.com') ||
+                                         link.href.includes('enotriumai.org');
+                    return (
+                      <li key={link.label}>
+                        <Link
+                          href={link.href}
+                          target={isSocialMedia ? "_blank" : "_self"}
+                          rel={isSocialMedia ? "noopener noreferrer" : undefined}
+                          onClick={() => setMegaOpen(false)}
+                          className="text-white text-sm font-light hover:text-neutral-400 transition-colors duration-150 font-[family-name:var(--font-space-grotesk)]"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
