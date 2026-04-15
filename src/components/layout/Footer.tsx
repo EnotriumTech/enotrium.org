@@ -109,7 +109,7 @@ export function Footer() {
             <p className="text-[10px] text-white uppercase mb-1">
               Copyright &copy; {new Date().getFullYear()} Enotrium Syndicate
             </p>
-            <p className="text-[10px] text-white uppercase mb-4">
+            <p className="text-[10px] text-neutral-500 uppercase mb-4">
               All Rights Reserved
             </p>
             <ul className="space-y-0 leading-none">
