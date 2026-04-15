@@ -46,7 +46,7 @@ export function MissionSection() {
 
         {/* Vertical line 1 — 25%, draws top → down */}
         <line
-          ref={(el) => (linesRef.current[0] = el)}
+          ref={(el) => { linesRef.current[0] = el; }}
           className="grid-line"
           style={{ "--l": "80%" } as React.CSSProperties}
           x1="25%"
@@ -61,7 +61,7 @@ export function MissionSection() {
 
         {/* Vertical line 2 — 75%, draws top → down, slight delay */}
         <line
-          ref={(el) => (linesRef.current[1] = el)}
+          ref={(el) => { linesRef.current[1] = el; }}
           className="grid-line"
           style={
             {
@@ -80,7 +80,7 @@ export function MissionSection() {
 
         {/* Horizontal line 1 — draws left → right */}
         <line
-          ref={(el) => (linesRef.current[2] = el)}
+          ref={(el) => { linesRef.current[2] = el; }}
           className="grid-line"
           style={
             {
@@ -99,7 +99,7 @@ export function MissionSection() {
 
         {/* Horizontal line 2 — draws left → right */}
         <line
-          ref={(el) => (linesRef.current[3] = el)}
+          ref={(el) => { linesRef.current[3] = el; }}
           className="grid-line"
           style={
             {
