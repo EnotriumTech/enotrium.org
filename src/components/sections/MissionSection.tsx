@@ -7,6 +7,7 @@ const FLIP_WORDS = [
   "Orpheus",
   "Agriculture",
   "Technology",
+  "Agri-Base",
   "Farming",
   "Arthedain",
   "Industry",
@@ -49,7 +50,7 @@ export function MissionSection() {
   function startFlip() {
     setIsFlipping(true);
     let i = 0;
-    const totalCycles = 7;
+    const totalCycles = 8;
     const totalFlips = FLIP_WORDS.length * totalCycles;
     // Fast phase: cycle through all words 10 times, faster
     const fastInterval = setInterval(() => {
@@ -65,8 +66,8 @@ export function MissionSection() {
 
   function slowLand(startIndex: number) {
     let i = startIndex;
-    // Progressively slow down over the last 2 steps
-    const delays = [140, 220];
+    // Progressively slow down over the last 3 steps
+    const delays = [100, 180, 280];
     let step = 0;
 
     function nextStep() {
@@ -114,17 +115,6 @@ export function MissionSection() {
         }
         .flip-word.flipping {
           color: rgba(255,255,255,0.5);
-        }
-        .flip-word::after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          right: 0;
-          height: 1px;
-          background: rgba(255,255,255,0.25);
-          transform: scaleX(1);
-          transform-origin: left;
         }
       `}</style>
 
@@ -174,7 +164,7 @@ export function MissionSection() {
         style={{ right: "calc(75% + 12px)", top: "126px" }}
       >
         <p
-          className="text-[12px] uppercase"
+          className="text-[14px] uppercase"
           style={{
             fontFamily: '"Söhne", "Inter", system-ui, sans-serif',
             letterSpacing: "0.12em",
