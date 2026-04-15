@@ -45,7 +45,7 @@ export function MissionSection() {
   function startFlip() {
     setIsFlipping(true);
     let i = 0;
-    const totalFlips = FLIP_WORDS.length * 7;
+    const totalFlips = FLIP_WORDS.length * 5;
     const fastInterval = setInterval(() => {
       setDisplayWord(FLIP_WORDS[i % FLIP_WORDS.length]);
       i++;
@@ -74,13 +74,23 @@ export function MissionSection() {
     nextStep();
   }
 
-  const lineTransition = (delay: string, axis: "X" | "Y") =>
+  const hLine = (delay: string) =>
     ({
       width: "100%",
-      height: "100%",
+      height: "1px",
       background: "rgba(255,255,255,0.2)",
-      transform: axis === "X" ? "scaleX(0)" : "scaleY(0)",
-      transformOrigin: axis === "X" ? "left" : "top",
+      transform: "scaleX(0)",
+      transformOrigin: "left",
+      transition: `transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) ${delay}`,
+    } as React.CSSProperties);
+
+  const vLine = (delay: string) =>
+    ({
+      width: "1px",
+      height: "100%",
+      borderLeft: "1px solid rgba(255,255,255,0.2)",
+      transform: "scaleY(0)",
+      transformOrigin: "top",
       transition: `transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) ${delay}`,
     } as React.CSSProperties);
 
@@ -94,67 +104,23 @@ export function MissionSection() {
         .flip-word.flipping { color: rgba(255,255,255,0.5); }
       `}</style>
 
-      {/* Animated Grid Lines — CSS transforms */}
+      {/* Grid Lines — pure div/CSS transform, no SVG */}
       <div ref={gridRef} className="absolute inset-0 pointer-events-none">
-        {/* Vertical line 1 — 25%, animates top to bottom */}
-        <div className="absolute top-0 overflow-hidden" style={{ left: "25%", width: "2px", height: "80%" }}>
-          <div
-            data-line="v"
-            className="w-full h-full origin-top"
-            style={{
-              background: "rgba(255,255,255,0.2)",
-              transform: "scaleY(0)",
-              transition: "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-          />
+        {/* Vertical 1 — 25% */}
+        <div className="absolute top-0" style={{ left: "25%", width: "1px", height: "80%" }}>
+          <div data-line="v" style={vLine("0s")} />
         </div>
-        {/* Vertical line 2 — 75%, animates top to bottom */}
-        <div className="absolute top-0 overflow-hidden" style={{ left: "75%", width: "2px", height: "80%" }}>
-          <div
-            data-line="v"
-            className="w-full h-full origin-top"
-            style={{
-              background: "rgba(255,255,255,0.2)",
-              transform: "scaleY(0)",
-              transition: "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
-            }}
-          />
+        {/* Vertical 2 — 75% */}
+        <div className="absolute top-0" style={{ left: "75%", width: "1px", height: "80%" }}>
+          <div data-line="v" style={vLine("0s")} />
         </div>
-        {/* Horizontal line 1 — top, full width, animates left to right */}
-        <div className="absolute left-0 right-0 overflow-hidden" style={{ top: "12%", height: "2px" }}>
-          <div
-            data-line="h"
-            className="w-full h-full origin-left"
-            style={{
-              background: "rgba(255,255,255,0.2)",
-              transform: "scaleX(0)",
-              transition: "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s",
-            }}
-          />
+        {/* Horizontal 1 */}
+        <div className="absolute left-0 right-0" style={{ top: "calc(15% - 1.5cm)", height: "1px" }}>
+          <div data-line="h" style={hLine("0.2s")} />
         </div>
-        {/* Horizontal line 2 — middle, full width, animates left to right */}
-        <div className="absolute left-0 right-0 overflow-hidden" style={{ top: "58%", height: "2px" }}>
-          <div
-            data-line="h"
-            className="w-full h-full origin-left"
-            style={{
-              background: "rgba(255,255,255,0.2)",
-              transform: "scaleX(0)",
-              transition: "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s",
-            }}
-          />
-        </div>
-        {/* Horizontal line 3 — bottom, full width, animates left to right */}
-        <div className="absolute left-0 right-0 overflow-hidden" style={{ top: "90%", height: "2px" }}>
-          <div
-            data-line="h"
-            className="w-full h-full origin-left"
-            style={{
-              background: "rgba(255,255,255,0.2)",
-              transform: "scaleX(0)",
-              transition: "transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s",
-            }}
-          />
+        {/* Horizontal 2 */}
+        <div className="absolute left-0 right-0" style={{ top: "calc(55% + 1.5cm)", height: "1px" }}>
+          <div data-line="h" style={hLine("0.3s")} />
         </div>
       </div>
 
