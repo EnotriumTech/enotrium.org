@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/content";
 import { ArrowLeft } from "lucide-react";
 import { Footer } from "@/components/layout/Footer";
 
-export default function ManifestoPage() {
+export default function InvectivePage() {
     return (
         <main className="min-h-screen">{/* Back Navigation */}
             <div className="fixed top-6 left-6 z-50">
@@ -33,10 +33,10 @@ export default function ManifestoPage() {
                                 <div className="flex items-start justify-between gap-6">
                                     <div className="space-y-3">
                                         <span className="text-xs font-medium tracking-[0.3em] text-muted-foreground uppercase font-[family-name:var(--font-space-grotesk)]">
-                                            {siteConfig.manifesto.date}
+                                            {siteConfig.invective.date}
                                         </span>
                                         <h1 className="text-5xl sm:text-6xl md:text-7xl font-light tracking-tight leading-[1.05] text-left font-[family-name:var(--font-space-grotesk)]">
-                                            {siteConfig.manifesto.title}
+                                            {siteConfig.invective.title}
                                         </h1>
                                     </div>
                                     <div className="text-sm sm:text-base text-muted-foreground font-[family-name:var(--font-space-grotesk)]">
@@ -49,10 +49,10 @@ export default function ManifestoPage() {
                     </div>
                 </div>
 
-                {/* Full Manifesto Text */}
+                {/* Full Invective Text */}
                 <div className="px-4 md:px-6 lg:px-12 py-12 md:py-16">
                     <div className="max-w-4xl mx-auto space-y-8">
-                        {siteConfig.manifesto.paragraphs.map((paragraph, index) => (
+                        {siteConfig.invective.paragraphs.map((paragraph, index) => (
                             <ScrollReveal key={index} delay={0.05}>
                                 <p className="text-base sm:text-lg md:text-xl font-light leading-relaxed text-foreground/90 font-[family-name:var(--font-space-grotesk)] whitespace-pre-line">
                                     {paragraph}

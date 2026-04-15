@@ -22,7 +22,7 @@ export interface SiteConfig {
         title: string;
         subtitle: string;
     };
-    manifesto: {
+    invective: {
         date: string;
         title: string;
         paragraphs: string[];

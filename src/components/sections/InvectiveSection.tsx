@@ -5,19 +5,19 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { InteractiveUSMap } from "@/components/visualizations/InteractiveUSMap";
 import { siteConfig } from "@/config/content";
 
-export function ManifestoSection() {
+export function InvectiveSection() {
     return (
-        <section id="manifesto" className="relative py-16 md:py-24">
+        <section id="invective" className="relative py-16 md:py-24">
 
             <div className="px-4 md:px-6 lg:px-12 py-12 md:py-16">
                 <div className="max-w-7xl mx-auto">
                     <ScrollReveal>
                         <Link 
-                            href="/manifesto"
+                            href="/invective"
                             target="_self"
                             className="block group"
                         >
-                            {/* Manifesto Card */}
+                            {/* Invective Card */}
                             <div className="relative bg-black border border-foreground/20 overflow-hidden transition-all duration-300 hover:border-foreground/40">
                                 <div className="px-6 pt-6 md:px-8 md:pt-8">
                                     <div className="space-y-2">
@@ -47,7 +47,7 @@ export function ManifestoSection() {
                                             <span className="block text-white">The Agrarian</span>
                                             <span className="block text-white">Republic-</span>
                                             <span className="block bg-gradient-to-b from-white via-white/70 to-white/10 bg-clip-text text-transparent">
-                                                A Manifesto
+                                                An Invective
                                             </span>
                                         </h2>
                                     </div>
@@ -76,7 +76,7 @@ export function ManifestoSection() {
                                         <div>
                                             <p className="text-base md:text-lg lg:text-xl text-foreground/80 font-[family-name:var(--font-space-grotesk)]">
                                                 Published<br />
-                                                <span className="text-foreground/60">{siteConfig.manifesto.date}</span>
+                                                <span className="text-foreground/60">{siteConfig.invective.date}</span>
                                             </p>
                                         </div>
                                     </div>

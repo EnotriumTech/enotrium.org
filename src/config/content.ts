@@ -4,7 +4,7 @@ export const siteConfig: SiteConfig = {
   name: "ENOTRIUM",
   description: "A New Mesopotamia",
   nav: [
-    { title: "Manifesto", href: "/manifesto" },
+    { title: "Invective", href: "/invective" },
     { title: "Product", href: "#supply-chain" },
     { title: "Platform", href: "/" },
   ],
@@ -12,9 +12,9 @@ export const siteConfig: SiteConfig = {
     title: "A New Mesopotamia",
     subtitle: "Autonomous Coordination for Critical Supply Chains",
   },
-  manifesto: {
+  invective: {
     date: "December 2025",
-    title: "Manifesto",
+    title: "Invective",
     paragraphs: [
       "After the direct and indirect experience of the brokenness of our food supply, corporate overreach into agriculture, and the gradual downfall of rural America, it has become the responsibility of farmers and entrepreneurs to band together and form new systems of economic self-sovereignty which impel the Nation to its true destiny. To those who understand its importance, agriculture need not be explained, containing nothing less than America's left hand in national security and civil liberties on its right.",
       "The fate of America is the most interesting question in the world. What happens to our farmland, our food supply in the coming years will decide the fate of the nation.",

@@ -17,7 +17,7 @@ function isExternalUrl(href: string): boolean {
 const navItems = [
   { title: "Platform", href: "/platform" },
   { title: "AIP", href: "/aip" },
-  { title: "Manifesto", href: "/manifesto" },
+  { title: "Invective", href: "/invective" },
   { title: "Forum", href: "/forum" },
   { title: "Badlands", href: "/badlands" },
 ];

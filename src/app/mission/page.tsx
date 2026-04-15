@@ -108,7 +108,7 @@ export default function MissionPage() {
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-semibold">The Agrarian Republic</p>
               <Link
-                href="/manifesto"
+                href="/invective"
                 target="_self"
                 className="text-xs font-semibold text-black hover:text-black transition-colors flex items-center gap-1"
               >
@@ -116,7 +116,7 @@ export default function MissionPage() {
               </Link>
             </div>
             <Link
-              href="/manifesto"
+              href="/invective"
               target="_self"
               className="block rounded-sm overflow-hidden relative bg-black"
               style={{ height: "300px" }}
