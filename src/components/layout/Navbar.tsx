@@ -256,7 +256,7 @@ export function Navbar({
                   role="menuitem"
                   onMouseEnter={() => onNavItemEnter(item.title.toLowerCase())}
                   onMouseLeave={onNavItemLeave}
-                  className={`text-xs tracking-widest transition-colors duration-200 uppercase font-[var(--font-inter)] ${
+                  className={`text-xs tracking-widest transition-colors duration-200 uppercase font-[family-name:var(--font-inter)] ${
                     useDarkText
                       ? "text-gray-500 hover:text-black"
                       : "text-muted-foreground hover:text-foreground"
@@ -274,7 +274,7 @@ export function Navbar({
                 onMouseEnter={onCompanyEnter}
                 onMouseLeave={onCompanyLeave}
                 onClick={onCompanyClick}
-                className={`text-xs tracking-widest uppercase transition-colors duration-200 flex items-center gap-1 font-[var(--font-inter)] ${
+                className={`text-xs tracking-widest uppercase transition-colors duration-200 flex items-center gap-1 font-[family-name:var(--font-inter)] ${
                   useDarkText
                     ? "text-gray-500 hover:text-black"
                     : "text-muted-foreground hover:text-foreground"
@@ -355,7 +355,7 @@ export function Navbar({
                   href={item.href}
                   target="_self"
                   onClick={() => setMenuOpen(false)}
-                  className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[var(--font-inter)] ${
+                  className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[family-name:var(--font-inter)] ${
                     useDarkText
                       ? "text-gray-500 hover:text-black"
                       : "text-muted-foreground hover:text-foreground"
@@ -377,7 +377,7 @@ export function Navbar({
                         target={isExternal ? "_blank" : "_self"}
                         rel={isExternal ? "noopener noreferrer" : undefined}
                         onClick={() => setMenuOpen(false)}
-                        className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[var(--font-inter)] ${
+                        className={`block py-3 text-sm tracking-widest transition-colors uppercase font-[family-name:var(--font-inter)] ${
                           useDarkText
                             ? "text-gray-500 hover:text-black"
                             : "text-muted-foreground hover:text-foreground"
@@ -413,7 +413,7 @@ export function Navbar({
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {megaMenuColumns.map((col) => (
               <div key={col.heading}>
-                <p className="text-[10px] tracking-[0.2em] text-neutral-500 uppercase mb-3 font-[var(--font-inter)]">
+                <p className="text-[10px] tracking-[0.2em] text-neutral-500 uppercase mb-3 font-[family-name:var(--font-inter)]">
                   {col.heading}
                 </p>
                 <ul className="space-y-2" role="group" aria-label={col.heading}>
@@ -426,7 +426,7 @@ export function Navbar({
                           target={isExternal ? "_blank" : "_self"}
                           rel={isExternal ? "noopener noreferrer" : undefined}
                           onClick={closeMega}
-                          className="text-white text-sm font-light hover:text-neutral-400 transition-colors duration-150 font-[var(--font-inter)] block"
+                          className="text-white text-sm font-light hover:text-neutral-400 transition-colors duration-150 font-[family-name:var(--font-inter)] block"
                           role="menuitem"
                         >
                           {link.label}
