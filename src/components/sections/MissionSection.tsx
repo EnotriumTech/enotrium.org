@@ -149,7 +149,7 @@ export function MissionSection() {
         </ScrollReveal>
 
         <div className="mt-6 ml-4">
-          
+          <a
             href={mission.ctaLink}
             className="group inline-flex items-center transition-all duration-300"
             style={{ border: "1px solid rgba(255,255,255,0.2)", padding: "10px 18px", fontSize: "14px", fontFamily: '"Söhne", "Inter", system-ui, sans-serif', color: "rgba(255,255,255,0.85)" }}
