@@ -35,7 +35,7 @@ export function MissionSection() {
         <div
           className="absolute left-0 right-0"
           style={{
-            top: "15%",
+            top: "calc(15% - 2cm)",
             height: "2px",
             background: "rgba(255,255,255,0.2)",
           }}
@@ -44,7 +44,7 @@ export function MissionSection() {
         <div
           className="absolute left-0 right-0"
           style={{
-            top: "55%",
+            top: "calc(55% + 2cm)",
             height: "2px",
             background: "rgba(255,255,255,0.2)",
           }}
