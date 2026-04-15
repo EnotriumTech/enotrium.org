@@ -49,16 +49,18 @@ export function MissionSection() {
   function startFlip() {
     setIsFlipping(true);
     let i = 0;
-    // Fast phase: cycle through all words quickly
+    const totalCycles = 10;
+    const totalFlips = FLIP_WORDS.length * totalCycles;
+    // Fast phase: cycle through all words 10 times, faster
     const fastInterval = setInterval(() => {
       setDisplayWord(FLIP_WORDS[i % FLIP_WORDS.length]);
       i++;
-      // Once we've cycled through everything, slow down for the final land
-      if (i >= FLIP_WORDS.length - 1) {
+      // After 10 full cycles, slow down for the final land
+      if (i >= totalFlips) {
         clearInterval(fastInterval);
         slowLand(i);
       }
-    }, 80);
+    }, 40);
   }
 
   function slowLand(startIndex: number) {
