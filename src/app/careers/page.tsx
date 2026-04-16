@@ -72,13 +72,6 @@ export default function CareersPage() {
               <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
                 If you are a founder and engineer at heart, reach out about becoming an Enotrium Fellow.
               </p>
-              <a
-                href="mailto:enotrium@atomicmail.io"
-                target="_self"
-                className="inline-block mt-4 text-base sm:text-lg text-black hover:opacity-50 transition-opacity"
-              >
-                enotrium@atomicmail.io
-              </a>
             </div>
           </div>
         </div>
