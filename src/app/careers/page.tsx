@@ -30,31 +30,30 @@ export default function CareersPage() {
           </p>
         </div>
 
-        {/* The Enotrium Fellowship */}
-        <div id="fellowship" className="mb-24 scroll-mt-32">
+        {/* The Enotrium Team */}
+        <div id="team" className="mb-24 scroll-mt-32">
           <div className="h-px w-full bg-black/20 mb-12" />
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 font-[family-name:var(--font-tektur)]">
-            The Enotrium Fellowship
+            The Enotrium Team
           </h2>
 
           <div className="space-y-8 max-w-3xl">
             <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
-              The Enotrium Fellowship is a three year program that gives enterprising young engineers
-              the chance to join Enotrium and work with our founding team in achieving global farm
-              security and industrial liberty.
+              The Enotrium Founders are an enterprising young team of engineers dedicated
+              to achieving global farm security and industrial liberty for the free world.
             </p>
 
             <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
-              The world is full of seven billion people. There are of course great minds we have not
-              encountered. The Enotrium Fellowship is designed to override chance and meet individuals
+              The world is full of seven billion people. There are of course great minds and builders we have not
+              encountered. The Enotrium hiring process is designed to override chance and meet individuals
               who share our vision and work ethic.
             </p>
 
             <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
-              The Fellowship is for ambitious young people who have what we call &ldquo;Founder
-              Mentality.&rdquo; We&apos;re looking for builders who demand excellence from themselves
-              and the people around them, obsess over details, and value creating excellence over
+              If you are an ambitious builder and have what we call &ldquo;Founder
+              Mentality.&rdquo; We&apos;re looking for people who demand excellence from themselves
+              and the individuals around them, obsess over details, and value creating excellence over
               prestige and conformism.
             </p>
 
@@ -66,11 +65,12 @@ export default function CareersPage() {
               America&apos;s situation is likewise dire. Freedom is under attack, technology and
               hyper-financialization increasingly erode human dignity and excellence. It is time
               Americans and the world at large work to re-founding a free and prosperous world order.
+              2026 marks the beginning of a new techno-industrial revolution.
             </p>
 
             <div className="pt-4">
               <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
-                If you are a founder and engineer at heart, reach out about becoming an Enotrium Fellow.
+                If you are a founder and engineer at heart, reach out about coming on to Enotrium.
               </p>
             </div>
           </div>
