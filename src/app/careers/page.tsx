@@ -18,7 +18,7 @@ export default function CareersPage() {
 
         {/* Intro */}
         <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 md:gap-16 mb-24">
-          <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-black pt-1">
+          <p className="text-[10px] font-regular tracking-[0.25em] uppercase text-black pt-1">
             Join Us
           </p>
           <p className="text-base sm:text-lg leading-relaxed font-medium text-black max-w-2xl">
