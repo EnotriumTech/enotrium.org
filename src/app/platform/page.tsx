@@ -256,3 +256,8 @@ export default function PlatformPage() {
     </p>
   </div>
 </section>
+
+      <Footer />
+    </div>
+  );
+}
