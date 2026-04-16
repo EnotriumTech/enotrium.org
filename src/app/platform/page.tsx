@@ -168,19 +168,24 @@ export default function PlatformPage() {
       <Navbar invertLogo lightScrollBg darkText />
 
       {/* Hero */}
-      <section className="pt-28 md:pt-32 px-6 lg:px-16 pb-16 max-w-[1400px] mx-auto">
-        <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-black mb-6">
-          Platform
-        </p>
-        <h1
-          className="font-[family-name:var(--font-tektur)] tracking-tight text-black max-w-2xl"
-          style={{ fontSize: "clamp(40px, 8vw, 110px)", lineHeight: 1.05, fontWeight: 400 }}
-        >
-          Measuring Agriculture&apos;s Potential in the AI Era
-        </h1>
-        <p className="mt-8 text-sm sm:text-base text-black/60 leading-relaxed max-w-sm">
-          The only platform that verifies every farm and manufacturer across the world&apos;s supply chain.
-        </p>
+      <section className="relative pt-28 md:pt-32 px-6 lg:px-16 pb-16 max-w-[1400px] mx-auto overflow-hidden min-h-[60vh]">
+        <div className="absolute inset-0">
+          <AbstractField />
+        </div>
+        <div className="relative z-10">
+          <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-black mb-6">
+            Platform
+          </p>
+          <h1
+            className="font-[family-name:var(--font-tektur)] tracking-tight text-black max-w-2xl"
+            style={{ fontSize: "clamp(40px, 8vw, 110px)", lineHeight: 1.05, fontWeight: 400 }}
+          >
+            Measuring Agriculture&apos;s Potential in the AI Era
+          </h1>
+          <p className="mt-8 text-sm sm:text-base text-black/60 leading-relaxed max-w-sm">
+            The only platform that verifies every farm and manufacturer across the world&apos;s supply chain.
+          </p>
+        </div>
       </section>
 
       {/* Intelligence Feature Section */}
@@ -233,29 +238,24 @@ export default function PlatformPage() {
       </section>
 
       {/* CTA */}
-<section className="relative px-6 lg:px-16 py-32 max-w-[1400px] mx-auto bg-white text-black overflow-hidden">
-  <div className="absolute inset-0">
-    <AbstractField />
-  </div>
-  <div className="relative z-10">
-    <h2
-      className="font-[family-name:var(--font-tektur)] tracking-tight text-black"
-      style={{ fontSize: "clamp(48px, 10vw, 140px)", lineHeight: 1.05, fontWeight: 400 }}
-    >
-      Request a<br />Demo
-    </h2>
-    <p className="mt-6 text-sm sm:text-base text-black/60 leading-relaxed max-w-sm">
-      Reach out to us at{" "}
-      <a
-        href="mailto:enotriumtech@atomicmail.io"
-        className="text-black underline hover:text-neutral-600 transition-colors"
-      >
-        enotriumtech@atomicmail.io
-      </a>{" "}
-      for a demo.
-    </p>
-  </div>
-</section>
+      <section className="px-6 lg:px-16 py-32 max-w-[1400px] mx-auto">
+        <h2
+          className="font-[family-name:var(--font-tektur)] tracking-tight text-black"
+          style={{ fontSize: "clamp(48px, 10vw, 140px)", lineHeight: 1.05, fontWeight: 400 }}
+        >
+          Request a<br />Demo
+        </h2>
+        <p className="mt-6 text-sm sm:text-base text-black/60 leading-relaxed max-w-sm">
+          Reach out to us at{" "}
+          <a
+            href="mailto:enotriumtech@atomicmail.io"
+            className="text-black underline hover:text-neutral-600 transition-colors"
+          >
+            enotriumtech@atomicmail.io
+          </a>{" "}
+          for a demo.
+        </p>
+      </section>
 
       <Footer />
     </div>
