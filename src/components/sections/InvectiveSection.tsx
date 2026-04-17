@@ -86,8 +86,16 @@ export function InvectiveSection() {
                 </div>
             </div>
 
+            {/* Map Label */}
+            <div className="px-4 md:px-6 lg:px-12 pt-8 pb-4">
+                <p className="text-left text-xl md:text-2xl lg:text-3xl text-foreground/80 font-[family-name:var(--font-inter)]">
+                    Autonomous Supply Chain coordination<br />
+                    for our Civilization&apos;s Agri-Industrial Base
+                </p>
+            </div>
+
             {/* Interactive USA Map */}
-            <div className="px-0 md:px-6 lg:px-12 py-12 md:py-16">
+            <div className="px-0 md:px-6 lg:px-12 py-8 md:py-12">
                 <div className="w-full max-w-none">
                     <ScrollReveal delay={0.1} width="100%">
                         <InteractiveUSMap />
