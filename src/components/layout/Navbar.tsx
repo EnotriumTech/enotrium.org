@@ -16,6 +16,7 @@ function isExternalUrl(href: string): boolean {
 
 const navItems = [
   { title: "Platform", href: "/platform" },
+  { title: "Solutions", href: "/solutions" },
   { title: "AIP", href: "/aip" },
   { title: "Invective", href: "/invective" },
   { title: "Forum", href: "/forum" },
@@ -27,6 +28,7 @@ const megaMenuColumns = [
     heading: "COMPANY",
     links: [
       { label: "Mission", href: "/mission" },
+      { label: "Solutions", href: "/solutions" },
       { label: "Industrial Agriculture", href: "/industrial-agriculture" },
       { label: "Food and Agriculture", href: "/food-and-agriculture" },
     ],
