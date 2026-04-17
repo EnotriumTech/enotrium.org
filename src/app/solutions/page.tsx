@@ -648,12 +648,20 @@ function WhyEnotriumSection() {
   const maxIndex = Math.max(0, benefits.length - visibleCount);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   };
+
+  // Auto-scroll carousel continuously
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    }, 4000); // 4 seconds per slide
+    return () => clearInterval(interval);
+  }, [maxIndex]);
 
   return (
     <section className="relative py-32 md:py-40 bg-[#0a0a0a] overflow-hidden grain-overlay">
@@ -724,16 +732,14 @@ function WhyEnotriumSection() {
               <div className="flex gap-4">
                 <button
                   onClick={prevSlide}
-                  disabled={currentIndex === 0}
-                  className="w-14 h-14 border border-white/[0.1] hover:border-white/[0.25] hover:bg-white/[0.03] flex items-center justify-center text-white/30 hover:text-white disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-500 ease-dramatic focus-ring"
+                  className="w-14 h-14 border border-white/[0.1] hover:border-white/[0.25] hover:bg-white/[0.03] flex items-center justify-center text-white/30 hover:text-white transition-all duration-500 ease-dramatic focus-ring"
                   aria-label="Previous slide"
                 >
                   <ChevronLeft className="w-5 h-5" strokeWidth={1.5} />
                 </button>
                 <button
                   onClick={nextSlide}
-                  disabled={currentIndex >= maxIndex}
-                  className="w-14 h-14 border border-white/[0.1] hover:border-white/[0.25] hover:bg-white/[0.03] flex items-center justify-center text-white/30 hover:text-white disabled:opacity-20 disabled:cursor-not-allowed transition-all duration-500 ease-dramatic focus-ring"
+                  className="w-14 h-14 border border-white/[0.1] hover:border-white/[0.25] hover:bg-white/[0.03] flex items-center justify-center text-white/30 hover:text-white transition-all duration-500 ease-dramatic focus-ring"
                   aria-label="Next slide"
                 >
                   <ChevronRight className="w-5 h-5" strokeWidth={1.5} />
