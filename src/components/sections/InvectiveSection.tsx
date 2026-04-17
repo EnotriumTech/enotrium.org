@@ -95,7 +95,7 @@ export function InvectiveSection() {
             </div>
 
             {/* Interactive USA Map */}
-            <div className="px-0 md:px-6 lg:px-12 py-8 md:py-12">
+            <div className="px-0 md:px-6 lg:px-12 pt-2 pb-8 md:pt-4 md:py-12">
                 <div className="w-full max-w-none">
                     <ScrollReveal delay={0.1} width="100%">
                         <InteractiveUSMap />
