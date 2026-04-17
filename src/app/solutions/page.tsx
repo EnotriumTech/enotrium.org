@@ -586,11 +586,26 @@ function OurStorySection() {
                 farmers, and doers, not the other way around.
               </p>
 
-              <div className="mt-10 p-8 border-l border-white/[0.1] bg-white/[0.01]">
-                <p className="text-white/40 text-xs font-medium tracking-[0.2em] uppercase mb-3 font-[family-name:var(--font-inter)]">
+              <div className="mt-10 p-8 border border-red-500/30 bg-[#0f0505] relative overflow-hidden group"
+                style={{ boxShadow: "inset 0 0 40px rgba(239, 68, 68, 0.08), 0 0 30px rgba(239, 68, 68, 0.1)" }}
+              >
+                {/* Red glow orb */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full opacity-30 blur-3xl"
+                  style={{ background: "radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, transparent 70%)" }}
+                />
+                
+                {/* Corner brackets */}
+                <div className="absolute top-2 left-2 w-6 h-6 border-l border-t border-red-500/40" />
+                <div className="absolute top-2 right-2 w-6 h-6 border-r border-t border-red-500/40" />
+                <div className="absolute bottom-2 left-2 w-6 h-6 border-l border-b border-red-500/40" />
+                <div className="absolute bottom-2 right-2 w-6 h-6 border-r border-b border-red-500/40" />
+                
+                <p className="text-red-400/60 text-xs font-medium tracking-[0.25em] uppercase mb-4 font-[family-name:var(--font-inter)] relative z-10">
                   Our Compass
                 </p>
-                <p className="text-white/70 text-lg font-light italic font-[family-name:var(--font-inter)] leading-relaxed">
+                <p className="text-red-200/80 text-xl font-light font-[family-name:var(--font-inter)] leading-relaxed relative z-10"
+                  style={{ textShadow: "0 0 20px rgba(239, 68, 68, 0.3)" }}
+                >
                   &ldquo;Technology should serve people, farmers, and doers,
                   not the other way around.&rdquo;
                 </p>
