@@ -130,18 +130,18 @@ function AbstractField() {
 
 const tabs = [
   {
-    id: "upgrading",
-    label: "Upgrading",
-    image: "/upgrading-map.png",
-    description:
-      "Transform verified gaps into real growth. Build capabilities faster with personalized data featuring internal content, AI-powered insight.",
-  },
-  {
     id: "natural-resources",
     label: "Natural Resources",
     image: "/natural-resources.png",
     description:
       "Understand your operations in relation to ecological offsets. AI-driven analysis of land potential, regenerative practices, and resource mapping.",
+  },
+  {
+    id: "upgrading",
+    label: "Upgrading",
+    image: "/upgrading-map.png",
+    description:
+      "Transform verified gaps into real growth. Build capabilities faster with personalized data featuring internal content, AI-powered insight.",
   },
   {
     id: "command-center",
@@ -160,7 +160,7 @@ const tabs = [
 ];
 
 export default function PlatformPage() {
-  const [activeTab, setActiveTab] = useState("upgrading");
+  const [activeTab, setActiveTab] = useState("natural-resources");
   const active = tabs.find((t) => t.id === activeTab)!;
 
   return (
@@ -226,13 +226,17 @@ export default function PlatformPage() {
           </div>
 
           {/* Screenshot */}
-          <div className="relative min-h-[220px] md:min-h-0 overflow-hidden bg-black">
+          <div className="relative min-h-[220px] md:min-h-0 overflow-hidden bg-black select-none">
             <img
               key={active.id}
               src={active.image}
               alt={active.label}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+              draggable="false"
+              onContextMenu={(e) => e.preventDefault()}
             />
+            {/* Overlay to prevent interactions */}
+            <div className="absolute inset-0 z-10" />
           </div>
         </div>
       </section>
