@@ -291,7 +291,7 @@ export function Navbar({
                 aria-controls="mega-menu"
               >
                 Company
-                {/* Icon: shows X when click-locked, chevron otherwise */}
+                {/* Icon: shows + when click-locked, chevron otherwise */}
                 {clickLocked ? (
                   <svg
                     className="w-3 h-3"
@@ -300,7 +300,7 @@ export function Navbar({
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 5v14M5 12h14" />
                   </svg>
                 ) : megaOpen ? (
                   <svg
