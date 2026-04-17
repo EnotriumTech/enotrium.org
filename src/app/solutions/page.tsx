@@ -186,7 +186,7 @@ function HeroSection() {
           <div className="max-w-2xl space-y-5 text-white/60 text-lg md:text-xl leading-[1.7] font-[family-name:var(--font-inter)] font-light">
             <p className="text-balance">
               We believe in progress – not as an end in itself, but to merge the old with the new, in an ever greater march towards prosperity.
-              Our technologies put real industry first.
+              Our technologies put real industry first. Technologies change civilization, and civilization is perserved with technology.
             </p>
             <p className="text-balance">
               Enotrium&apos;s Technologies shift power, strengthen trust, and enable individuals
@@ -463,11 +463,11 @@ function SectionDivider() {
 
       {/* Perspective grid background */}
       <div 
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-50"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(16, 185, 129, 0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(16, 185, 129, 0.03) 1px, transparent 1px)
+            linear-gradient(to right, rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(16, 185, 129, 0.08) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
         }}
@@ -475,9 +475,9 @@ function SectionDivider() {
 
       {/* Horizontal accent lines */}
       <div className="absolute inset-0 flex flex-col justify-center">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent" />
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-amber-500/5 to-transparent mt-8 md:mt-12" />
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-emerald-500/10 to-transparent mt-8 md:mt-12" />
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-emerald-500/25 to-transparent" />
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-amber-500/15 to-transparent mt-8 md:mt-12" />
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-emerald-500/25 to-transparent mt-8 md:mt-12" />
       </div>
 
       {/* Glowing dots */}
@@ -490,10 +490,10 @@ function SectionDivider() {
             top: `${dot.top}%`,
             width: `${dot.size}px`,
             height: `${dot.size}px`,
-            backgroundColor: index % 3 === 0 ? "rgba(239, 68, 68, 0.7)" : "rgba(245, 158, 11, 0.6)",
+            backgroundColor: index % 3 === 0 ? "rgba(239, 68, 68, 0.9)" : "rgba(245, 158, 11, 0.85)",
             boxShadow: index % 3 === 0 
-              ? "0 0 8px 2px rgba(239, 68, 68, 0.4), 0 0 16px 4px rgba(239, 68, 68, 0.2)"
-              : "0 0 8px 2px rgba(245, 158, 11, 0.4), 0 0 16px 4px rgba(245, 158, 11, 0.2)",
+              ? "0 0 12px 3px rgba(239, 68, 68, 0.6), 0 0 24px 6px rgba(239, 68, 68, 0.4)"
+              : "0 0 12px 3px rgba(245, 158, 11, 0.6), 0 0 24px 6px rgba(245, 158, 11, 0.4)",
             animation: `pulse 4s ease-in-out ${dot.delay}s infinite`,
           }}
         />
@@ -501,12 +501,12 @@ function SectionDivider() {
 
       {/* Subtle ambient glow orbs */}
       <div 
-        className="absolute top-1/2 left-1/4 -translate-y-1/2 w-32 h-32 rounded-full opacity-20 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent)" }}
+        className="absolute top-1/2 left-1/4 -translate-y-1/2 w-32 h-32 rounded-full opacity-40 blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(16, 185, 129, 0.35), transparent)" }}
       />
       <div 
-        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-24 h-24 rounded-full opacity-15 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(245, 158, 11, 0.12), transparent)" }}
+        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-24 h-24 rounded-full opacity-35 blur-3xl"
+        style={{ background: "radial-gradient(circle, rgba(245, 158, 11, 0.3), transparent)" }}
       />
     </section>
   );
