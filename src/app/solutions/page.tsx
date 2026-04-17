@@ -16,7 +16,6 @@ import {
   Leaf,
   Users,
   Network,
-  Scale,
   ChevronDown,
 } from "lucide-react";
 
@@ -332,7 +331,7 @@ function PartnershipsSection() {
         <ScrollReveal animation="fade-up" duration={1}>
           <div className="max-w-4xl mb-20">
             <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-5 font-[family-name:var(--font-inter)] font-medium">
-              Collaboration
+              Alliance
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-extralight text-white mb-10 font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
               Partnerships that serve people
@@ -433,12 +432,9 @@ function GovernanceSection() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-10 border-t border-white/[0.08]">
                   {principles.map((principle, index) => (
                     <div key={principle.title} className="group space-y-3" style={{ transitionDelay: `${index * 100}ms` }}>
-                      <div className="flex items-center gap-3">
-                        <Scale className="w-5 h-5 text-white/30 group-hover:text-white/50 transition-all duration-500" strokeWidth={1.5} />
-                        <p className="text-base font-light text-white font-[family-name:var(--font-inter)] tracking-wide">
-                          {principle.title}
-                        </p>
-                      </div>
+                      <p className="text-base font-light text-white font-[family-name:var(--font-inter)] tracking-wide">
+                        {principle.title}
+                      </p>
                       <p className="text-sm text-white/30 font-[family-name:var(--font-inter)] leading-relaxed">
                         {principle.desc}
                       </p>
@@ -655,7 +651,7 @@ function WhyEnotriumSection() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
             <div>
               <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-5 font-[family-name:var(--font-inter)] font-medium">
-                Differentiation
+                Decentralizio
               </p>
               <h2 className="text-4xl md:text-5xl lg:text-7xl font-extralight text-white font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
                 Why ENOTRIUM
