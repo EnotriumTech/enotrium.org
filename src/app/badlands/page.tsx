@@ -9,28 +9,28 @@ const inter = Inter({ subsets: ["latin"] });
 
 const stats = [
   {
-    number: "2026",
-    label: "USDA Row Crop Bailouts",
+    number: "1.6 Million Farms",
+    label: "On Chain",
     description:
-      "Strategic intervention and support programs for row crop producers, ensuring stability and continuity in American agriculture through data-backed assistance.",
+      "We help people help the land and improve conservation of the nation's soil and water resources. We track environmental data, on soil health, crop variety, and land conservation to support the work of American farmers.",
   },
   {
-    number: "2026",
-    label: "USDA Farmers Bridge Assistance",
+    number: "1 Million Acres",
+    label: "Acres Regenerated",
     description:
-      "Bridge financing and operational support for farmers transitioning to regenerative practices, powered by Enotrium's autonomous coordination systems.",
+      "Land Quality requires Stewardship. Enotrium is proud steward of nature and our nation's environment. We seek to convert under-invested regions into regenerative agriculture powerhouses, one farm at a time.",
   },
   {
-    number: "Kenaf",
-    label: "South Dakota Bio-Materials",
+    number: "30+ Tribes",
+    label: "Creating the Industry",
     description:
-      "Industrial fiber production and bio-material processing facilities in South Dakota, creating sustainable alternatives to petroleum-based products.",
+      "Badlands represents the single largest Regenerative Agriculture and Technology company led by Indigenous Americans across the West, creating thousands of new jobs in agriculture.",
   },
   {
-    number: "U.S.",
-    label: "Lumber Costs",
+    number: "$1 Billion",
+    label: "Annual Production",
     description:
-      "Real-time lumber market intelligence and supply chain optimization, reducing construction costs through autonomous coordination of forest product flows.",
+      "$1 Billion per year in projected economic output, contributing to America's agriculture and manufacturing production.",
   },
 ];
 
