@@ -100,7 +100,7 @@ export default function LeadershipPage() {
         </header>
 
         {/* Team Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 mt-16 max-w-4xl mx-auto">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 mt-16 max-w-4xl ml-auto">
           {teamMembers.map((member, index) => (
             <div key={index} className="text-left">
               <h3 className="text-xl font-semibold mb-1">
