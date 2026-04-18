@@ -245,10 +245,10 @@ function WhatIsIcarusSection() {
               Icarus is the <span className="text-white font-medium">nervous system of the Earth</span> — a hyperdimensional spiking neural network that understands the ecological foundation of the earth.
             </p>
             <p className="text-balance">
-              Through drone-mounted hyperspectral sensors, it <span className="text-white font-medium">perceives</span> what human eyes cannot: the invisible chemical dance of nutrients, contaminants, and microbial life beneath our feet.
+              Through drone-mounted hyperspectral sensors, Icarus <span className="text-white font-medium">perceives</span> what human eyes cannot: the invisible chemical dance of nutrients, contaminants, and microbial life beneath our feet.
             </p>
             <p className="text-balance">
-              It <span className="text-white font-medium">decodes</span> spectral biomarkers into actionable intelligence. It <span className="text-white font-medium">orchestrates</span> regeneration. It reveals the hidden language of the land.
+              Enotrium <span className="text-white font-medium">decodes</span> spectral biomarkers into actionable intelligence. It <span className="text-white font-medium">orchestrates</span> regeneration. It reveals the hidden language of the land.
             </p>
           </div>
 
@@ -533,8 +533,8 @@ function SeeThroughTheSoil() {
       particles = [];
       detectionPulses = [];
       
-      // Spawn background particles
-      for (let i = 0; i < 300; i++) {
+      // Spawn fewer background particles for cleaner look
+      for (let i = 0; i < 50; i++) {
         particles.push(spawnParticle(W, H, 'background'));
       }
     };
@@ -631,16 +631,16 @@ function SeeThroughTheSoil() {
         }
       });
 
-      // Spawn stream particles
-      if (particles.filter(p => p.type === 'stream').length < 50 && Math.random() < 0.3) {
-        particles.push(spawnParticle(W, H, 'stream'));
-      }
+      // Disable stream particles for cleaner look
+      // if (particles.filter(p => p.type === 'stream').length < 50 && Math.random() < 0.3) {
+      //   particles.push(spawnParticle(W, H, 'stream'));
+      // }
 
-      // Spawn detection pulses
-      if (Math.random() < 0.005) {
+      // Reduce detection pulses frequency
+      if (Math.random() < 0.002) {
         detectionPulses.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
+          x: Math.random() * (W - 240),
+          y: Math.random() * (H - 120),
           label: detectionLabels[Math.floor(Math.random() * detectionLabels.length)],
           life: 0,
           maxLife: 120,
@@ -831,55 +831,67 @@ function SeeThroughTheSoil() {
         ctx.textAlign = "left";
       });
 
-      // Draw spectral curve visualization (simulated HSI spectral signature) - black/red tech theme
-      const curveX = 20;
-      const curveY = H - 100;
-      const curveW = W - 260;
-      const curveH = 80;
+      // Draw live ticker-style data displays - black/red tech theme
+      const tickerY = H - 100;
+      const tickerH = 80;
+      const tickerX = 20;
+      const tickerW = W - 260;
       
+      // Ticker 1: Soil Analysis Data
       ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-      ctx.fillRect(curveX, curveY, curveW, curveH);
+      ctx.fillRect(tickerX, tickerY, tickerW, tickerH);
       ctx.strokeStyle = "rgba(220, 38, 38, 0.4)";
       ctx.lineWidth = 1;
-      ctx.strokeRect(curveX, curveY, curveW, curveH);
+      ctx.strokeRect(tickerX, tickerY, tickerW, tickerH);
       
       ctx.font = "10px Inter";
       ctx.fillStyle = "rgba(220, 38, 38, 0.9)";
       ctx.textAlign = "left";
-      ctx.fillText("SPECTRAL SIGNATURE", curveX + 10, curveY + 15);
+      ctx.fillText("LIVE DATA FEED", tickerX + 10, tickerY + 15);
       
-      // Draw spectral curve
+      // Scrolling data ticker
+      const tickerData = [
+        "N: 45.2% | P: 32.1% | K: 28.4% | pH: 6.5 | Moisture: 65.3% | OM: 3.2%",
+        "VOCs: 20 detected | PAHs: 16 detected | PFAS: 8 detected | Dioxins: 24 detected",
+        "Sample: SED-001 | Method: EPA 8260D | Analyte: Ethylbenzene | Result: <0.00539 mg/kg",
+        "Status: FINAL | Qualifier: U | RL: 0.00539 | Validation: COMPLETE",
+      ];
+      
+      const scrollOffset = (t * 0.5) % (tickerW + 400);
+      ctx.font = "9px Inter";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+      ctx.textAlign = "left";
+      
+      tickerData.forEach((data, i) => {
+        const x = tickerX + 10 + (i * 300) - scrollOffset;
+        if (x > tickerX - 200 && x < tickerX + tickerW) {
+          ctx.fillText(data, x, tickerY + 40);
+        }
+      });
+      
+      // Add second ticker row
+      const ticker2Y = tickerY + 50;
+      ctx.strokeStyle = "rgba(220, 38, 38, 0.2)";
       ctx.beginPath();
-      ctx.moveTo(curveX, curveY + curveH - 10);
-      
-      for (let i = 0; i <= curveW; i += 2) {
-        const normalizedX = i / curveW;
-        const spectralValue = 0.3 + 
-          0.4 * Math.sin(normalizedX * Math.PI * 2 + t * 0.02) +
-          0.2 * Math.cos(normalizedX * Math.PI * 4 - t * 0.015) +
-          0.1 * Math.sin(normalizedX * Math.PI * 6 + t * 0.01);
-        
-        const y = curveY + curveH - 10 - (spectralValue * (curveH - 30));
-        ctx.lineTo(curveX + i, y);
-      }
-      
-      const spectralGradient = ctx.createLinearGradient(curveX, curveY, curveX + curveW, curveY);
-      spectralGradient.addColorStop(0, "rgba(220, 38, 38, 0.8)");
-      spectralGradient.addColorStop(0.3, "rgba(255, 100, 100, 0.8)");
-      spectralGradient.addColorStop(0.6, "rgba(220, 38, 38, 0.8)");
-      spectralGradient.addColorStop(1, "rgba(180, 30, 30, 0.8)");
-      
-      ctx.strokeStyle = spectralGradient;
-      ctx.lineWidth = 2;
+      ctx.moveTo(tickerX, ticker2Y);
+      ctx.lineTo(tickerX + tickerW, ticker2Y);
       ctx.stroke();
       
-      // Draw wavelength axis labels
-      ctx.font = "8px Inter";
-      ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-      ctx.textAlign = "center";
-      ctx.fillText("400nm", curveX, curveY + curveH + 8);
-      ctx.fillText("700nm", curveX + curveW / 2, curveY + curveH + 8);
-      ctx.fillText("1100nm", curveX + curveW, curveY + curveH + 8);
+      const ticker2Data = [
+        "SCAN: 400-1100nm | RESOLUTION: 10nm | ACCURACY: 94.28%",
+        "SENSOR: HYPERSPECTRAL V4 | ALTITUDE: 150m | COVERAGE: 2.5km²",
+        "PROCESSING: ACTIVE | LATENCY: 0.0004s/frame | UPDATE RATE: 240Hz",
+        "ALERT: NONE | THREAT LEVEL: LOW | CONFIDENCE: 98.7%",
+      ];
+      
+      const scrollOffset2 = (t * 0.3) % (tickerW + 400);
+      ticker2Data.forEach((data, i) => {
+        const x = tickerX + 10 + (i * 350) - scrollOffset2;
+        if (x > tickerX - 200 && x < tickerX + tickerW) {
+          ctx.fillStyle = "rgba(220, 38, 38, 0.7)";
+          ctx.fillText(data, x, tickerY + 70);
+        }
+      });
 
       textCycle();
       t += 1;
