@@ -522,8 +522,8 @@ function TheFrontierSection() {
             The Frontier
           </p>
 
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-extralight text-white mb-12 font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
-            Join the Neural Frontier
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-extralight text-white mb-12 font-[family-name:var(--font-inter)] leading-[1.1] whitespace-nowrap">
+            Join the New Frontier
           </h2>
 
           <div className="space-y-8 text-white/50 text-xl md:text-2xl leading-[1.9] font-[family-name:var(--font-inter)] font-light mb-16">
