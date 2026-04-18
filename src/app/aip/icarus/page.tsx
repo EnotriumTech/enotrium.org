@@ -569,7 +569,7 @@ function TheFrontierSection() {
 export default function IcarusPage() {
   return (
     <div className="bg-[#0a0a0a] text-white min-h-screen">
-      <Navbar invertLogo darkText />
+      <Navbar darkText />
 
       <HeroSection />
       <WhatIsIcarusSection />
