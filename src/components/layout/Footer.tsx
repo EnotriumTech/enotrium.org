@@ -86,9 +86,9 @@ export function Footer() {
         </div>
 
         {/* Nav columns */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pb-12 text-center sm:text-left" style={{ gridTemplateColumns: "repeat(4, 1fr)" }}>
+        <div className="flex flex-col sm:flex-row gap-4 pb-12 text-center sm:text-left">
           {footerColumns.map((col) => (
-            <div key={col.heading}>
+            <div key={col.heading} className="flex-1">
               <p className="text-[10px] text-neutral-500 uppercase mb-4">
                 {col.heading}
               </p>
