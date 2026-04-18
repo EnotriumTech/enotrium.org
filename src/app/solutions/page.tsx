@@ -44,8 +44,21 @@ function AbstractField() {
       size: number;
     };
 
+    type Spark = {
+      x: number;
+      y: number;
+      targetX: number;
+      targetY: number;
+      bounceCount: number;
+      maxBounces: number;
+      trail: { x: number; y: number; alpha: number }[];
+      phase: number;
+    };
+
     let particles: Particle[] = [];
     const COUNT = 140;
+
+    let spark: Spark | null = null;
 
     const spawn = (W: number, H: number): Particle => ({
       x: Math.random() * W,
@@ -57,12 +70,24 @@ function AbstractField() {
       size: 0.6 + Math.random() * 1.2,
     });
 
+    const spawnSpark = (W: number, H: number): Spark => ({
+      x: W * 0.3 + Math.random() * W * 0.3,
+      y: H * 0.2 + Math.random() * H * 0.6,
+      targetX: W * 0.6 + Math.random() * W * 0.35,
+      targetY: H * 0.2 + Math.random() * H * 0.6,
+      bounceCount: 0,
+      maxBounces: 4,
+      trail: [],
+      phase: 0,
+    });
+
     const resize = () => {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
       const W = canvas.width;
       const H = canvas.height;
       particles = Array.from({ length: COUNT }, () => spawn(W, H));
+      spark = spawnSpark(W, H);
     };
     resize();
     window.addEventListener("resize", resize, { passive: true });
@@ -121,6 +146,66 @@ function AbstractField() {
             ctx.stroke();
           }
         }
+      }
+
+      // Draw bouncing spark
+      if (spark) {
+        const currentSpark = spark;
+        // Add current position to trail
+        currentSpark.trail.push({ x: currentSpark.x, y: currentSpark.y, alpha: 1 });
+        if (currentSpark.trail.length > 30) currentSpark.trail.shift();
+
+        // Update trail alpha
+        if (currentSpark.trail.length > 0) {
+          currentSpark.trail.forEach((point, i) => {
+            point.alpha = (i / currentSpark.trail.length) * 0.5;
+          });
+        }
+
+        // Draw trail
+        currentSpark.trail.forEach((point) => {
+          ctx.beginPath();
+          ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(180, 240, 255, ${point.alpha.toFixed(3)})`;
+          ctx.fill();
+        });
+
+        // Move spark towards target
+        const dx = currentSpark.targetX - currentSpark.x;
+        const dy = currentSpark.targetY - currentSpark.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const speed = 0.02;
+
+        if (dist > 5) {
+          currentSpark.x += dx * speed;
+          currentSpark.y += dy * speed;
+        } else {
+          // Reached target, bounce to new target
+          currentSpark.bounceCount++;
+          if (currentSpark.bounceCount >= currentSpark.maxBounces) {
+            // Reset spark
+            spark = spawnSpark(W, H);
+          } else {
+            currentSpark.targetX = W * 0.5 + Math.random() * W * 0.45;
+            currentSpark.targetY = H * 0.2 + Math.random() * H * 0.6;
+          }
+        }
+
+        // Draw spark
+        const pulse = Math.sin(t * 5) * 0.5 + 0.5;
+        ctx.beginPath();
+        ctx.arc(currentSpark.x, currentSpark.y, 4 + pulse * 2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(180, 240, 255, 1)`;
+        ctx.fill();
+
+        // Glow effect
+        ctx.beginPath();
+        ctx.arc(currentSpark.x, currentSpark.y, 10 + pulse * 5, 0, Math.PI * 2);
+        const glowGradient = ctx.createRadialGradient(currentSpark.x, currentSpark.y, 0, currentSpark.x, currentSpark.y, 15 + pulse * 5);
+        glowGradient.addColorStop(0, `rgba(180, 240, 255, 0.6)`);
+        glowGradient.addColorStop(1, 'rgba(180, 240, 255, 0)');
+        ctx.fillStyle = glowGradient;
+        ctx.fill();
       }
 
       t += 0.004;
