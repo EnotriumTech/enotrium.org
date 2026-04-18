@@ -56,7 +56,7 @@ export default function MissionPage() {
       {/* Who We Are */}
       <section className="px-6 lg:px-16 py-24 max-w-[1400px] mx-auto font-[family-name:var(--font-inter)]">
         <div className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 md:gap-24 items-start">
-          <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-black pt-1">
+          <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-black pt-1">
             Who We Are
           </p>
           <p className="text-base md:text-lg font-medium leading-relaxed text-black max-w-xl">
@@ -77,7 +77,7 @@ export default function MissionPage() {
       {/* Large Display Text */}
       <section className="w-full overflow-hidden py-8 px-4">
         <h2
-          className="font-[family-name:var(--font-tektur)] tracking-tight uppercase text-center"
+          className="font-[family-name:var(--font-tektur)] tracking-tight text-center"
           style={{ fontSize: "clamp(40px, 12vw, 180px)", lineHeight: "234px", fontWeight: 400 }}
         >
           Autonomy<br />For<br />Every Farmer
