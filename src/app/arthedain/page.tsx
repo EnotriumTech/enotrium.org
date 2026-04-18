@@ -1165,7 +1165,7 @@ function MetricsSection() {
         <ScrollReveal animation="fade-up" duration={1}>
           <div className="mb-16">
             <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-5 font-[family-name:var(--font-inter)] font-medium">
-              Arthedain SNNs
+              Training Arthedain
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
               Post-Transformer Efficiency at the Edge
