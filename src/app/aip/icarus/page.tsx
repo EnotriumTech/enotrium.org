@@ -170,12 +170,8 @@ function HeroSection() {
 
       <div className="relative z-20 flex-1 flex flex-col justify-center px-6 lg:px-16 max-w-[1400px] mx-auto w-full py-32">
         <ScrollReveal animation="fade-up" duration={1}>
-          <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-6 font-[family-name:var(--font-inter)] font-medium">
-            ICARUS
-          </p>
-
           <h1 className="text-5xl sm:text-6xl lg:text-9xl font-extralight leading-[0.95] max-w-5xl text-white mb-8 font-[family-name:var(--font-inter)] text-balance">
-            ICARUS
+            Icarus
           </h1>
 
           <p className="text-lg md:text-xl text-white/50 font-light leading-relaxed max-w-2xl mb-12 font-[family-name:var(--font-inter)]">
@@ -200,7 +196,7 @@ function HeroSection() {
               onClick={scrollToWhat}
               className="group magnetic-btn inline-flex items-center gap-3 px-8 py-4 bg-white text-[#0a0a0a] text-sm font-medium tracking-[0.15em] uppercase transition-all duration-500 hover:bg-neutral-200 font-[family-name:var(--font-inter)] focus-ring"
             >
-              Explore the Neural Earth
+              Understand the Earth
               <ArrowDown className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" />
             </button>
 
@@ -208,7 +204,7 @@ function HeroSection() {
               href="#live-perception"
               className="group magnetic-btn inline-flex items-center gap-3 px-8 py-4 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white text-sm font-medium tracking-[0.15em] uppercase transition-all duration-500 font-[family-name:var(--font-inter)] focus-ring"
             >
-              Watch the Scan
+              Watch the Scan Live
               <Eye className="w-4 h-4 transition-transform duration-300" />
             </Link>
           </div>
@@ -280,18 +276,13 @@ function CapabilitiesSection() {
     },
     {
       icon: Zap,
-      title: "Nutrient Profiling",
-      description: "Maps nitrogen, phosphorus, potassium, and micronutrient distribution across vast landscapes.",
+      title: "Nutrient & Microbial Profiling",
+      description: "Maps micronutrient distribution and sees microbial signatures to decode soil composition.",
     },
     {
       icon: Brain,
-      title: "Ecological Health Scoring",
-      description: "Computes regeneration potential through microbial signature analysis and soil vitality metrics.",
-    },
-    {
-      icon: Cpu,
-      title: "Predictive Regeneration Modeling",
-      description: "Forecasts soil recovery trajectories using hyperdimensional neural processing.",
+      title: "Predictive Ecological Modeling",
+      description: "Computes regeneration potential through microbial signature analysis and soil vitality metricsusing hyperdimensional neural processing.",
     },
     {
       icon: Globe,
@@ -344,7 +335,7 @@ function CapabilitiesSection() {
 }
 
 // ============================================
-// TECHNOLOGY SECTION
+// THE NEURAL EARTH SECTION
 // ============================================
 function TechnologySection() {
   const tech = [
@@ -422,10 +413,10 @@ function WhyItMattersSection() {
               For millennia, humanity has farmed blind. We treated soil as dirt — a medium to be worked, not a living system to be understood.
             </p>
             <p className="text-balance">
-              Icarus changes everything. It gives us <span className="text-white font-medium">hyperdimensional sight</span> into the underground world, revealing the complex chemistry that sustains all life.
+              Icarus gives us <span className="text-white font-medium">hyperdimensional sight</span> into the underground world, revealing the complex chemistry that sustains all life.
             </p>
             <p className="text-balance">
-              With this perception, we can <span className="text-white font-medium">regenerate degraded land at planetary scale</span>. We can practice precision agriculture that heals rather than depletes. We can make soil visible again.
+              Precise, hyperspectral perception for phytoremediation and agricultural security.
             </p>
             <p className="text-white/80 font-medium">
               This is spectral consciousness. This is the neural Earth.
@@ -522,13 +513,13 @@ function LivePerceptionSection() {
 // ============================================
 // JOIN THE NEURAL FRONTIER SECTION
 // ============================================
-function JoinFrontierSection() {
+function TheFrontierSection() {
   return (
     <section className="relative py-32 md:py-48 bg-[#0a0a0a] overflow-hidden">
       <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-16">
         <ScrollReveal animation="fade-up" duration={1}>
           <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-6 font-[family-name:var(--font-inter)] font-medium">
-            Collaboration
+            The Frontier
           </p>
 
           <h2 className="text-4xl md:text-5xl lg:text-7xl font-extralight text-white mb-12 font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
@@ -578,15 +569,14 @@ function JoinFrontierSection() {
 export default function IcarusPage() {
   return (
     <div className="bg-[#0a0a0a] text-white min-h-screen">
-      <Navbar invertLogo lightScrollBg darkText />
+      <Navbar invertLogo darkText />
 
       <HeroSection />
       <WhatIsIcarusSection />
       <CapabilitiesSection />
-      <TechnologySection />
-      <WhyItMattersSection />
+      <TheNeuralEarthSection />
       <LivePerceptionSection />
-      <JoinFrontierSection />
+      <TheFrontierSection />
 
       <Footer />
     </div>
