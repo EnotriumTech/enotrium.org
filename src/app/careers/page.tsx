@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 export default function CareersPage() {
   return (
     <div className="min-h-screen bg-white text-black font-[family-name:var(--font-inter)]">
-      <Navbar darkText />
+      <Navbar lightScrollBg invertLogo darkText lightMegaMenu />
 
       <main className="max-w-[1400px] mx-auto px-6 lg:px-16 pt-32 pb-24">
 
