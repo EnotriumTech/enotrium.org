@@ -269,6 +269,8 @@ function SpikingNeuralReactor() {
     type Node = {
       x: number;
       y: number;
+      vx: number;
+      vy: number;
       type: 'hexagon' | 'circle' | 'dot';
       size: number;
       pulsePhase: number;
@@ -317,9 +319,9 @@ function SpikingNeuralReactor() {
         const x1 = centerX + Math.cos(angle) * radius;
         const y1 = centerY + Math.sin(angle) * radius;
 
-        // End point (horizontal or vertical only)
+        // End point (horizontal or vertical only) - extend to edge
         const isHorizontal = i % 2 === 0;
-        const length = 20 + Math.random() * 60;
+        const length = Math.max(W, H) * 0.4 + Math.random() * Math.max(W, H) * 0.3;
         const x2 = isHorizontal ? x1 + length * (Math.random() > 0.5 ? 1 : -1) : x1;
         const y2 = isHorizontal ? y1 : y1 + length * (Math.random() > 0.5 ? 1 : -1);
 
@@ -337,17 +339,18 @@ function SpikingNeuralReactor() {
         });
       }
 
-      // Add grid-like lines
+      // Add grid-like lines - extend to edge
       const gridSize = 40;
       for (let x = centerX - maxRadius; x < centerX + maxRadius; x += gridSize) {
         for (let y = centerY - maxRadius; y < centerY + maxRadius; y += gridSize) {
           if (Math.random() < 0.3) {
             const isHorizontal = Math.random() > 0.5;
+            const lineLength = Math.max(W, H) * 0.3 + Math.random() * Math.max(W, H) * 0.2;
             geoLines.push({
               x1: x,
               y1: y,
-              x2: isHorizontal ? x + gridSize * GOLDEN_RATIO : x,
-              y2: isHorizontal ? y : y + gridSize * GOLDEN_RATIO,
+              x2: isHorizontal ? x + lineLength : x,
+              y2: isHorizontal ? y : y + lineLength,
               progress: Math.random(),
               speed: 0.008 + Math.random() * 0.01,
               active: true,
@@ -376,8 +379,10 @@ function SpikingNeuralReactor() {
         nodes.push({
           x,
           y,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
           type: Math.random() > 0.6 ? 'hexagon' : (Math.random() > 0.5 ? 'circle' : 'dot'),
-          size: 3 + Math.random() * 6,
+          size: 1.5 + Math.random() * 2,
           pulsePhase: Math.random() * Math.PI * 2,
           energy: Math.random(),
         });
@@ -392,8 +397,10 @@ function SpikingNeuralReactor() {
             nodes.push({
               x: centerX + i * spacing,
               y: centerY + j * spacing,
+              vx: (Math.random() - 0.5) * 0.2,
+              vy: (Math.random() - 0.5) * 0.2,
               type: Math.random() > 0.7 ? 'hexagon' : (Math.random() > 0.5 ? 'circle' : 'dot'),
-              size: 2 + Math.random() * 4,
+              size: 1 + Math.random() * 2,
               pulsePhase: Math.random() * Math.PI * 2,
               energy: 0.5 + Math.random() * 0.5,
             });
@@ -466,9 +473,17 @@ function SpikingNeuralReactor() {
     };
 
     // Draw node
-    const drawNode = (ctx: CanvasRenderingContext2D, node: Node, t: number) => {
+    const drawNode = (ctx: CanvasRenderingContext2D, node: Node, t: number, W: number, H: number) => {
       const pulse = Math.sin(t * 2 + node.pulsePhase) * 0.5 + 0.5;
       const energyPulse = Math.sin(t * 3 + node.pulsePhase * 2) * 0.5 + 0.5;
+
+      // Update node position
+      node.x += node.vx;
+      node.y += node.vy;
+
+      // Bounce off edges
+      if (node.x < 0 || node.x > W) node.vx *= -1;
+      if (node.y < 0 || node.y > H) node.vy *= -1;
 
       // Inner glow
       const glowGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, node.size * 2);
@@ -638,7 +653,7 @@ function SpikingNeuralReactor() {
 
       // Draw nodes
       nodes.forEach(node => {
-        drawNode(ctx, node, t);
+        drawNode(ctx, node, t, W, H);
       });
 
       // Draw text overlay
