@@ -1201,9 +1201,18 @@ function NewsletterSection() {
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-extralight text-white mb-8 font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
               Contact
             </h2>
-            <p className="text-white/40 text-xl mb-12 font-[family-name:var(--font-inter)] font-light leading-relaxed">
+            <p className="text-white/40 text-xl mb-8 font-[family-name:var(--font-inter)] font-light leading-relaxed">
               Reach out to learn more about spiking neural networks, edge deployment, and the future of efficient AI.
             </p>
+            <Link
+              href="https://www.enotriumai.org/team"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group magnetic-btn inline-flex items-center gap-3 px-8 py-4 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white text-sm font-medium tracking-[0.15em] uppercase transition-all duration-500 font-[family-name:var(--font-inter)] focus-ring"
+            >
+              See Our Team
+              <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" />
+            </Link>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-up" delay={0.2} duration={1}>
