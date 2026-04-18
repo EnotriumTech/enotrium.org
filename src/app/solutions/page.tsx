@@ -188,8 +188,8 @@ function HeroSection() {
               Our technologies put real industry first. Technology changes civilization, and civilization is perserved through technology.
             </p>
             <p className="text-balance">
-              Enotrium&apos;s Technologies shift power, strengthen trust, and enable individuals
-              to operate with sovereignty and security. Every system is designed to be open,
+              Enotrium&apos;s AI systems shift power, strengthen trust, and enable individuals
+              to operate with sovereignty and mastery. Every system is designed to be open,
               verifiable, and built to lead the world to a greater evolution.
             </p>
             <p className="text-white/90 font-normal tracking-wide">
