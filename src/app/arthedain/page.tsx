@@ -749,7 +749,7 @@ function SpikingNeuralNetworksSection() {
     { icon: Brain, label: "Event-Driven", desc: "Fires only when needed" },
     { icon: Zap, label: "Ultra-Efficient", desc: "30x less energy" },
     { icon: Cpu, label: "Time Scaled", desc: "Like real neurons" },
-    { icon: Server, label: "True Edge", desc: "No cloud dependency, Online, on device" },
+    { icon: Server, label: "Edge Deployed", desc: "No cloud dependency, Online, on device" },
   ];
 
   return (
@@ -816,7 +816,7 @@ function SpikingNeuralNetworksSection() {
 // ============================================
 function EdgeDeploymentSection() {
   const principles = [
-    { title: "True Edge Intelligence", desc: "Drones, manufacturing, offline environments" },
+    { title: "Edge Deployed Intelligence", desc: "Drones, manufacturing, offline environments" },
     { title: "Sovereign Local LLMs", desc: "Run without cloud dependency or massive energy cost" },
     { title: "Industrial Sovereignty", desc: "Real-world deployment with minimal power" },
   ];
@@ -1009,7 +1009,7 @@ const benefits = [
   },
   {
     icon: Cpu,
-    title: "True Edge Intelligence",
+    title: "Edge Deployed Intelligence",
     description: "Deploy on drones, in manufacturing facilities, across real industrial systems. No cloud dependency.",
   },
   {
