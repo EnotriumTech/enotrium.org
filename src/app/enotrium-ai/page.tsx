@@ -534,15 +534,15 @@ function OurStorySection() {
           <ScrollReveal animation="fade-up" duration={1}>
             <div>
               <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-5 font-[family-name:var(--font-inter)] font-medium">
-                Heritage
+                Arthedain
               </p>
               <h2 className="text-4xl md:text-5xl lg:text-8xl font-extralight text-white font-[family-name:var(--font-inter)] text-balance leading-[1.05]">
-                Our Story
+                Systems Deployment
               </h2>
 
               <div className="mt-10 flex items-center gap-4">
                 <div className="w-16 h-px bg-gradient-to-r from-white/30 to-transparent" />
-                <p className="text-sm text-white/30 font-[family-name:var(--font-inter)] tracking-widest uppercase">Est. 2025</p>
+                <p className="text-sm text-white/30 font-[family-name:var(--font-inter)] tracking-widest uppercase">dev 2026</p>
               </div>
             </div>
           </ScrollReveal>
