@@ -598,20 +598,40 @@ const benefits = [
 function WhySpikingSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const visibleCount = 3;
-  const maxIndex = Math.max(0, benefits.length - visibleCount);
+  
+  // Duplicate benefits array for infinite scroll
+  const infiniteBenefits = [...benefits, ...benefits, ...benefits];
+  const totalItems = infiniteBenefits.length;
+  const maxIndex = totalItems - visibleCount;
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+    setCurrentIndex((prev) => {
+      if (prev >= maxIndex) {
+        // Reset to beginning seamlessly
+        return 0;
+      }
+      return prev + 1;
+    });
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+    setCurrentIndex((prev) => {
+      if (prev <= 0) {
+        return maxIndex;
+      }
+      return prev - 1;
+    });
   };
 
   // Auto-scroll carousel continuously
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+      setCurrentIndex((prev) => {
+        if (prev >= maxIndex) {
+          return 0;
+        }
+        return prev + 1;
+      });
     }, 4000); // 4 seconds per slide
     return () => clearInterval(interval);
   }, [maxIndex]);
@@ -645,8 +665,8 @@ function WhySpikingSection() {
                 className="flex transition-transform duration-700 ease-dramatic gap-5"
                 style={{ transform: `translateX(-${currentIndex * (100 / visibleCount + 2)}%)` }}
               >
-                {benefits.map((benefit, index) => (
-                  <div key={benefit.title} className="flex-shrink-0 w-full md:w-[calc(33.333%-1rem)] group" style={{ transitionDelay: `${index * 100}ms` }}>
+                {infiniteBenefits.map((benefit, index) => (
+                  <div key={`${benefit.title}-${index}`} className="flex-shrink-0 w-full md:w-[calc(33.333%-1rem)] group" style={{ transitionDelay: `${index * 100}ms` }}>
                     <div className="relative h-full p-10 border border-white/[0.06] hover:border-white/[0.12] bg-transparent hover:bg-white/[0.02] transition-all duration-700 ease-dramatic hover-lift">
                       <div className="w-14 h-14 rounded-sm flex items-center justify-center mb-8 bg-white/[0.03] group-hover:bg-white/[0.06] transition-all duration-500">
                         <benefit.icon className="w-7 h-7 text-white/30 group-hover:text-white/50 transition-all duration-500" strokeWidth={1} />
@@ -671,9 +691,9 @@ function WhySpikingSection() {
                 {benefits.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentIndex(Math.min(index, maxIndex))}
+                    onClick={() => setCurrentIndex(index)}
                     className={`h-[2px] rounded-full transition-all duration-500 ease-dramatic ${
-                      index >= currentIndex && index < currentIndex + visibleCount
+                      Math.floor(currentIndex % benefits.length) === index
                         ? "bg-white w-10"
                         : "bg-white/20 w-4 hover:bg-white/40"
                     }`}
