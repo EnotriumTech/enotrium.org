@@ -153,7 +153,7 @@ function AbstractField() {
         const currentSpark = spark;
         // Add current position to trail
         currentSpark.trail.push({ x: currentSpark.x, y: currentSpark.y, alpha: 1 });
-        if (currentSpark.trail.length > 30) currentSpark.trail.shift();
+        if (currentSpark.trail.length > 15) currentSpark.trail.shift();
 
         // Update trail alpha
         if (currentSpark.trail.length > 0) {
@@ -165,7 +165,7 @@ function AbstractField() {
         // Draw trail
         currentSpark.trail.forEach((point) => {
           ctx.beginPath();
-          ctx.arc(point.x, point.y, 2, 0, Math.PI * 2);
+          ctx.arc(point.x, point.y, 1, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(180, 240, 255, ${point.alpha.toFixed(3)})`;
           ctx.fill();
         });
@@ -174,7 +174,7 @@ function AbstractField() {
         const dx = currentSpark.targetX - currentSpark.x;
         const dy = currentSpark.targetY - currentSpark.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const speed = 0.02;
+        const speed = 0.05;
 
         if (dist > 5) {
           currentSpark.x += dx * speed;
@@ -192,16 +192,16 @@ function AbstractField() {
         }
 
         // Draw spark
-        const pulse = Math.sin(t * 5) * 0.5 + 0.5;
+        const pulse = Math.sin(t * 8) * 0.5 + 0.5;
         ctx.beginPath();
-        ctx.arc(currentSpark.x, currentSpark.y, 4 + pulse * 2, 0, Math.PI * 2);
+        ctx.arc(currentSpark.x, currentSpark.y, 2 + pulse * 1, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(180, 240, 255, 1)`;
         ctx.fill();
 
         // Glow effect
         ctx.beginPath();
-        ctx.arc(currentSpark.x, currentSpark.y, 10 + pulse * 5, 0, Math.PI * 2);
-        const glowGradient = ctx.createRadialGradient(currentSpark.x, currentSpark.y, 0, currentSpark.x, currentSpark.y, 15 + pulse * 5);
+        ctx.arc(currentSpark.x, currentSpark.y, 5 + pulse * 2, 0, Math.PI * 2);
+        const glowGradient = ctx.createRadialGradient(currentSpark.x, currentSpark.y, 0, currentSpark.x, currentSpark.y, 8 + pulse * 2);
         glowGradient.addColorStop(0, `rgba(180, 240, 255, 0.6)`);
         glowGradient.addColorStop(1, 'rgba(180, 240, 255, 0)');
         ctx.fillStyle = glowGradient;
