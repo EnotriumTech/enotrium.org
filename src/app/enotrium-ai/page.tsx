@@ -1203,15 +1203,8 @@ function NewsletterSection() {
               Contact
             </h2>
             <p className="text-white/40 text-xl mb-8 font-[family-name:var(--font-inter)] font-light leading-relaxed">
-              Reach out to us at enotriumtech@atomicmail.io for a demo.
+              Contact us for Model Access.
             </p>
-            <Link
-              href="mailto:enotriumtech@atomicmail.io"
-              className="group magnetic-btn inline-flex items-center gap-3 px-8 py-4 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white text-sm font-medium tracking-[0.15em] uppercase transition-all duration-500 font-[family-name:var(--font-inter)] focus-ring"
-            >
-              Contact Us
-              <ChevronDown className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1" />
-            </Link>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-up" delay={0.2} duration={1}>
