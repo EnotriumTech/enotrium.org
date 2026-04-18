@@ -767,13 +767,13 @@ function NewsletterSection() {
         <div className="max-w-2xl mx-auto text-center">
           <ScrollReveal animation="fade-up" duration={1}>
             <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-5 font-[family-name:var(--font-inter)] font-medium">
-              Updates
+              Access
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-extralight text-white mb-8 font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
-              Host Locally
+              Contact
             </h2>
             <p className="text-white/40 text-xl mb-12 font-[family-name:var(--font-inter)] font-light leading-relaxed">
-              Subscribe to our Substack for the latest on spiking neural networks, edge deployment, and the future of efficient AI.
+              Reach out to learn more about spiking neural networks, edge deployment, and the future of efficient AI.
             </p>
           </ScrollReveal>
 
@@ -791,21 +791,9 @@ function NewsletterSection() {
                 type="submit"
                 className="px-10 py-5 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white text-sm font-medium tracking-[0.15em] uppercase transition-all duration-500 font-[family-name:var(--font-inter)] magnetic-btn focus-ring"
               >
-                {submitted ? "Subscribed!" : "Subscribe"}
+                {submitted ? "Sent!" : "Send"}
               </button>
             </form>
-
-            <p className="mt-8 text-sm text-white/25 font-[family-name:var(--font-inter)] font-light">
-              Or visit our{" "}
-              <Link
-                href="https://substack.com/@enotrium"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/40 hover:text-white/60 underline underline-offset-4 transition-colors duration-300"
-              >
-                Substack directly
-              </Link>
-            </p>
           </ScrollReveal>
         </div>
       </div>
