@@ -177,7 +177,7 @@ function HeroSection() {
       <div className="relative z-20 flex-1 flex flex-col justify-center px-6 lg:px-16 max-w-[1400px] mx-auto w-full py-32">
         <ScrollReveal animation="fade-up" duration={1}>
           <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-6 font-[family-name:var(--font-inter)] font-medium">
-            ENOTRIUM AI
+            Arthedain
           </p>
 
           <h1 className="text-5xl sm:text-6xl lg:text-8xl font-extralight leading-[0.95] max-w-5xl text-white mb-10 font-[family-name:var(--font-inter)] text-balance text-glow">

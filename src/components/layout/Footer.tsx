@@ -40,7 +40,7 @@ const footerColumns = [
     heading: "PRODUCTS",
     links: [
       { label: "AIP", href: "/aip" },
-      { label: "EnotriumAI", href: "/enotrium-ai" },
+      { label: "Arthedain", href: "/enotrium-ai" },
       { label: "Icarus", href: "/aip/icarus" },
       { label: "Badlands", href: "/badlands" },
     ],
