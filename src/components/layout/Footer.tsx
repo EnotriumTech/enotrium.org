@@ -31,8 +31,18 @@ const footerColumns = [
     heading: "COMPANY",
     links: [
       { label: "Mission", href: "/mission" },
+      { label: "Solutions", href: "/solutions" },
       { label: "Industrial Agriculture", href: "/industrial-agriculture" },
       { label: "Food and Agriculture", href: "/food-and-agriculture" },
+    ],
+  },
+  {
+    heading: "PRODUCTS",
+    links: [
+      { label: "Badlands", href: "/badlands" },
+      { label: "AIP", href: "/aip" },
+      { label: "Icarus", href: "/aip/icarus" },
+      { label: "EnotriumAI", href: "/enotrium-ai" },
     ],
   },
   {
