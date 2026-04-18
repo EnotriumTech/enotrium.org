@@ -52,11 +52,11 @@ export function HeroSection() {
             Defend the<br />Earth
           </span>
           <Image
-            src="/logo.jpg"
+            src="/logo.svg"
             alt="Enotrium"
             width={110}
             height={110}
-            className="opacity-95 shrink-0 invert"
+            className="opacity-95 shrink-0"
           />
           <div className="text-left font-[family-name:var(--font-space-grotesk)] leading-tight">
             <div className="text-white/70 text-sm font-bold tracking-[0.2em]">EST. 2025</div>
