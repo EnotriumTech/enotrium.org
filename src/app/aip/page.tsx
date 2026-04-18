@@ -167,8 +167,8 @@ export default function AIPPage() {
               <p className="text-[10px] tracking-[0.25em] uppercase text-neutral-400 mb-5">
                 Enotrium AIP
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight max-w-2xl">
-                Secure Your Supply Chain<br />with Enotrium's Agri-Intelligence Platform
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight max-w-xl">
+                Secure Your Supply Chain with Enotrium's Agri-Intelligence Platform
               </h1>
             </div>
             <Link
@@ -182,7 +182,7 @@ export default function AIPPage() {
         </div>
 
         {/* Feature list */}
-        <div className="relative z-20 mt-auto px-6 lg:px-16 max-w-[1400px] mx-auto w-full pb-20">
+        <div className="relative z-20 mt-auto px-6 lg:px-16 max-w-[1400px] mx-auto w-full pb-20 pt-10">
           <ul className="space-y-1">
             {features.map((f) => (
               <li key={f} className="text-xl sm:text-2xl font-light text-white/85">
@@ -197,7 +197,7 @@ export default function AIPPage() {
       <section className="bg-[#0a0a0a] px-6 lg:px-16 py-28">
         <div className="max-w-[1400px] mx-auto space-y-20">
           <h2 className="text-4xl sm:text-2xl lg:text-5xl font-light leading-tight font-[family-name:var(--font-inter)]">
-            Stay ahead of Commodities Futures Markets by understanding the Volume that shapes them
+            Stay ahead of Commodities Futures Markets by understanding the Volume that shapes them.
           </h2>
         </div>
       </section>
