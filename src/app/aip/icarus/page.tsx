@@ -533,10 +533,7 @@ function SeeThroughTheSoil() {
       particles = [];
       detectionPulses = [];
       
-      // Spawn fewer background particles for cleaner look
-      for (let i = 0; i < 50; i++) {
-        particles.push(spawnParticle(W, H, 'background'));
-      }
+      // No background particles - replaced with professional visualizations
     };
     resize();
     window.addEventListener("resize", resize, { passive: true });
@@ -578,6 +575,198 @@ function SeeThroughTheSoil() {
       gradient.addColorStop(1, "rgba(10, 10, 10, 0.8)");
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, W, H);
+
+      // Draw HSI birds eye view farm overlay (Palantir-style grid)
+      const farmOverlayX = 20;
+      const farmOverlayY = 60;
+      const farmOverlayW = 300;
+      const farmOverlayH = 200;
+      
+      ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+      ctx.fillRect(farmOverlayX, farmOverlayY, farmOverlayW, farmOverlayH);
+      ctx.strokeStyle = "rgba(220, 38, 38, 0.4)";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(farmOverlayX, farmOverlayY, farmOverlayW, farmOverlayH);
+      
+      ctx.font = "11px Inter";
+      ctx.fillStyle = "rgba(220, 38, 38, 0.9)";
+      ctx.textAlign = "left";
+      ctx.fillText("HSI FARM OVERVIEW", farmOverlayX + 10, farmOverlayY + 20);
+      
+      // Draw grid overlay
+      const gridSize = 20;
+      ctx.strokeStyle = "rgba(220, 38, 38, 0.15)";
+      for (let x = farmOverlayX + 10; x < farmOverlayX + farmOverlayW - 10; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, farmOverlayY + 30);
+        ctx.lineTo(x, farmOverlayY + farmOverlayH - 10);
+        ctx.stroke();
+      }
+      for (let y = farmOverlayY + 30; y < farmOverlayY + farmOverlayH - 10; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(farmOverlayX + 10, y);
+        ctx.lineTo(farmOverlayX + farmOverlayW - 10, y);
+        ctx.stroke();
+      }
+      
+      // Draw field zones with spectral data colors
+      const zones = [
+        { x: farmOverlayX + 30, y: farmOverlayY + 40, w: 60, h: 50, color: "rgba(220, 38, 38, 0.6)" },
+        { x: farmOverlayX + 100, y: farmOverlayY + 40, w: 70, h: 50, color: "rgba(255, 100, 100, 0.6)" },
+        { x: farmOverlayX + 180, y: farmOverlayY + 40, w: 60, h: 50, color: "rgba(180, 30, 30, 0.6)" },
+        { x: farmOverlayX + 30, y: farmOverlayY + 100, w: 80, h: 60, color: "rgba(220, 38, 38, 0.5)" },
+        { x: farmOverlayX + 120, y: farmOverlayY + 100, w: 70, h: 60, color: "rgba(255, 100, 100, 0.5)" },
+        { x: farmOverlayX + 200, y: farmOverlayY + 100, w: 50, h: 60, color: "rgba(180, 30, 30, 0.5)" },
+      ];
+      
+      zones.forEach(zone => {
+        ctx.fillStyle = zone.color;
+        ctx.fillRect(zone.x, zone.y, zone.w, zone.h);
+        ctx.strokeStyle = "rgba(220, 38, 38, 0.3)";
+        ctx.strokeRect(zone.x, zone.y, zone.w, zone.h);
+      });
+      
+      // Add zone labels
+      ctx.font = "8px Inter";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+      ctx.textAlign = "center";
+      zones.forEach((zone, i) => {
+        ctx.fillText(`ZONE ${i + 1}`, zone.x + zone.w / 2, zone.y + zone.h / 2 + 3);
+      });
+      
+      // Draw bar chart for soil composition
+      const barChartX = 340;
+      const barChartY = 60;
+      const barChartW = 200;
+      const barChartH = 150;
+      
+      ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+      ctx.fillRect(barChartX, barChartY, barChartW, barChartH);
+      ctx.strokeStyle = "rgba(220, 38, 38, 0.4)";
+      ctx.strokeRect(barChartX, barChartY, barChartW, barChartH);
+      
+      ctx.font = "11px Inter";
+      ctx.fillStyle = "rgba(220, 38, 38, 0.9)";
+      ctx.textAlign = "left";
+      ctx.fillText("SOIL COMPOSITION", barChartX + 10, barChartY + 20);
+      
+      const barData = [
+        { label: "N", value: 45 },
+        { label: "P", value: 32 },
+        { label: "K", value: 28 },
+        { label: "Moisture", value: 65 },
+        { label: "pH", value: 65 },
+        { label: "OM", value: 32 },
+      ];
+      
+      const barWidth = 20;
+      const barGap = 15;
+      const maxBarHeight = barChartH - 40;
+      
+      barData.forEach((bar, i) => {
+        const barHeight = (bar.value / 100) * maxBarHeight;
+        const x = barChartX + 15 + i * (barWidth + barGap);
+        const y = barChartY + barChartH - 10 - barHeight;
+        
+        // Bar with gradient
+        const barGradient = ctx.createLinearGradient(x, y, x, barChartY + barChartH - 10);
+        barGradient.addColorStop(0, "rgba(220, 38, 38, 0.8)");
+        barGradient.addColorStop(1, "rgba(180, 30, 30, 0.4)");
+        
+        ctx.fillStyle = barGradient;
+        ctx.fillRect(x, y, barWidth, barHeight);
+        
+        // Label
+        ctx.font = "8px Inter";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+        ctx.textAlign = "center";
+        ctx.fillText(bar.label, x + barWidth / 2, barChartY + barChartH - 5);
+      });
+      
+      // Draw spectral graph with red and green specs
+      const spectralGraphX = 560;
+      const spectralGraphY = 60;
+      const spectralGraphW = W - 780;
+      const spectralGraphH = 150;
+      
+      ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+      ctx.fillRect(spectralGraphX, spectralGraphY, spectralGraphW, spectralGraphH);
+      ctx.strokeStyle = "rgba(220, 38, 38, 0.4)";
+      ctx.strokeRect(spectralGraphX, spectralGraphY, spectralGraphW, spectralGraphH);
+      
+      ctx.font = "11px Inter";
+      ctx.fillStyle = "rgba(220, 38, 38, 0.9)";
+      ctx.textAlign = "left";
+      ctx.fillText("SPECTRAL ANALYSIS", spectralGraphX + 10, spectralGraphY + 20);
+      
+      // Draw axes
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+      ctx.beginPath();
+      ctx.moveTo(spectralGraphX + 10, spectralGraphY + spectralGraphH - 30);
+      ctx.lineTo(spectralGraphX + spectralGraphW - 10, spectralGraphY + spectralGraphH - 30);
+      ctx.moveTo(spectralGraphX + 10, spectralGraphY + spectralGraphH - 30);
+      ctx.lineTo(spectralGraphX + 10, spectralGraphY + 30);
+      ctx.stroke();
+      
+      // Draw spectral vectors with red and green specs
+      const vectorCount = 8;
+      for (let i = 0; i < vectorCount; i++) {
+        const x = spectralGraphX + 20 + (i * (spectralGraphW - 30) / vectorCount);
+        const isRed = i % 2 === 0;
+        
+        // Draw vector line
+        ctx.strokeStyle = isRed ? "rgba(220, 38, 38, 0.6)" : "rgba(34, 197, 94, 0.6)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(x, spectralGraphY + spectralGraphH - 30);
+        
+        const height = 30 + Math.random() * (spectralGraphH - 70);
+        ctx.lineTo(x, spectralGraphY + spectralGraphH - 30 - height);
+        ctx.stroke();
+        
+        // Draw spec (circle at top)
+        ctx.fillStyle = isRed ? "rgba(220, 38, 38, 0.9)" : "rgba(34, 197, 94, 0.9)";
+        ctx.beginPath();
+        ctx.arc(x, spectralGraphY + spectralGraphH - 30 - height, 4, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Wavelength label
+        ctx.font = "8px Inter";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+        ctx.textAlign = "center";
+        const wavelength = 400 + i * 100;
+        ctx.fillText(wavelength + "nm", x, spectralGraphY + spectralGraphH - 15);
+      }
+      
+      // Add key findings panel
+      const keyFindingsX = 20;
+      const keyFindingsY = 280;
+      const keyFindingsW = W - 240;
+      const keyFindingsH = 80;
+      
+      ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
+      ctx.fillRect(keyFindingsX, keyFindingsY, keyFindingsW, keyFindingsH);
+      ctx.strokeStyle = "rgba(220, 38, 38, 0.4)";
+      ctx.strokeRect(keyFindingsX, keyFindingsY, keyFindingsW, keyFindingsH);
+      
+      ctx.font = "11px Inter";
+      ctx.fillStyle = "rgba(220, 38, 38, 0.9)";
+      ctx.textAlign = "left";
+      ctx.fillText("KEY FINDINGS", keyFindingsX + 10, keyFindingsY + 20);
+      
+      const findings = [
+        "ZONE 3: Elevated VOC levels detected - 20 compounds above threshold",
+        "ZONE 5: PFAS contamination identified - 8 compounds detected",
+        "ZONE 1: Optimal nutrient balance - N: 45%, P: 32%, K: 28%",
+        "OVERALL: Threat level LOW - Confidence 98.7%",
+      ];
+      
+      ctx.font = "9px Inter";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+      findings.forEach((finding, i) => {
+        const y = keyFindingsY + 40 + i * 15;
+        ctx.fillText(finding, keyFindingsX + 10, y);
+      });
 
       // Draw horizontal scanning lines
       const scanY = (t * 0.5) % H;
