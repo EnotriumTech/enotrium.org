@@ -1174,7 +1174,7 @@ function MetricsSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
-              <div className="text-5xl md:text-6xl font-light text-white mb-3 font-[family-name:var(--font-inter)]">
+              <div className="text-5xl md:text-6xl font-light text-white/40 mb-3 font-[family-name:var(--font-inter)]">
                 30x
               </div>
               <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
@@ -1183,16 +1183,16 @@ function MetricsSection() {
             </div>
 
             <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
-              <div className="text-5xl md:text-6xl font-light text-white mb-3 font-[family-name:var(--font-inter)]">
+              <div className="text-5xl md:text-6xl font-light text-white/40 mb-3 font-[family-name:var(--font-inter)]">
                 30x
               </div>
               <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
-                Energy efficiency gains with biologically-plausible Hebbian meta-learning*
+                Energy efficiency gains with Hebbian meta-learning*
               </p>
             </div>
 
             <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
-              <div className="text-5xl md:text-6xl font-light text-white mb-3 font-[family-name:var(--font-inter)]">
+              <div className="text-5xl md:text-6xl font-light text-white/40 mb-3 font-[family-name:var(--font-inter)]">
                 28–35%
               </div>
               <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
@@ -1201,7 +1201,7 @@ function MetricsSection() {
             </div>
 
             <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
-              <div className="text-5xl md:text-6xl font-light text-white mb-3 font-[family-name:var(--font-inter)]">
+              <div className="text-5xl md:text-6xl font-light text-white/40 mb-3 font-[family-name:var(--font-inter)]">
                 80–95%+
               </div>
               <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
@@ -1210,7 +1210,7 @@ function MetricsSection() {
             </div>
 
             <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
-              <div className="text-5xl md:text-6xl font-light text-white mb-3 font-[family-name:var(--font-inter)]">
+              <div className="text-5xl md:text-6xl font-light text-white/40 mb-3 font-[family-name:var(--font-inter)]">
                 50–100x
               </div>
               <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
@@ -1219,7 +1219,7 @@ function MetricsSection() {
             </div>
 
             <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
-              <div className="text-5xl md:text-6xl font-light text-white mb-3 font-[family-name:var(--font-inter)]">
+              <div className="text-5xl md:text-6xl font-light text-white/40 mb-3 font-[family-name:var(--font-inter)]">
                 &lt;10%
               </div>
               <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
@@ -1341,7 +1341,7 @@ function RSNNSection() {
               Field Programmable Gate Arrays (FPGAs)
             </h3>
             <p className="text-white/50 text-lg leading-[1.7] font-[family-name:var(--font-inter)] font-light">
-              FPGAs serve as a critical bridge in Arthedain Labs' roadmap, enabling rapid prototyping and validation of our SNN innovations before scaling to custom ASICs. Their reconfigurability allows us to iterate on biologically plausible designs like our two-timescale Hebbian meta-learning rules, optimizing for real-time BCI adaptation while exploiting SNN sparsity for post-Transformer efficiency.
+              FPGAs serve as a critical bridge in Arthedain Labs' roadmap, enabling rapid prototyping and validation of our SNN innovations before scaling to custom ASICs. Their reconfigurability allows us to iterate on designs like our two-timescale Hebbian meta-learning rules, optimizing for real-time BCI adaptation while exploiting SNN sparsity for post-Transformer efficiency.
             </p>
 
             <div className="space-y-8">
