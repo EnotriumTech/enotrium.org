@@ -1221,6 +1221,15 @@ function MetricsSection() {
                 Lower CO₂ emissions & water footprint (vs. Cloud data centers)*
               </p>
             </div>
+
+            <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
+              <div className="text-5xl md:text-6xl font-light text-white mb-3 font-[family-name:var(--font-inter)]">
+                &lt;10%
+              </div>
+              <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
+                Performance drop under neural disruptions & remapping (vs. 20–30% baselines)*
+              </p>
+            </div>
           </div>
 
           <div className="mt-12 text-white/30 text-sm font-[family-name:var(--font-inter)] font-light">
