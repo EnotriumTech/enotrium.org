@@ -49,6 +49,7 @@ const footerColumns = [
     heading: "WORK WITH US",
     links: [
       { label: "Careers", href: "/careers" },
+      { label: "Leadership", href: "/leadership" },
       { label: "AI Lab", href: "https://www.enotriumai.org" },
     ],
   },
