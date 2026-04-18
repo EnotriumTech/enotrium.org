@@ -191,7 +191,7 @@ function HeroSection() {
               Spiking Intelligence at the Edge.
             </p>
             <p className="text-balance">
-              While frontier labs waste gigawatts on ever-larger transformer models that serve only their own scale ambitions, we create <span className="text-white font-medium">sovereign, low-power, neuron based intelligence</span> that actually serves humanity.
+              While frontier labs waste gigawatts on ever-larger transformer models that serve only the elite, we create <span className="text-white font-medium">sovereign, low-power, neuron based intelligence</span> that actually serves humanity.
             </p>
             <p className="text-white/90 font-normal tracking-wide">
               This is the <span className="text-white font-medium">only viable path forward</span>.
