@@ -86,10 +86,10 @@ export function Footer() {
         </div>
 
         {/* Nav columns */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 pb-12 text-center sm:text-left">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pb-12 text-center sm:text-left">
           {footerColumns.map((col) => (
             <div key={col.heading}>
-              <p className="text-[10px] text-neutral-500 uppercase mb-6">
+              <p className="text-[10px] text-neutral-500 uppercase mb-4">
                 {col.heading}
               </p>
               <ul className="space-y-1">
