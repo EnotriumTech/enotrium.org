@@ -183,8 +183,8 @@ function AbstractField() {
           // Reached target, bounce to new target
           currentSpark.bounceCount++;
           if (currentSpark.bounceCount >= currentSpark.maxBounces) {
-            // Reset spark
-            spark = spawnSpark(W, H);
+            // End spark
+            spark = null;
           } else {
             currentSpark.targetX = W * 0.5 + Math.random() * W * 0.45;
             currentSpark.targetY = H * 0.2 + Math.random() * H * 0.6;
