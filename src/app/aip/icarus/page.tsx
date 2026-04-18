@@ -2154,7 +2154,7 @@ function TheFrontierSection() {
               href="mailto:contact@enotrium.org"
               className="group magnetic-btn inline-flex items-center gap-3 px-8 py-4 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white text-sm font-medium tracking-[0.15em] uppercase transition-all duration-500 font-[family-name:var(--font-inter)] focus-ring"
             >
-              Request Early Access
+              Request Access
               <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
 
