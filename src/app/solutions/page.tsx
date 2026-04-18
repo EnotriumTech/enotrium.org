@@ -449,8 +449,8 @@ function PartnershipsSection() {
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
             <blockquote className="text-2xl md:text-3xl lg:text-4xl text-white/60 font-extralight leading-[1.5] font-[family-name:var(--font-inter)] text-center text-balance">
-              &ldquo;Together, we create the infrastructure for a civilization
-              that values sovereignty, transparency, and abundance.&rdquo;
+              We create the infrastructure for a civilization
+              that values sovereignty, transparency, and abundance.
             </blockquote>
 
             <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
