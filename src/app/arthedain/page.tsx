@@ -1172,7 +1172,7 @@ function MetricsSection() {
               Arthedain SNNs
             </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
-              Post-Transformer Efficiency at the Speed of Biology
+              Post-Transformer Efficiency at the Edge
             </h2>
           </div>
 
