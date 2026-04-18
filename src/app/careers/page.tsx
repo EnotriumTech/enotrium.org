@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 export default function CareersPage() {
   return (
     <div className="min-h-screen bg-white text-black font-[family-name:var(--font-inter)]">
-      <Navbar lightScrollBg invertLogo darkText />
+      <Navbar darkText />
 
       <main className="max-w-[1400px] mx-auto px-6 lg:px-16 pt-32 pb-24">
 
@@ -22,10 +22,9 @@ export default function CareersPage() {
             Join Us
           </p>
           <p className="text-base sm:text-lg leading-relaxed font-medium text-black max-w-2xl">
-            Today&apos;s farmers can&apos;t keep up with demand — we need a new approach. We&apos;ve
+            Today&apos;s industrial markets can&apos;t keep up with demand — we need a new approach, where AI works with industry and deployed in live settings. We&apos;ve
             built a new kind of AI powered economic system for agricultural prosperity, delivering
-            an order-of-magnitude better products in agriculture, manufacturing, industrial
-            production and farming. We&apos;re solving the hardest problems in global supply chains
+            an order-of-magnitude better products in agriculture, manufacturing, compute, industrial production and farming. We&apos;re solving the hardest problems in global supply chains
             to unlock faster, more rural economic systems for individuals around the world.
           </p>
         </div>
