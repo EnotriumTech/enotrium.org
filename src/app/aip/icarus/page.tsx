@@ -474,7 +474,7 @@ function SeeThroughTheSoil() {
     let detectionPulses: DetectionPulse[] = [];
 
     const detectionLabels = [
-      "PFAS", "Heavy Metals", "Microbial Activity", "Nutrient Density", "CO₂ Sequestration"
+      "Nitrogen (N)", "Phosphorus (P)", "Potassium (K)", "Moisture", "pH Level", "Organic Matter"
     ];
 
     const colors = [
@@ -543,7 +543,7 @@ function SeeThroughTheSoil() {
 
     // Text overlay cycle
     const textCycle = () => {
-      const texts = ["LIVE", "SPECTRAL LOCK", "SOIL NEURAL NET ACTIVE"];
+      const texts = ["LIVE", "SPECTRAL SCAN", "SOIL ANALYSIS", "HSI PROCESSING"];
       const randomText = texts[Math.floor(Math.random() * texts.length)];
       
       if (Math.random() < 0.01) {
@@ -557,7 +557,7 @@ function SeeThroughTheSoil() {
       }
       
       if (Math.random() < 0.003) {
-        setNeuralNet("NEURAL NET ACTIVE");
+        setNeuralNet("SOIL ANALYSIS ACTIVE");
         setTimeout(() => setNeuralNet(""), 2000);
       }
     };
@@ -698,17 +698,105 @@ function SeeThroughTheSoil() {
 
       ctx.restore();
 
-      // Draw spectral wavelength bands
-      for (let i = 0; i < 5; i++) {
-        const bandY = (H / 5) * i + (Math.sin(t * 0.02 + i) * 10);
+      // Draw spectral wavelength bands with HSI data visualization
+      for (let i = 0; i < 8; i++) {
+        const bandY = (H / 8) * i + (Math.sin(t * 0.02 + i) * 5);
         const gradient = ctx.createLinearGradient(0, bandY, W, bandY);
         gradient.addColorStop(0, "rgba(6, 182, 212, 0)");
-        gradient.addColorStop(0.5, colors[i % colors.length].replace('0.8', '0.1'));
+        gradient.addColorStop(0.5, colors[i % colors.length].replace('0.8', '0.15'));
         gradient.addColorStop(1, "rgba(6, 182, 212, 0)");
         
         ctx.fillStyle = gradient;
-        ctx.fillRect(0, bandY - 2, W, 4);
+        ctx.fillRect(0, bandY - 3, W, 6);
+        
+        // Add wavelength labels
+        const wavelengths = ["400nm", "500nm", "600nm", "700nm", "800nm", "900nm", "1000nm", "1100nm"];
+        ctx.font = "9px Inter";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+        ctx.textAlign = "left";
+        ctx.fillText(wavelengths[i], 10, bandY + 3);
       }
+
+      // Draw soil composition metrics panel
+      const metricsX = W - 180;
+      const metricsY = 20;
+      ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+      ctx.fillRect(metricsX, metricsY, 170, 120);
+      ctx.strokeStyle = "rgba(6, 182, 212, 0.3)";
+      ctx.lineWidth = 1;
+      ctx.strokeRect(metricsX, metricsY, 170, 120);
+      
+      ctx.font = "10px Inter";
+      ctx.fillStyle = "rgba(6, 182, 212, 0.8)";
+      ctx.textAlign = "left";
+      ctx.fillText("SOIL COMPOSITION", metricsX + 10, metricsY + 20);
+      
+      const metrics = [
+        { label: "Nitrogen (N)", value: (45 + Math.sin(t * 0.01) * 5).toFixed(1) + "%" },
+        { label: "Phosphorus (P)", value: (32 + Math.cos(t * 0.015) * 3).toFixed(1) + "%" },
+        { label: "Potassium (K)", value: (28 + Math.sin(t * 0.012) * 4).toFixed(1) + "%" },
+        { label: "Moisture", value: (65 + Math.cos(t * 0.008) * 8).toFixed(1) + "%" },
+        { label: "pH Level", value: (6.5 + Math.sin(t * 0.005) * 0.5).toFixed(1) },
+        { label: "Organic Matter", value: (3.2 + Math.cos(t * 0.009) * 0.3).toFixed(1) + "%" },
+      ];
+      
+      metrics.forEach((metric, i) => {
+        const y = metricsY + 40 + i * 15;
+        ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+        ctx.fillText(metric.label, metricsX + 10, y);
+        ctx.fillStyle = colors[i % colors.length];
+        ctx.textAlign = "right";
+        ctx.fillText(metric.value, metricsX + 160, y);
+        ctx.textAlign = "left";
+      });
+
+      // Draw spectral curve visualization (simulated HSI spectral signature)
+      const curveX = 20;
+      const curveY = H - 100;
+      const curveW = 200;
+      const curveH = 80;
+      
+      ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+      ctx.fillRect(curveX, curveY, curveW, curveH);
+      ctx.strokeStyle = "rgba(6, 182, 212, 0.3)";
+      ctx.strokeRect(curveX, curveY, curveW, curveH);
+      
+      ctx.font = "9px Inter";
+      ctx.fillStyle = "rgba(6, 182, 212, 0.8)";
+      ctx.textAlign = "left";
+      ctx.fillText("SPECTRAL SIGNATURE", curveX + 10, curveY + 15);
+      
+      // Draw spectral curve
+      ctx.beginPath();
+      ctx.moveTo(curveX, curveY + curveH - 10);
+      
+      for (let i = 0; i <= curveW; i += 2) {
+        const normalizedX = i / curveW;
+        const spectralValue = 0.3 + 
+          0.4 * Math.sin(normalizedX * Math.PI * 2 + t * 0.02) +
+          0.2 * Math.cos(normalizedX * Math.PI * 4 - t * 0.015) +
+          0.1 * Math.sin(normalizedX * Math.PI * 6 + t * 0.01);
+        
+        const y = curveY + curveH - 10 - (spectralValue * (curveH - 30));
+        ctx.lineTo(curveX + i, y);
+      }
+      
+      const spectralGradient = ctx.createLinearGradient(curveX, curveY, curveX + curveW, curveY);
+      spectralGradient.addColorStop(0, "rgba(6, 182, 212, 0.8)");
+      spectralGradient.addColorStop(0.5, "rgba(236, 72, 153, 0.8)");
+      spectralGradient.addColorStop(1, "rgba(20, 184, 166, 0.8)");
+      
+      ctx.strokeStyle = spectralGradient;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      
+      // Draw wavelength axis labels
+      ctx.font = "8px Inter";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+      ctx.textAlign = "center";
+      ctx.fillText("400nm", curveX, curveY + curveH + 8);
+      ctx.fillText("700nm", curveX + curveW / 2, curveY + curveH + 8);
+      ctx.fillText("1100nm", curveX + curveW, curveY + curveH + 8);
 
       textCycle();
       t += 1;
