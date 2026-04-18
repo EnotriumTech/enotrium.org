@@ -18,126 +18,674 @@ import {
 } from "lucide-react";
 
 // ============================================
-// ABSTRACT FIELD PARTICLE ANIMATION
+// HSI SOIL ANALYTICS DASHBOARD
 // ============================================
-function AbstractField() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+function HSIDashboard() {
+  const cubeCanvasRef = useRef<HTMLCanvasElement>(null);
+  const spectralCanvasRef = useRef<HTMLCanvasElement>(null);
+  const [feedLines, setFeedLines] = useState<Array<{ color: string; text: string }>>([]);
+  const [barWidths, setBarWidths] = useState<Record<string, number>>({});
 
+  // Initialize composition bars animation
   useEffect(() => {
-    const canvas = canvasRef.current;
+    setTimeout(() => {
+      setBarWidths({
+        'b-n': 49.8,
+        'b-p': 31.0,
+        'b-k': 24.9,
+        'b-m': 65.6,
+        'b-ph': 68,
+        'b-om': 35
+      });
+    }, 200);
+  }, []);
+
+  // Initialize spectral chart
+  useEffect(() => {
+    const canvas = spectralCanvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animId: number;
-    let t = 0;
+    const drawSpectral = () => {
+      const W = canvas.offsetWidth;
+      const H = canvas.offsetHeight || 60;
+      canvas.width = W;
+      canvas.height = H;
+      ctx.clearRect(0, 0, W, H);
 
-    type Particle = {
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      life: number;
-      maxLife: number;
-      size: number;
-    };
+      const peaks = [0.3, 0.5, 0.4, 0.8, 0.6, 0.95, 0.4, 0.3, 0.7, 0.85, 0.6, 0.4, 0.75, 0.5];
+      const colors = [
+        '#e03030', '#e05020', '#c08020', '#28a040', '#28a040', '#28a040',
+        '#28a040', '#28a040', '#2080c0', '#2080c0', '#e03030', '#e03030',
+        '#e03030', '#e03030'
+      ];
+      const bw = W / peaks.length;
 
-    let particles: Particle[] = [];
-    const COUNT = 140;
-
-    const spawn = (W: number, H: number): Particle => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      life: Math.random() * 160,
-      maxLife: 140 + Math.random() * 120,
-      size: 0.6 + Math.random() * 1.2,
-    });
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      const W = canvas.width;
-      const H = canvas.height;
-      particles = Array.from({ length: COUNT }, () => spawn(W, H));
-    };
-    resize();
-    window.addEventListener("resize", resize, { passive: true });
-
-    const flowX = (x: number, y: number, t: number) =>
-      Math.cos(x * 0.003 + t * 0.3) * Math.sin(y * 0.0025 + t * 0.35) +
-      Math.cos(x * 0.005 + y * 0.003 - t * 0.5) * 0.6;
-
-    const flowY = (x: number, y: number, t: number) =>
-      Math.sin(x * 0.0025 - t * 0.4) * Math.cos(y * 0.003 + t * 0.3) +
-      Math.sin(x * 0.004 - y * 0.006 + t * 0.55) * 0.5;
-
-    const draw = () => {
-      const W = canvas.width;
-      const H = canvas.height;
-
-      ctx.fillStyle = "rgba(10,10,10,0.18)";
-      ctx.fillRect(0, 0, W, H);
-
-      particles.forEach((p) => {
-        p.vx = p.vx * 0.94 + flowX(p.x, p.y, t) * 0.06;
-        p.vy = p.vy * 0.94 + flowY(p.x, p.y, t) * 0.06;
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life++;
-
-        if (p.x < -10 || p.x > W + 10 || p.y < -10 || p.y > H + 10 || p.life > p.maxLife) {
-          Object.assign(p, spawn(W, H));
-          return;
-        }
-
-        const lifeAlpha = Math.min(1, p.life / 30) * Math.min(1, (p.maxLife - p.life) / 30);
-        const topFade = Math.min(1, p.y / (H * 0.35));
-        const alpha = lifeAlpha * topFade * 0.65;
-        if (alpha < 0.01) return;
-
+      peaks.forEach((p, i) => {
+        const x = i * bw + bw * 0.5;
+        const barH = p * (H - 8);
+        ctx.fillStyle = colors[i] + '55';
+        ctx.fillRect(x - 3, H - barH, 6, barH);
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
+        ctx.arc(x, H - barH - 2, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = p > 0.7 ? '#28a040' : '#e03030';
         ctx.fill();
       });
 
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = dx * dx + dy * dy;
-          if (dist < 7000) {
-            const topFade = Math.min(1, Math.min(particles[i].y, particles[j].y) / (H * 0.35));
-            const alpha = (1 - dist / 7000) * 0.08 * topFade;
-            ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
-            ctx.lineWidth = 0.4;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
+      ctx.strokeStyle = '#1a2f36';
+      ctx.lineWidth = 0.5;
+      ctx.beginPath();
+      ctx.moveTo(0, H - 0.5);
+      ctx.lineTo(W, H - 0.5);
+      ctx.stroke();
+    };
+
+    drawSpectral();
+    window.addEventListener('resize', drawSpectral);
+    return () => window.removeEventListener('resize', drawSpectral);
+  }, []);
+
+  // Initialize hyperspectral datacube
+  useEffect(() => {
+    const canvas = cubeCanvasRef.current;
+    if (!canvas) return;
+
+    let animId: number;
+
+    const initCube = () => {
+      const parent = canvas.parentElement;
+      if (!parent) return;
+      canvas.width = parent.offsetWidth;
+      canvas.height = parent.offsetHeight;
+      const W = canvas.width;
+      const H = canvas.height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      // Pre-compute soil spectral signature field
+      const field = new Float32Array(W * H);
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const nx = x / W;
+          const ny = y / H;
+          const v =
+            Math.sin(nx * 12 + ny * 8) * 0.30 +
+            Math.sin(nx * 5 - ny * 7 + 1.2) * 0.25 +
+            Math.cos(nx * 20 * ny + 0.5) * 0.15 +
+            Math.sin(nx * 3 + ny * 15) * 0.20 +
+            (Math.random() - 0.5) * 0.06;
+          field[y * W + x] = (v + 1) / 2;
         }
       }
 
-      t += 0.004;
-      animId = requestAnimationFrame(draw);
+      // Per-zone tint
+      const zoneColor = (zx: number, zy: number) => {
+        const z = zy * 3 + zx;
+        if (z === 2) return [180, 20, 20];  // Zone 3 — VOC alert (red)
+        if (z === 4) return [160, 100, 10];  // Zone 5 — PFAS warn (amber)
+        return [10, 80, 30];                 // Healthy zones (green)
+      };
+
+      const imgData = ctx.createImageData(W, H);
+      let scanY = 0;
+      let t = 0;
+
+      const render = () => {
+        t += 0.008;
+        const band = (Math.sin(t * 0.5) * 0.5 + 0.5);
+
+        for (let y = 0; y < H; y++) {
+          for (let x = 0; x < W; x++) {
+            const idx = (y * W + x) * 4;
+            const v = field[y * W + x];
+            const zx = Math.floor(x / (W / 3));
+            const zy = Math.floor(y / (H / 2));
+            const zc = zoneColor(zx, zy);
+
+            const sv = Math.min(1, Math.max(0, v + band * 0.15));
+            let r = 0, g = 0, b = 0;
+            if (sv < 0.33) {
+              const t0 = sv / 0.33;
+              r = 0; g = t0 * 80; b = 20 + t0 * 60;
+            } else if (sv < 0.66) {
+              const t0 = (sv - 0.33) / 0.33;
+              r = t0 * 60; g = 80 + t0 * 60; b = 80 - t0 * 60;
+            } else {
+              const t0 = (sv - 0.66) / 0.34;
+              r = 60 + t0 * 140; g = 140 - t0 * 100; b = 20 - t0 * 15;
+            }
+
+            r = r * 0.6 + zc[0] * 0.08;
+            g = g * 0.6 + zc[1] * 0.08;
+            b = b * 0.6 + zc[2] * 0.08;
+
+            const sd = Math.abs(y - scanY);
+            if (sd < 2) {
+              const pulse = 1 - sd * 0.5;
+              r += pulse * 60; g += pulse * 80; b += pulse * 40;
+            }
+
+            imgData.data[idx] = Math.min(255, r);
+            imgData.data[idx + 1] = Math.min(255, g);
+            imgData.data[idx + 2] = Math.min(255, b);
+            imgData.data[idx + 3] = 255;
+          }
+        }
+
+        ctx.putImageData(imgData, 0, 0);
+
+        ctx.strokeStyle = 'rgba(180,30,30,0.5)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([3, 4]);
+        const zW = W / 3;
+        const zH = H / 2;
+        for (let i = 1; i < 3; i++) {
+          ctx.beginPath(); ctx.moveTo(i * zW, 0); ctx.lineTo(i * zW, H); ctx.stroke();
+        }
+        ctx.beginPath(); ctx.moveTo(0, zH); ctx.lineTo(W, zH); ctx.stroke();
+        ctx.setLineDash([]);
+
+        ctx.font = '8px Courier New';
+        ctx.fillStyle = 'rgba(200,200,200,0.5)';
+        ['ZONE 1', 'ZONE 2', 'ZONE 3', 'ZONE 4', 'ZONE 5', 'ZONE 6'].forEach((lbl, i) => {
+          const zx = i % 3;
+          const zy = Math.floor(i / 3);
+          ctx.fillText(lbl, zx * zW + 6, zy * zH + 14);
+        });
+
+        ctx.strokeStyle = 'rgba(0,200,100,0.4)';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([2, 6]);
+        ctx.beginPath(); ctx.moveTo(0, scanY); ctx.lineTo(W, scanY); ctx.stroke();
+        ctx.setLineDash([]);
+        scanY = (scanY + 1.2) % H;
+
+        const chx = W * (0.65 + Math.sin(t * 0.3) * 0.05);
+        const chy = H * (0.45 + Math.cos(t * 0.4) * 0.08);
+        ctx.strokeStyle = 'rgba(255,255,100,0.7)';
+        ctx.lineWidth = 0.8;
+        ctx.beginPath(); ctx.moveTo(chx - 8, chy); ctx.lineTo(chx + 8, chy); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(chx, chy - 8); ctx.lineTo(chx, chy + 8); ctx.stroke();
+        ctx.strokeRect(chx - 12, chy - 8, 24, 16);
+
+        ctx.fillStyle = 'rgba(255,255,100,0.8)';
+        ctx.font = '7px Courier New';
+        ctx.fillText(`λ=${Math.round(400 + band * 700)}nm`, chx + 14, chy - 2);
+        const sampleV = field[Math.round(chy) * W + Math.round(chx)] || 0;
+        ctx.fillText(`R=${sampleV.toFixed(3)}`, chx + 14, chy + 8);
+
+        animId = requestAnimationFrame(render);
+      };
+
+      render();
     };
 
-    draw();
+    initCube();
+    window.addEventListener('resize', () => {
+      cancelAnimationFrame(animId);
+      setTimeout(initCube, 100);
+    });
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener('resize', () => {});
     };
   }, []);
 
+  // Initialize live data feed
+  useEffect(() => {
+    const feedData = [
+      ['#3a9060', 'S001 | Method: EPA 8260D | Analyte: Ethylbenzene | Result: <0.00539 | Qualifier: U | Validation: COMPLETE'],
+      ['#3a9060', 'S002 | Method: EPA 8270D | Analyte: Naphthalene | Result: 0.0112 mg/kg | Status: FLAGGED'],
+      ['#d07820', 'S003 | PFAS Scan | Zone 5 | PFOA: 2.4ppt | PFOS: 1.1ppt | Action Level: EXCEEDED'],
+      ['#e03030', 'S004 | VOC Screen | Zone 3 | Toluene: 18.4 mg/kg | Xylene: 12.1 mg/kg | ALERT'],
+      ['#3a9060', 'S005 | Nutrient Panel | Zone 1 | N:45.2% | P:32.1% | K:28.4% | Status: OPTIMAL'],
+      ['#3a9060', 'S006 | Method: EPA 8260D | Analyte: Benzene | Result: <0.00200 | RL: 0.002 | PASS'],
+      ['#d07820', 'S007 | Dioxin Screen | Zone 4 | TEQ: 0.24 ng/kg | Threshold: 0.1 | ELEVATED'],
+    ];
+    let feedIdx = 0;
+
+    const addFeedLine = () => {
+      const [color, text] = feedData[feedIdx % feedData.length];
+      setFeedLines(prev => [{ color, text }, ...prev].slice(0, 3));
+      feedIdx++;
+    };
+
+    addFeedLine();
+    const interval = setInterval(addFeedLine, 2400);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <canvas
-      ref={canvasRef}
-      style={{ width: "100%", height: "100%", display: "block" }}
-    />
+    <div style={{
+      background: '#0f1a1e',
+      color: '#c8d4d8',
+      fontFamily: 'Courier New, monospace',
+      fontSize: '11px',
+      width: '100%',
+      minHeight: '820px',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr 1fr 260px',
+      gridTemplateRows: 'auto auto auto auto',
+      gap: '1px',
+      border: '1px solid #1a2f36',
+      padding: '10px'
+    }}>
+      {/* ZONE MAP */}
+      <div style={{
+        background: '#080c0f',
+        border: '1px solid #102028',
+        padding: '10px',
+        position: 'relative',
+        gridColumn: '1',
+        gridRow: '1'
+      }}>
+        <div style={{
+          fontSize: '9px',
+          letterSpacing: '0.18em',
+          color: '#e03030',
+          textTransform: 'uppercase',
+          marginBottom: '8px',
+          paddingBottom: '5px',
+          borderBottom: '1px solid #1a2f36',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <span>HSI FARM OVERVIEW</span>
+          <span style={{ fontSize: '8px', color: '#2a8a4a', letterSpacing: '0.05em' }}>● LIVE</span>
+        </div>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr 1fr',
+          gridTemplateRows: '1fr 1fr',
+          gap: '3px',
+          height: '120px',
+          marginBottom: '8px'
+        }}>
+          <div style={{
+            background: '#081208',
+            border: '1px solid #1a4020',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{ fontSize: '8px', letterSpacing: '0.12em', color: '#8aa0a8' }}>ZONE 1</div>
+            <div style={{ fontSize: '7px', marginTop: '2px', letterSpacing: '0.08em', color: '#28a048' }}>OPTIMAL</div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, height: '3px', width: '45%', background: 'linear-gradient(90deg, #208840, #20a050)' }}></div>
+          </div>
+          <div style={{
+            background: '#081208',
+            border: '1px solid #1a4020',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{ fontSize: '8px', letterSpacing: '0.12em', color: '#8aa0a8' }}>ZONE 2</div>
+            <div style={{ fontSize: '7px', marginTop: '2px', letterSpacing: '0.08em', color: '#28a048' }}>NOMINAL</div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, height: '3px', width: '38%', background: 'linear-gradient(90deg, #208840, #20a050)' }}></div>
+          </div>
+          <div style={{
+            background: '#160808',
+            border: '1px solid #c02020',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{ fontSize: '8px', letterSpacing: '0.12em', color: '#8aa0a8' }}>ZONE 3</div>
+            <div style={{ fontSize: '7px', marginTop: '2px', letterSpacing: '0.08em', color: '#e03030' }}>VOC ALERT</div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, height: '3px', width: '100%', background: 'linear-gradient(90deg, #e03030, #e08020)' }}></div>
+          </div>
+          <div style={{
+            background: '#081208',
+            border: '1px solid #1a4020',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{ fontSize: '8px', letterSpacing: '0.12em', color: '#8aa0a8' }}>ZONE 4</div>
+            <div style={{ fontSize: '7px', marginTop: '2px', letterSpacing: '0.08em', color: '#28a048' }}>NOMINAL</div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, height: '3px', width: '32%', background: 'linear-gradient(90deg, #208840, #20a050)' }}></div>
+          </div>
+          <div style={{
+            background: '#120e08',
+            border: '1px solid #a05010',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{ fontSize: '8px', letterSpacing: '0.12em', color: '#8aa0a8' }}>ZONE 5</div>
+            <div style={{ fontSize: '7px', marginTop: '2px', letterSpacing: '0.08em', color: '#d07820' }}>PFAS DETECT</div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, height: '3px', width: '68%', background: 'linear-gradient(90deg, #d07820, #d0c020)' }}></div>
+          </div>
+          <div style={{
+            background: '#081208',
+            border: '1px solid #1a4020',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <div style={{ fontSize: '8px', letterSpacing: '0.12em', color: '#8aa0a8' }}>ZONE 6</div>
+            <div style={{ fontSize: '7px', marginTop: '2px', letterSpacing: '0.08em', color: '#28a048' }}>NOMINAL</div>
+            <div style={{ position: 'absolute', bottom: 0, left: 0, height: '3px', width: '28%', background: 'linear-gradient(90deg, #208840, #20a050)' }}></div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '7px', color: '#2a4050', letterSpacing: '0.06em', padding: '2px 0' }}>
+          <span>400nm</span><span>500nm</span><span>600nm</span><span>700nm</span><span>800nm</span><span>900nm</span><span>1100nm</span>
+        </div>
+      </div>
+
+      {/* HYPERSPECTRAL DATACUBE */}
+      <div style={{
+        background: '#080c0f',
+        border: '1px solid #102028',
+        padding: '0',
+        overflow: 'hidden',
+        minHeight: '200px',
+        position: 'relative',
+        gridColumn: '2',
+        gridRow: '1 / 3'
+      }}>
+        <div style={{ position: 'absolute', top: '8px', left: '10px', zIndex: 10, fontSize: '8px', letterSpacing: '0.14em', color: '#e03030' }}>HYPERSPECTRAL DATACUBE — BAND SLICE RENDER</div>
+        <div style={{ position: 'absolute', top: '8px', right: '10px', zIndex: 10, fontSize: '8px', letterSpacing: '0.1em', color: '#28a048' }}>● PROCESSING ACTIVE</div>
+        <canvas ref={cubeCanvasRef} style={{ display: 'block', width: '100%', height: '100%' }} />
+      </div>
+
+      {/* SOIL COMPOSITION */}
+      <div style={{
+        background: '#080c0f',
+        border: '1px solid #102028',
+        padding: '10px',
+        position: 'relative',
+        gridColumn: '3',
+        gridRow: '1'
+      }}>
+        <div style={{
+          fontSize: '9px',
+          letterSpacing: '0.18em',
+          color: '#e03030',
+          textTransform: 'uppercase',
+          marginBottom: '8px',
+          paddingBottom: '5px',
+          borderBottom: '1px solid #1a2f36',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <span>SOIL COMPOSITION</span>
+          <span style={{ fontSize: '8px', color: '#2a8a4a', letterSpacing: '0.05em' }}>EPA 8260D</span>
+        </div>
+        {[
+          { label: 'Nitrogen', id: 'b-n', val: '49.8%', color: '#e03030' },
+          { label: 'Phosphorus', id: 'b-p', val: '31.0%', color: '#d07020' },
+          { label: 'Potassium', id: 'b-k', val: '24.9%', color: '#c09020' },
+          { label: 'Moisture', id: 'b-m', val: '65.6%', color: '#2080c0' },
+          { label: 'pH Level', id: 'b-ph', val: '6.8', color: '#28a040' },
+          { label: 'Org. Matter', id: 'b-om', val: '3.5%', color: '#8040c0' },
+        ].map(bar => (
+          <div key={bar.id} style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '5px' }}>
+            <div style={{ width: '52px', color: '#6a8898', fontSize: '9px', flexShrink: 0 }}>{bar.label}</div>
+            <div style={{ flex: 1, height: '5px', background: '#0e1e24', border: '1px solid #1a2f36', position: 'relative' }}>
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                height: '100%',
+                width: `${barWidths[bar.id] || 0}%`,
+                background: bar.color,
+                transition: 'width 1.2s ease'
+              }}></div>
+            </div>
+            <div style={{ width: '34px', textAlign: 'right', color: '#e03030', fontSize: '9px' }}>{bar.val}</div>
+          </div>
+        ))}
+        <div style={{
+          fontSize: '9px',
+          letterSpacing: '0.18em',
+          color: '#e03030',
+          textTransform: 'uppercase',
+          marginBottom: '8px',
+          paddingBottom: '5px',
+          borderBottom: '1px solid #1a2f36',
+          marginTop: '10px'
+        }}>SPECTRAL ANALYSIS</div>
+        <canvas ref={spectralCanvasRef} style={{ display: 'block', width: '100%', height: '60px' }} />
+      </div>
+
+      {/* SOIL ANALYTICS (RIGHT PANEL) */}
+      <div style={{
+        background: '#080c0f',
+        border: '1px solid #102028',
+        padding: '10px 12px',
+        gridColumn: '4',
+        gridRow: '1 / 5'
+      }}>
+        <div style={{
+          fontSize: '9px',
+          letterSpacing: '0.18em',
+          color: '#e03030',
+          textTransform: 'uppercase',
+          marginBottom: '8px',
+          paddingBottom: '5px',
+          borderBottom: '1px solid #1a2f36'
+        }}>SOIL ANALYTICS</div>
+        {[
+          { key: 'SampleMedia', val: 'Sediment' },
+          { key: 'Activity', val: 'Sediment' },
+          { key: 'Analytical_Method', val: 'EPA 8260D' },
+          { key: 'CAS_NO', val: '100-41-4' },
+          { key: 'Analyte', val: 'Ethylbenzene' },
+          { key: 'Result_Units', val: 'mg/kg', neutral: true },
+          { key: 'Reporting_Limit', val: '0.00539' },
+          { key: 'Validation_Level', val: 'Final', neutral: true },
+          { key: 'Result_Final', val: '<0.00539' },
+          { key: 'Result_Qualifier', val: 'U', neutral: true },
+          { key: 'RL_Comparison', val: 'No', neutral: true },
+        ].map(kv => (
+          <div key={kv.key} style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            padding: '3px 0',
+            borderBottom: '1px solid #0e1820'
+          }}>
+            <div style={{ color: '#506070', fontSize: '9px' }}>{kv.key}</div>
+            <div style={{ color: kv.neutral ? '#8aaabb' : '#e03030', fontSize: '9px' }}>{kv.val}</div>
+          </div>
+        ))}
+        <div style={{
+          margin: '10px 0 6px',
+          fontSize: '8px',
+          letterSpacing: '0.14em',
+          color: '#e03030',
+          textTransform: 'uppercase',
+          paddingBottom: '4px',
+          borderBottom: '1px solid #1a2f36'
+        }}>COMPOSITION</div>
+        {[
+          { key: 'Nitrogen (N)', val: '49.8%' },
+          { key: 'Phosphorus (P)', val: '31.0%' },
+          { key: 'Potassium (K)', val: '24.9%' },
+          { key: 'Moisture', val: '65.6%' },
+          { key: 'pH Level', val: '6.8', neutral: true },
+          { key: 'Organic Matter', val: '3.5%' },
+        ].map(kv => (
+          <div key={kv.key} style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'baseline',
+            padding: '3px 0',
+            borderBottom: '1px solid #0e1820'
+          }}>
+            <div style={{ color: '#506070', fontSize: '9px' }}>{kv.key}</div>
+            <div style={{ color: kv.neutral ? '#8aaabb' : '#e03030', fontSize: '9px' }}>{kv.val}</div>
+          </div>
+        ))}
+        <div style={{
+          margin: '10px 0 6px',
+          fontSize: '8px',
+          letterSpacing: '0.14em',
+          color: '#e03030',
+          textTransform: 'uppercase',
+          paddingBottom: '4px',
+          borderBottom: '1px solid #1a2f36'
+        }}>TOXINS DETECTED</div>
+        {[
+          { name: 'VOCs', count: '20 detected', level: 'high' },
+          { name: 'PAHs', count: '16 detected', level: 'high' },
+          { name: 'Phthalates', count: '6 detected', level: 'med' },
+          { name: 'PFAS', count: '8 detected', level: 'med' },
+          { name: 'Dioxins', count: '24 detected', level: 'high' },
+          { name: 'Pesticides', count: '14 detected', level: 'med' },
+        ].map(toxin => (
+          <div key={toxin.name} style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '3px 0'
+          }}>
+            <div style={{ color: '#506070', fontSize: '9px' }}>{toxin.name}</div>
+            <div style={{
+              fontSize: '9px',
+              color: toxin.level === 'high' ? '#e03030' : toxin.level === 'med' ? '#d07820' : '#28a048'
+            }}>{toxin.count}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* KEY FINDINGS */}
+      <div style={{
+        background: '#080c0f',
+        border: '1px solid #102028',
+        padding: '10px',
+        position: 'relative',
+        gridColumn: '3',
+        gridRow: '2'
+      }}>
+        <div style={{
+          fontSize: '9px',
+          letterSpacing: '0.18em',
+          color: '#e03030',
+          textTransform: 'uppercase',
+          marginBottom: '8px',
+          paddingBottom: '5px',
+          borderBottom: '1px solid #1a2f36',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <span>KEY FINDINGS</span>
+          <span style={{ fontSize: '8px', color: '#2a8a4a', letterSpacing: '0.05em' }}>Δ 3 ZONES FLAGGED</span>
+        </div>
+        {[
+          { tag: 'Z3', tagColor: '#e03030', text: 'Elevated VOC levels — 20 compounds above threshold. BTEX signature matches industrial runoff profile.' },
+          { tag: 'Z5', tagColor: '#d07820', text: 'PFAS contamination identified — 8 compounds detected. PFOA/PFOS ratio 2.3:1. Recommend subsurface sampling.' },
+          { tag: 'Z1', tagColor: '#28a048', text: 'Optimal nutrient balance — N: 45%, P: 32%, K: 28%. No remediation required.' },
+        ].map((finding, i) => (
+          <div key={i} style={{
+            display: 'flex',
+            gap: '8px',
+            padding: '4px 0',
+            borderBottom: i === 2 ? 'none' : '1px solid #0e1820',
+            fontSize: '9px',
+            color: '#7a9aaa',
+            lineHeight: '1.4'
+          }}>
+            <span style={{
+              flexShrink: 0,
+              fontSize: '8px',
+              letterSpacing: '0.08em',
+              padding: '1px 5px',
+              border: '1px solid ' + finding.tagColor,
+              color: finding.tagColor
+            }}>{finding.tag}</span>
+            <span>{finding.text}</span>
+          </div>
+        ))}
+        <div style={{
+          border: 'none',
+          paddingTop: '6px',
+          fontSize: '8px',
+          letterSpacing: '0.1em',
+          color: '#c8d020'
+        }}>▶ OVERALL: THREAT LEVEL LOW — CONFIDENCE 98.7%</div>
+      </div>
+
+      {/* LIVE DATA FEED */}
+      <div style={{
+        background: '#080c0f',
+        border: '1px solid #102028',
+        padding: '5px 10px',
+        gridColumn: '1 / 4',
+        gridRow: '3'
+      }}>
+        <div style={{
+          fontSize: '9px',
+          letterSpacing: '0.18em',
+          color: '#e03030',
+          textTransform: 'uppercase',
+          marginBottom: '4px',
+          paddingBottom: '5px',
+          borderBottom: '1px solid #1a2f36'
+        }}>LIVE DATA FEED</div>
+        {feedLines.map((line, i) => (
+          <div key={i} style={{
+            fontSize: '8px',
+            letterSpacing: '0.06em',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            lineHeight: '1.6',
+            color: line.color
+          }}>
+            ▶ {line.text}
+          </div>
+        ))}
+      </div>
+
+      {/* STATUS BAR */}
+      <div style={{
+        background: '#040810',
+        borderTop: '1px solid #102028',
+        padding: '4px 10px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        fontSize: '8px',
+        letterSpacing: '0.1em',
+        color: '#304858',
+        gridColumn: '1 / 5',
+        gridRow: '4'
+      }}>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          HYPERSPECTRAL V4 | <span style={{ color: '#28a048' }}>ALTITUDE: 150m</span> | <span style={{ color: '#28a048' }}>COVERAGE: 2.5km²</span>
+        </div>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          PROCESSING: <span style={{ color: '#28a048' }}>ACTIVE</span> | LATENCY: <span style={{ color: '#28a048' }}>0.0004s/frame</span> | UPDATE RATE: <span style={{ color: '#28a048' }}>240Hz</span>
+        </div>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          ALERT: <span style={{ color: '#e03030' }}>ZONE 3 VOC</span> | THREAT LEVEL: <span style={{ color: '#28a048' }}>LOW</span> | CONFIDENCE: <span style={{ color: '#28a048' }}>98.7%</span>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -155,7 +703,7 @@ function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
       <div className="absolute inset-0">
-        <AbstractField />
+        <HSIDashboard />
       </div>
 
       <div
