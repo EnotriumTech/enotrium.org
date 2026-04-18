@@ -78,7 +78,7 @@ export default function MissionPage() {
       <section className="w-full overflow-hidden py-8 px-4">
         <h2
           className="font-[family-name:var(--font-tektur)] tracking-tight text-center"
-          style={{ fontSize: "clamp(40px, 12vw, 180px)", lineHeight: "234px", fontWeight: 400 }}
+          style={{ fontSize: "clamp(40px, 12vw, 180px)", lineHeight: "180px", fontWeight: 400 }}
         >
           Autonomy<br />For<br />Every Farmer
         </h2>
