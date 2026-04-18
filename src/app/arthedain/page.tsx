@@ -817,7 +817,7 @@ function SpikingNeuralNetworksSection() {
 function EdgeDeploymentSection() {
   const principles = [
     { title: "Edge Deployed Intelligence", desc: "Drones, manufacturing, offline environments" },
-    { title: "Sovereign Local LLMs", desc: "Run without cloud dependency or massive energy cost" },
+    { title: "Locally Hosted LLMs", desc: "Run without cloud dependency or massive energy cost" },
     { title: "Industrial Sovereignty", desc: "Real-world deployment with minimal power" },
   ];
 
@@ -1014,7 +1014,7 @@ const benefits = [
   },
   {
     icon: Shield,
-    title: "Sovereign Local LLMs",
+    title: "Locally Hosted LLMs",
     description: "Run offline with minimal power. Industrial sovereignty. Independence from centralized infrastructure.",
   },
   {
