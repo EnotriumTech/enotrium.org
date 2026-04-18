@@ -1227,10 +1227,6 @@ function MetricsSection() {
               </p>
             </div>
           </div>
-
-          <div className="mt-12 text-white/30 text-sm font-[family-name:var(--font-inter)] font-light">
-            *Benchmarks derived from primate BCI datasets (MC Maze R ≥ 0.81, Zenodo Indy R ≥ 0.63), CEC neuromorphic comparisons (Akida 30x vs. NVIDIA), and closed-loop Hebbian online learning results. Event-driven sparsity + dual-timescale eligibility traces deliver real-time adaptation with 15–50 W neuromorphic power vs. hundreds of watts on GPUs.
-          </div>
         </ScrollReveal>
       </div>
     </section>
