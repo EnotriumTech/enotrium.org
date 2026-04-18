@@ -1184,28 +1184,10 @@ function MetricsSection() {
 
             <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
               <div className="text-5xl md:text-6xl font-light text-white/40 mb-3 font-[family-name:var(--font-inter)]">
-                30x
-              </div>
-              <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
-                Energy efficiency gains with Hebbian meta-learning*
-              </p>
-            </div>
-
-            <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
-              <div className="text-5xl md:text-6xl font-light text-white/40 mb-3 font-[family-name:var(--font-inter)]">
                 28–35%
               </div>
               <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
                 Lower memory usage (vs. BPTT backpropagation)*
-              </p>
-            </div>
-
-            <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
-              <div className="text-5xl md:text-6xl font-light text-white/40 mb-3 font-[family-name:var(--font-inter)]">
-                80–95%+
-              </div>
-              <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
-                Lower effective GPU costs & 10x lower TCO (inferences / tokens / power)*
               </p>
             </div>
 
@@ -1218,14 +1200,6 @@ function MetricsSection() {
               </p>
             </div>
 
-            <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
-              <div className="text-5xl md:text-6xl font-light text-white/40 mb-3 font-[family-name:var(--font-inter)]">
-                &lt;10%
-              </div>
-              <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
-                Performance drop under neural disruptions & remapping (vs. 20–30% baselines)*
-              </p>
-            </div>
           </div>
         </ScrollReveal>
       </div>
