@@ -23,6 +23,7 @@ import {
 function HSIDashboard() {
   const cubeCanvasRef = useRef<HTMLCanvasElement>(null);
   const spectralCanvasRef = useRef<HTMLCanvasElement>(null);
+  const aerialCanvasRef = useRef<HTMLCanvasElement>(null);
   const dotCanvasRef = useRef<HTMLCanvasElement>(null);
   const [feedLines, setFeedLines] = useState<Array<{ color: string; text: string }>>([]);
   const [barWidths, setBarWidths] = useState<Record<string, number>>({});
@@ -227,6 +228,246 @@ function HSIDashboard() {
     window.addEventListener('resize', () => {
       cancelAnimationFrame(animId);
       setTimeout(initCube, 100);
+    });
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener('resize', () => {});
+    };
+  }, []);
+
+  // Initialize aerial canvas - NIR false-color farmland renderer
+  useEffect(() => {
+    const canvas = aerialCanvasRef.current;
+    if (!canvas) return;
+
+    let animId: number;
+
+    const initAerial = () => {
+      const parent = canvas.parentElement;
+      if (!parent) return;
+      canvas.width = parent.offsetWidth || 300;
+      canvas.height = parent.offsetHeight || 180;
+      const W = canvas.width;
+      const H = canvas.height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      // Scene geometry (normalized 0..1)
+      const fields = [
+        { x:0.00, y:0.00, w:0.28, h:0.42, type:'crop',  ndvi:0.82 },
+        { x:0.28, y:0.00, w:0.18, h:0.22, type:'crop',  ndvi:0.74 },
+        { x:0.46, y:0.00, w:0.32, h:0.18, type:'fallow',ndvi:0.45 },
+        { x:0.78, y:0.00, w:0.22, h:0.35, type:'crop',  ndvi:0.88 },
+        { x:0.00, y:0.42, w:0.20, h:0.58, type:'wood',  ndvi:0.65 },
+        { x:0.20, y:0.38, w:0.22, h:0.30, type:'fallow',ndvi:0.38 },
+        { x:0.42, y:0.18, w:0.22, h:0.28, type:'crop',  ndvi:0.79 },
+        { x:0.64, y:0.18, w:0.20, h:0.24, type:'wet',   ndvi:0.55 },
+        { x:0.84, y:0.35, w:0.16, h:0.30, type:'crop',  ndvi:0.86 },
+        { x:0.20, y:0.68, w:0.26, h:0.32, type:'bare',  ndvi:0.22 },
+        { x:0.46, y:0.46, w:0.18, h:0.28, type:'crop',  ndvi:0.76 },
+        { x:0.64, y:0.42, w:0.20, h:0.32, type:'wood',  ndvi:0.70 },
+        { x:0.84, y:0.65, w:0.16, h:0.35, type:'fallow',ndvi:0.40 },
+        { x:0.46, y:0.74, w:0.38, h:0.26, type:'crop',  ndvi:0.81 },
+      ];
+
+      const roads = [
+        [0.00, 0.15, 1.00, 0.15],
+        [0.33, 0.00, 0.33, 1.00],
+        [0.66, 0.00, 0.66, 1.00],
+        [0.00, 0.55, 1.00, 0.58],
+        [0.33, 0.55, 0.66, 0.75],
+      ];
+
+      const buildings = [
+        { x:0.35, y:0.22, w:0.10, h:0.08, type:'warehouse' },
+        { x:0.36, y:0.32, w:0.06, h:0.05, type:'shed' },
+        { x:0.04, y:0.50, w:0.08, h:0.06, type:'warehouse' },
+        { x:0.68, y:0.20, w:0.09, h:0.07, type:'shed' },
+        { x:0.22, y:0.44, w:0.05, h:0.04, type:'shed' },
+      ];
+
+      const woods = [
+        { cx:0.08, cy:0.65, r:0.07 },
+        { cx:0.72, cy:0.54, r:0.05 },
+        { cx:0.88, cy:0.12, r:0.04 },
+      ];
+
+      const wetlands = [
+        { cx:0.72, cy:0.30, rx:0.04, ry:0.025 },
+        { cx:0.25, cy:0.80, rx:0.03, ry:0.02  },
+      ];
+
+      // Pre-render static base layer
+      const base = document.createElement('canvas');
+      base.width = W; base.height = H;
+      const bc = base.getContext('2d');
+      if (!bc) return;
+
+      const typeBase: Record<string, (ndvi?: number) => string> = {
+        crop:   (ndvi = 0.8) => `rgb(${Math.round(180 + ndvi*40)},${Math.round(20+ndvi*30)},${Math.round(10+ndvi*20)})`,
+        fallow: () => 'rgb(148,148,80)',
+        wet:    () => 'rgb(30,90,60)',
+        wood:   (ndvi = 0.7) => `rgb(${Math.round(10+ndvi*30)},${Math.round(80+ndvi*60)},${Math.round(10+ndvi*20)})`,
+        bare:   () => 'rgb(120,100,70)',
+        road:   () => 'rgb(50,58,55)',
+      };
+
+      fields.forEach(f => {
+        const x = f.x*W, y = f.y*H, w = f.w*W, h = f.h*H;
+        bc.fillStyle = typeBase[f.type](f.ndvi);
+        bc.fillRect(x, y, w, h);
+
+        if (f.type === 'crop') {
+          bc.strokeStyle = `rgba(${180+f.ndvi*40|0},${10+f.ndvi*15|0},${5+f.ndvi*10|0},0.18)`;
+          bc.lineWidth = 0.8;
+          for (let row = 0; row < h; row += 4) {
+            bc.beginPath(); bc.moveTo(x, y+row); bc.lineTo(x+w, y+row); bc.stroke();
+          }
+        }
+        bc.strokeStyle = 'rgba(0,0,0,0.25)';
+        bc.lineWidth = 0.5;
+        bc.strokeRect(x, y, w, h);
+      });
+
+      woods.forEach(wo => {
+        const cx = wo.cx*W, cy = wo.cy*H, r = wo.r*Math.min(W,H);
+        const grad = bc.createRadialGradient(cx, cy, r*0.1, cx, cy, r);
+        grad.addColorStop(0, 'rgba(15,95,20,0.95)');
+        grad.addColorStop(0.6, 'rgba(10,75,15,0.88)');
+        grad.addColorStop(1, 'rgba(5,55,10,0.0)');
+        bc.fillStyle = grad;
+        bc.beginPath(); bc.arc(cx, cy, r, 0, Math.PI*2); bc.fill();
+      });
+
+      wetlands.forEach(w => {
+        bc.fillStyle = 'rgba(20,60,80,0.75)';
+        bc.beginPath();
+        bc.ellipse(w.cx*W, w.cy*H, w.rx*W, w.ry*H, 0, 0, Math.PI*2);
+        bc.fill();
+        bc.strokeStyle = 'rgba(40,120,100,0.4)';
+        bc.lineWidth = 0.8;
+        bc.stroke();
+      });
+
+      roads.forEach(r => {
+        bc.strokeStyle = 'rgba(38,42,38,0.85)';
+        bc.lineWidth = 3;
+        bc.beginPath();
+        bc.moveTo(r[0]*W, r[1]*H);
+        bc.lineTo(r[2]*W, r[3]*H);
+        bc.stroke();
+        bc.strokeStyle = 'rgba(80,88,80,0.3)';
+        bc.lineWidth = 0.5;
+        bc.setLineDash([4,6]);
+        bc.beginPath();
+        bc.moveTo(r[0]*W, r[1]*H);
+        bc.lineTo(r[2]*W, r[3]*H);
+        bc.stroke();
+        bc.setLineDash([]);
+      });
+
+      buildings.forEach(b => {
+        const bx = b.x*W, by = b.y*H, bw = b.w*W, bh = b.h*H;
+        bc.fillStyle = b.type === 'warehouse' ? 'rgb(155,162,150)' : 'rgb(120,118,105)';
+        bc.fillRect(bx, by, bw, bh);
+        bc.fillStyle = 'rgba(220,225,215,0.4)';
+        bc.fillRect(bx+1, by+1, bw*0.4, bh*0.3);
+        bc.fillStyle = 'rgba(0,0,0,0.3)';
+        bc.fillRect(bx+bw, by+2, 2, bh);
+        bc.fillRect(bx+2, by+bh, bw, 2);
+        bc.strokeStyle = 'rgba(60,65,60,0.7)';
+        bc.lineWidth = 0.5;
+        bc.strokeRect(bx, by, bw, bh);
+      });
+
+      bc.fillStyle = 'rgba(60,68,62,0.7)';
+      bc.fillRect(0.35*W, 0.30*H, 0.09*W, 0.10*H);
+      for (let i = 0; i < 6; i++) {
+        bc.fillStyle = 'rgba(100,120,130,0.6)';
+        bc.fillRect((0.36 + i*0.013)*W, (0.31)*H, 0.008*W, 0.015*H);
+      }
+
+      let t = 0;
+      let aerialScan = 0;
+      const bandNames = ['NIR','RED-EDGE','SWIR','CIR'];
+      let bandIdx = 0;
+      let bandTimer = 0;
+
+      const renderAerial = () => {
+        t += 0.012;
+        bandTimer++;
+        if (bandTimer > 220) { bandTimer = 0; bandIdx = (bandIdx+1) % bandNames.length; }
+
+        ctx.drawImage(base, 0, 0);
+
+        const shimAlpha = 0.04 + Math.sin(t*0.7)*0.02;
+        ctx.fillStyle = `rgba(255,60,30,${shimAlpha.toFixed(3)})`;
+        ctx.fillRect(0, 0, W*0.28, H*0.42);
+        ctx.fillStyle = `rgba(255,40,20,${(shimAlpha*1.1).toFixed(3)})`;
+        ctx.fillRect(0.78*W, 0, 0.22*W, 0.35*H);
+
+        ctx.strokeStyle = 'rgba(180,255,120,0.18)';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(0, aerialScan); ctx.lineTo(W, aerialScan); ctx.stroke();
+        aerialScan = (aerialScan + 0.9) % H;
+
+        ctx.strokeStyle = 'rgba(220,40,40,0.35)';
+        ctx.lineWidth = 0.7;
+        ctx.setLineDash([2,3]);
+        const z3x = 0.20*W, z3y = 0.38*H, z3w = 0.22*W, z3h = 0.30*H;
+        ctx.strokeRect(z3x, z3y, z3w, z3h);
+        ctx.setLineDash([]);
+        ctx.fillStyle = 'rgba(220,40,40,0.85)';
+        ctx.fillRect(z3x+2, z3y+2, 16, 10);
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.font = '6px Courier New';
+        ctx.fillText('Z3', z3x+4, z3y+9);
+
+        ctx.strokeStyle = 'rgba(200,120,20,0.35)';
+        ctx.lineWidth = 0.7;
+        ctx.setLineDash([2,3]);
+        const z5x = 0.42*W, z5y = 0.46*H, z5w = 0.22*W, z5h = 0.28*H;
+        ctx.strokeRect(z5x, z5y, z5w, z5h);
+        ctx.setLineDash([]);
+        ctx.fillStyle = 'rgba(200,120,20,0.85)';
+        ctx.fillRect(z5x+2, z5y+2, 16, 10);
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.font = '6px Courier New';
+        ctx.fillText('Z5', z5x+4, z5y+9);
+
+        const spts = [
+          {x:0.10, y:0.20}, {x:0.50, y:0.10}, {x:0.80, y:0.50},
+          {x:0.55, y:0.80}, {x:0.25, y:0.60},
+        ];
+        spts.forEach((p, i) => {
+          const px = p.x*W, py = p.y*H;
+          const pulse = (Math.sin(t*1.1 + i*1.3)*0.5+0.5);
+          ctx.beginPath();
+          ctx.arc(px, py, 3 + pulse*4, 0, Math.PI*2);
+          ctx.strokeStyle = `rgba(200,210,30,${(0.3+pulse*0.5).toFixed(2)})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+          ctx.beginPath(); ctx.arc(px, py, 1.2, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(200,210,30,0.9)'; ctx.fill();
+        });
+
+        const vign = ctx.createRadialGradient(W/2, H/2, Math.min(W,H)*0.3, W/2, H/2, Math.max(W,H)*0.75);
+        vign.addColorStop(0, 'rgba(0,0,0,0)');
+        vign.addColorStop(1, 'rgba(0,0,0,0.45)');
+        ctx.fillStyle = vign;
+        ctx.fillRect(0, 0, W, H);
+
+        animId = requestAnimationFrame(renderAerial);
+      };
+
+      renderAerial();
+    };
+
+    initAerial();
+    window.addEventListener('resize', () => {
+      cancelAnimationFrame(animId);
+      setTimeout(initAerial, 130);
     });
 
     return () => {
@@ -550,6 +791,25 @@ function HSIDashboard() {
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '7px', color: '#2a4050', letterSpacing: '0.06em', padding: '2px 0' }}>
           <span>400nm</span><span>500nm</span><span>600nm</span><span>700nm</span><span>800nm</span><span>900nm</span><span>1100nm</span>
+        </div>
+      </div>
+
+      {/* NIR AERIAL VIEW */}
+      <div style={{
+        background: '#080c0f',
+        border: '1px solid #102028',
+        padding: '0',
+        overflow: 'hidden',
+        minHeight: '180px',
+        position: 'relative',
+        gridColumn: '1',
+        gridRow: '2'
+      }}>
+        <div style={{ position: 'absolute', top: '6px', left: '8px', zIndex: 10, fontSize: '8px', letterSpacing: '0.13em', color: '#e03030' }}>NIR COMPOSITE — CIR BAND 4·3·2</div>
+        <div style={{ position: 'absolute', top: '6px', right: '8px', zIndex: 10, fontSize: '7px', letterSpacing: '0.08em', color: '#28a048' }}>GSD: 0.5m</div>
+        <canvas ref={aerialCanvasRef} style={{ display: 'block', width: '100%', height: '100%', minHeight: '180px' }} />
+        <div style={{ position: 'absolute', bottom: '5px', left: '8px', fontSize: '7px', letterSpacing: '0.07em', color: '#2a5060' }}>
+          <span style={{ color: '#4a9060' }}>BAND: NIR</span> &nbsp;|&nbsp; RES: 0.5m/px &nbsp;|&nbsp; <span style={{ color: '#c8a020' }}>NDVI OVERLAY ACTIVE</span>
         </div>
       </div>
 
