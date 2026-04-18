@@ -167,7 +167,7 @@ export default function AIPPage() {
               <p className="text-[10px] tracking-[0.25em] uppercase text-neutral-400 mb-5">
                 Enotrium AIP
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight max-w-xl">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight max-w-3xl">
                 Secure Your Supply Chain with Enotrium's Agri-Intelligence Platform
               </h1>
             </div>
