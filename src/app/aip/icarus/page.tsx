@@ -892,10 +892,6 @@ function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
-      <div className="absolute inset-0">
-        <HSIDashboard />
-      </div>
-
       <div
         className="absolute inset-x-0 top-0 h-48 pointer-events-none z-10"
         style={{ background: "linear-gradient(to bottom, #0a0a0a 20%, transparent)" }}
@@ -1860,41 +1856,7 @@ function SeeThroughTheSoil() {
               boxShadow: "inset 0 0 100px rgba(6, 182, 212, 0.08), 0 0 60px rgba(6, 182, 212, 0.12)"
             }}
           >
-            <canvas
-              ref={canvasRef}
-              style={{ width: "100%", height: "100%", display: "block" }}
-            />
-
-            {/* Overlay text elements */}
-            {spectralLock && (
-              <div className="absolute top-4 right-4 text-cyan-400/60 text-xs font-[family-name:var(--font-inter)] tracking-[0.2em] uppercase animate-pulse">
-                {spectralLock}
-              </div>
-            )}
-
-            {neuralNet && (
-              <div className="absolute bottom-4 left-4 text-teal-400/60 text-xs font-[family-name:var(--font-inter)] tracking-[0.2em] uppercase animate-pulse">
-                {neuralNet}
-              </div>
-            )}
-
-            {/* Center content */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="text-center relative z-10">
-                <p className="text-cyan-200/60 text-sm font-[family-name:var(--font-inter)] tracking-[0.3em] uppercase mb-2">
-                  Hyperspectral Perception Active
-                </p>
-                <p className="text-cyan-400/40 text-xs font-[family-name:var(--font-inter)] tracking-widest">
-                  [ DEMONSTRATION MODE ]
-                </p>
-              </div>
-            </div>
-
-            {/* Corner brackets */}
-            <div className="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-cyan-500/30" />
-            <div className="absolute top-4 right-4 w-12 h-12 border-r-2 border-t-2 border-cyan-500/30" />
-            <div className="absolute bottom-4 left-4 w-12 h-12 border-l-2 border-b-2 border-cyan-500/30" />
-            <div className="absolute bottom-4 right-4 w-12 h-12 border-r-2 border-b-2 border-cyan-500/30" />
+            <HSIDashboard />
           </div>
         </ScrollReveal>
       </div>
