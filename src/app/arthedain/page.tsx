@@ -747,7 +747,7 @@ function TeaserSection() {
 function SpikingNeuralNetworksSection() {
   const concepts = [
     { icon: Brain, label: "Event-Driven", desc: "Fires only when needed" },
-    { icon: Zap, label: "Ultra-Efficient", desc: "100x less energy" },
+    { icon: Zap, label: "Ultra-Efficient", desc: "30x less energy" },
     { icon: Cpu, label: "Time Scaled", desc: "Like real neurons" },
     { icon: Server, label: "True Edge", desc: "No cloud dependency, Online, on device" },
   ];
@@ -973,10 +973,6 @@ function OurStorySection() {
                 Systems Deployment
               </h2>
 
-              <div className="mt-10 flex items-center gap-4">
-                <div className="w-16 h-px bg-gradient-to-r from-white/30 to-transparent" />
-                <p className="text-sm text-white/30 font-[family-name:var(--font-inter)] tracking-widest uppercase">dev 2026</p>
-              </div>
             </div>
           </ScrollReveal>
 
@@ -1009,7 +1005,7 @@ const benefits = [
   {
     icon: Zap,
     title: "Extreme Energy Efficiency",
-    description: "1000x less energy than transformers. Fires only when needed. This is the massive advantage.",
+    description: "30x less energy than transformers. Fires only when needed. This is the massive advantage.",
   },
   {
     icon: Cpu,
@@ -1188,7 +1184,7 @@ function MetricsSection() {
 
             <div className="p-8 border border-white/[0.06] bg-white/[0.01]">
               <div className="text-5xl md:text-6xl font-light text-white mb-3 font-[family-name:var(--font-inter)]">
-                91x
+                30x
               </div>
               <p className="text-white/50 text-lg font-[family-name:var(--font-inter)] font-light">
                 Energy efficiency gains with biologically-plausible Hebbian meta-learning*
