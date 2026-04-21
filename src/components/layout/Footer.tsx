@@ -51,6 +51,7 @@ const footerColumns = [
       { label: "Careers", href: "/careers" },
       { label: "Leadership", href: "/leadership" },
       { label: "Research", href: "https://www.enotriumai.org" },
+      { label: "Farmers", href: "/work-with-us" },
     ],
   },
   {
