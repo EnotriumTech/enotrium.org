@@ -211,22 +211,22 @@ export default function AIPPage() {
               Monitoring the world's supply chain at scale is an immense opportunity to shaping how it evolves. The rapid acquisition of real time data collection — including high-resolution satellites, IoT sensors, drones, and ground-based systems — is creating unprecedented opportunities to advance agrarian economies. The purpose of intelligence is to change outcomes.
             </p>
             <p className="text-white/50 text-lg leading-[1.8] font-[family-name:var(--font-inter)] font-light">
-              Enotirum AIP's cuts through the overwhelming complexity of this ever-expanding data landscape by finding pressure points, high leverage trade posts and critical supply chain gaps. By transforming neglected, disparate datasets into coherent analytical frameworks, Enotirum AIP brings simplicity and confidence to the agri-industrial frontier.
+              Enotrium AIP's cuts through the overwhelming complexity of this ever-expanding data landscape by finding pressure points, high leverage trade posts and critical supply chain gaps. By transforming neglected, disparate datasets into coherent analytical frameworks, Enotrium AIP brings simplicity and confidence to the agri-industrial frontier.
             </p>
           </div>
 
           <div className="space-y-8 mt-12">
             <h3 className="text-3xl font-light text-white font-[family-name:var(--font-inter)]">
-              Fighting Agroterrorism
+              Identifying Agroterrorism
             </h3>
             <p className="text-white/50 text-lg leading-[1.8] font-[family-name:var(--font-inter)] font-light">
-              In an era of heightened global threats, protecting agriculture from deliberate sabotage has become a critical priority. Agroterrorism — the intentional introduction of biological or chemical agents to disrupt the food supply — poses a serious risk to crop production, economic stability, and national security.
+              In an era of heightened global threats, protecting agriculture from deliberate sabotage has become an overlooked priority. Agroterrorism — the intentional introduction of biological or chemical agents to disrupt the food supply — poses a serious risk to crop production, economic stability, and national security.
             </p>
             <p className="text-white/50 text-lg leading-[1.8] font-[family-name:var(--font-inter)] font-light">
               Toxic fungi, in particular, must be identified and stopped before outbreaks spread. These pathogens can devastate entire regions by contaminating soil, destroying harvests, and producing harmful mycotoxins that threaten plants and human health. Recent incidents, including attempts to smuggle dangerous fungal strains with potential to damage major crops, along with long-standing challenges to Florida's orange industry (such as widespread citrus greening and other invasive threats), highlight the vulnerabilities of domestic agricultural supply chains in a world of biological weapons.
             </p>
             <p className="text-white/50 text-lg leading-[1.8] font-[family-name:var(--font-inter)] font-light">
-              Enotirum AIP plays a vital role in connecting on the ground data to supply chain oversight systems. This layer of intelligence is a defense against crop loss, disease and biochemical warfare. By continuously monitoring vast datasets from satellites, sensors, and ground reports, the platform enables early detection of anomalous disease patterns, rapid identification of suspicious outbreaks, and predictive modeling of potential spread. This precision intelligence-driven approach helps authorities and growers isolate threats preemptively, contain damage, and prevent cascading impacts on food security.
+              Enotrium AIP plays a vital role in connecting on the ground data to supply chain oversight systems. This layer of intelligence is a defense against crop loss, disease and biochemical warfare. By continuously monitoring vast datasets from satellites, sensors, and ground reports, the platform enables early detection of anomalous disease patterns, rapid identification of suspicious outbreaks, and predictive modeling of potential spread. This precision intelligence-driven approach helps authorities and growers isolate threats preemptively, contain damage, and prevent cascading impacts on food security.
             </p>
           </div>
         </div>
