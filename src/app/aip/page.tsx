@@ -130,12 +130,30 @@ function AbstractField() {
 
 
 const features = [
-  "Procurement Automation",
-  "Free Trade Account",
-  "Zero Knowledge Contracts",
-  "ERP Intelligence",
-  "Supply Chain Tracking",
-  "Compliance Filing",
+  {
+    name: "Procurement Automation",
+    desc: "Source verified, field-confirmed commodities without manual due diligence"
+  },
+  {
+    name: "Free Trade Account",
+    desc: "Access AIP's baseline intelligence layer at no cost"
+  },
+  {
+    name: "Zero Knowledge Contracts",
+    desc: "Execute sourcing agreements with cryptographic verification and no data exposure"
+  },
+  {
+    name: "ERP Intelligence",
+    desc: "Push AIP supply chain signals directly into your existing operations stack"
+  },
+  {
+    name: "Supply Chain Tracking",
+    desc: "Follow every shipment from field origin to delivery, verified against satellite ground truth"
+  },
+  {
+    name: "Compliance Filing",
+    desc: "Auto-generate audit-ready documentation for food safety, customs, and regulatory requirements"
+  },
 ];
 
 export default function AIPPage() {
@@ -170,6 +188,9 @@ export default function AIPPage() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight max-w-3xl">
                 Secure Your Supply Chain with Enotrium's Agri-Intelligence Platform
               </h1>
+              <p className="text-lg text-white/70 mt-6 max-w-2xl font-light leading-relaxed">
+                AIP maps the world's farmland down to the acre — ownership, crops, yield history, supply chain relationships. Source smarter. Prove quality, while preserving privacy.
+              </p>
             </div>
             <Link
               href="/"
@@ -183,10 +204,10 @@ export default function AIPPage() {
 
         {/* Feature list */}
         <div className="relative z-20 mt-auto px-6 lg:px-16 max-w-[1400px] mx-auto w-full pb-20 pt-10">
-          <ul className="space-y-1">
+          <ul className="space-y-3">
             {features.map((f) => (
-              <li key={f} className="text-xl sm:text-2xl font-light text-white/85">
-                {f}
+              <li key={f.name} className="text-xl sm:text-2xl font-light text-white/85">
+                {f.name} — <span className="text-white/60 text-lg">{f.desc}</span>
               </li>
             ))}
           </ul>
@@ -227,6 +248,27 @@ export default function AIPPage() {
             </p>
             <p className="text-white/50 text-lg leading-[1.8] font-[family-name:var(--font-inter)] font-light">
               Enotrium AIP plays a vital role in connecting on the ground data to supply chain oversight systems. This layer of intelligence is a defense against crop loss, disease and biochemical warfare. By continuously monitoring vast datasets from satellites, sensors, and ground reports, the platform enables early detection of anomalous disease patterns, rapid identification of suspicious outbreaks, and predictive modeling of potential spread. This precision intelligence-driven approach helps authorities and growers isolate threats preemptively, contain damage, and prevent cascading impacts on food security.
+            </p>
+            <p className="text-white/50 text-lg leading-[1.8] font-[family-name:var(--font-inter)] font-light">
+              Early detection requires knowing what normal looks like. AIP's continuous planetary baseline — built from hyperspectral drone data, satellite feeds, and ground IoT sensors — means anomalous patterns are flagged against years of field-level history. A fungal outbreak in a county that has never grown that crop. A yield collapse with no weather explanation. A supplier whose fields don't match their shipping manifests. AIP surfaces these signals before they become crises.
+            </p>
+          </div>
+
+          <div className="space-y-8 mt-12">
+            <h3 className="text-3xl font-light text-white font-[family-name:var(--font-inter)]">
+              Planetary Farm Intelligence
+            </h3>
+            <p className="text-white/50 text-lg leading-[1.8] font-[family-name:var(--font-inter)] font-light">
+              The world has 1.4 billion hectares of arable land spread across 570 million farms. Most of it is invisible to the institutions that depend on it. AIP maps all of it — ownership structures, operator history, crop rotation, yield patterns, and financial relationships including bailouts, subsidies, and debt exposure. When a counterparty tells you they source clean grain from the Midwest, AIP tells you if that's true, from which fields, and what those fields looked like last season.
+            </p>
+          </div>
+
+          <div className="space-y-8 mt-12">
+            <h3 className="text-3xl font-light text-white font-[family-name:var(--font-inter)]">
+              Counterparty Intelligence
+            </h3>
+            <p className="text-white/50 text-lg leading-[1.8] font-[family-name:var(--font-inter)] font-light">
+              Supply chain fraud doesn't announce itself. AIP cross-references declared sourcing against satellite-verified field activity, flagging discrepancies between what suppliers claim and what the ground shows. For procurement teams at food manufacturers and commodity traders, this is the difference between trusting a contract and verifying it.
             </p>
           </div>
         </div>
