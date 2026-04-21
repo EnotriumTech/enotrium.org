@@ -188,7 +188,7 @@ export default function AIPPage() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight max-w-3xl">
                 Secure Your Supply Chain with Enotrium's Agri-Intelligence Platform
               </h1>
-              <p className="text-lg text-white/70 mt-6 max-w-2xl font-light leading-relaxed">
+              <p className="text-lg text-white mt-6 max-w-2xl font-light leading-relaxed font-[family-name:var(--font-inter)]">
                 AIP maps the world's farmland down to the acre — ownership, crops, yield history, supply chain relationships. Source smarter. Prove quality, while preserving privacy.
               </p>
             </div>
