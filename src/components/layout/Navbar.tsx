@@ -16,7 +16,6 @@ function isExternalUrl(href: string): boolean {
 
 const navItems = [
   { title: "Platform", href: "/platform" },
-  { title: "Solutions", href: "/solutions" },
   { title: "AIP", href: "/aip" },
   { title: "Invective", href: "/invective" },
   { title: "Forum", href: "/forum" },
