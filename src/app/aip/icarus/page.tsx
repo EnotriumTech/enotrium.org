@@ -2122,59 +2122,6 @@ function SeeThroughTheSoil() {
 }
 
 // ============================================
-// JOIN THE NEURAL FRONTIER SECTION
-// ============================================
-function TheFrontierSection() {
-  return (
-    <section className="relative py-32 md:py-48 bg-[#0a0a0a] overflow-hidden">
-      <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-16">
-        <ScrollReveal animation="fade-up" duration={1}>
-          <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-6 font-[family-name:var(--font-inter)] font-medium">
-            The Frontier
-          </p>
-
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-extralight text-white mb-12 font-[family-name:var(--font-inter)] leading-[1.1] whitespace-nowrap">
-            Join the New Frontier
-          </h2>
-
-          <div className="space-y-8 text-white/50 text-xl md:text-2xl leading-[1.9] font-[family-name:var(--font-inter)] font-light mb-16">
-            <p className="text-balance">
-              Icarus is autonomous oversight for the earth, a nervous system for agriculture.
-            </p>
-            <p className="text-balance">
-              We partner with farmers, research institutions, and regenerative agriculture pioneers to deploy hyperspectral perception across the planet.
-            </p>
-            <p className="text-balance">
-              Together, we're building <span className="text-white font-medium">spectral consciousness</span> — a new way of seeing and caring for the soil that sustains us all.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="mailto:contact@enotrium.org"
-              className="group magnetic-btn inline-flex items-center gap-3 px-8 py-4 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white text-sm font-medium tracking-[0.15em] uppercase transition-all duration-500 font-[family-name:var(--font-inter)] focus-ring"
-            >
-              Request Access
-              <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-
-            <Link
-              href="https://www.enotriumai.org/research/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group magnetic-btn inline-flex items-center gap-3 px-8 py-4 border border-white/20 hover:border-white/40 hover:bg-white/5 text-white text-sm font-medium tracking-[0.15em] uppercase transition-all duration-500 font-[family-name:var(--font-inter)] focus-ring"
-            >
-              Research Collaboration
-              <ExternalLink className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
-  );
-}
-
-// ============================================
 // MAIN PAGE COMPONENT
 // ============================================
 export default function IcarusPage() {
@@ -2188,7 +2135,6 @@ export default function IcarusPage() {
       <TechnologySection />
       <WhyItMattersSection />
       <SeeThroughTheSoil />
-      <TheFrontierSection />
 
       <Footer />
     </div>
