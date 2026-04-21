@@ -91,7 +91,7 @@ export default function MissionPage() {
             key={row.title}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 py-10 border-t border-gray-200"
           >
-            <p className="font-bold text-black">{row.title}</p>
+            <p className="font-bold text-black text-xl md:text-2xl">{row.title}</p>
             <p className="text-sm font-medium text-black leading-relaxed">{row.tagline}</p>
             <p className="text-sm font-medium text-black leading-relaxed">{row.description}</p>
           </div>
