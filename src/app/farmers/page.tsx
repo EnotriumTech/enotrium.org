@@ -23,20 +23,6 @@ export default function WorkWithUsPage() {
         </h1>
       </section>
 
-      {/* Careers */}
-      <section className="px-6 lg:px-16 py-24 max-w-[1400px] mx-auto font-[family-name:var(--font-inter)]">
-        <div className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 md:gap-12 items-start">
-          <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-black pt-1">
-            Careers
-          </p>
-          <div>
-            <p className="text-base md:text-lg font-medium leading-relaxed text-black max-w-xl">
-              Build the future of agricultural intelligence with us.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Leadership */}
       <section className="px-6 lg:px-16 py-24 max-w-[1400px] mx-auto font-[family-name:var(--font-inter)]">
         <div className="grid grid-cols-1 md:grid-cols-[160px_1fr] gap-8 md:gap-12 items-start">
