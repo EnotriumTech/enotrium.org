@@ -1178,6 +1178,9 @@ function HeroSection() {
             <p className="text-balance">
               It collects and interprets ecological data, soil contaminants, nutrient markers, microbial signatures, and spectral biomarkers in real time — turning invisible soil intelligence into actionable planetary insight.
             </p>
+            <p className="text-balance">
+              Hyperspectral intelligence for the agricultural supply chain. Real-time contamination detection, field-level verification, and supply chain oversight — from drone to decision. Hyperdimensional and Hyperspectral Spiking Neural Networks.
+            </p>
           </div>
         </ScrollReveal>
 
