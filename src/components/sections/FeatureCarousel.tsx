@@ -54,6 +54,10 @@ export function FeatureCarousel() {
 
   return (
     <section className="relative min-h-screen bg-[#0a0a0a] overflow-hidden">
+      {features[currentIndex].link ? (
+        <Link href={features[currentIndex].link} className="absolute inset-0 z-10" />
+      ) : null}
+      
       {/* Full-screen visual background */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-full h-full flex items-center justify-center">
@@ -65,19 +69,19 @@ export function FeatureCarousel() {
             <img 
               src="/vineyard.png" 
               alt="Vineyard" 
-              className="w-full h-full object-contain scale-90"
+              className="w-full h-full object-contain"
             />
           ) : null}
         </div>
       </div>
 
       {/* Text content in top corner */}
-      <div className="relative z-10 w-full">
+      <div className="relative z-20 w-full">
         <ScrollReveal animation="fade-up" duration={1}>
           <div className="px-6 lg:px-16 py-12">
             <div className="max-w-xl">
               {features[currentIndex].link ? (
-                <Link href={features[currentIndex].link} className="block group">
+                <div className="group">
                   <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-4 font-[family-name:var(--font-inter)] font-medium group-hover:text-neutral-400 transition-colors">
                     {features[currentIndex].label}
                   </p>
@@ -87,7 +91,7 @@ export function FeatureCarousel() {
                   <p className="text-lg md:text-xl text-white/50 leading-relaxed font-[family-name:var(--font-inter)] font-light mb-8 group-hover:text-white/60 transition-colors">
                     {features[currentIndex].description}
                   </p>
-                </Link>
+                </div>
               ) : (
                 <>
                   <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-4 font-[family-name:var(--font-inter)] font-medium">
@@ -107,13 +111,16 @@ export function FeatureCarousel() {
       </div>
 
       {/* Navigation controls - bottom right */}
-      <div className="absolute bottom-8 right-8 z-20 flex flex-col items-end gap-4">
+      <div className="absolute bottom-8 right-8 z-30 flex flex-col items-end gap-4">
         {/* Carousel indicators */}
         <div className="flex gap-2">
           {features.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={(e) => {
+                e.preventDefault();
+                setCurrentIndex(index);
+              }}
               className={`h-1 rounded-full transition-all duration-300 ${
                 index === currentIndex
                   ? "bg-white w-8"
@@ -127,14 +134,20 @@ export function FeatureCarousel() {
         {/* Navigation arrows */}
         <div className="flex items-center gap-4">
           <button
-            onClick={goToPrevious}
+            onClick={(e) => {
+              e.preventDefault();
+              goToPrevious();
+            }}
             className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all duration-300"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-5 h-5 text-white/70" />
           </button>
           <button
-            onClick={goToNext}
+            onClick={(e) => {
+              e.preventDefault();
+              goToNext();
+            }}
             className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all duration-300"
             aria-label="Next slide"
           >
