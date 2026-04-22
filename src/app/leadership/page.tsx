@@ -6,7 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 const teamMembers = [
   {
     name: "Wilson Smith",
-    title: "",
+    title: "Co-Founder, Lead Developer",
     links: [
       { label: "GitHub", href: "https://github.com/0mWh" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/wilson--smith/" },
@@ -14,7 +14,7 @@ const teamMembers = [
   },
   {
     name: "David Shukhin",
-    title: "",
+    title: "Co-Founder, Chief Technology Officer",
     links: [
       { label: "GitHub", href: "https://github.com/davidshukhin" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/david-shukhin/" },
@@ -23,7 +23,7 @@ const teamMembers = [
   },
   {
     name: "Michael Kim",
-    title: "",
+    title: "Co-Founder, AI Process Engineer",
     links: [
       { label: "GitHub", href: "https://github.com/michaelkim88" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/michael-kim-profile/" },
@@ -31,28 +31,28 @@ const teamMembers = [
   },
   {
     name: "Emanuele Gaz",
-    title: "",
+    title: "Co-Founder, Chief Scientific Officer",
     links: [
-      { label: "LinkedIn", href: "#" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/emanuele-gaz-676ba8339/" },
     ],
   },
   {
     name: "Aiden Young",
-    title: "",
+    title: "Co-Founder, Chief Executive Officer",
     links: [
       { label: "GitHub", href: "https://github.com/Aidistides" },
     ],
   },
   {
     name: "Alessandro Burlando",
-    title: "",
+    title: "Founding AI Software Engineer",
     links: [
       { label: "GitHub", href: "https://github.com/burlibu" },
     ],
   },
   {
     name: "Jaydon Christen",
-    title: "",
+    title: "Full Stack AI Engineer",
     links: [
       { label: "GitHub", href: "https://github.com/Jaydon54" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/jaydon-christen-681407294/" },
@@ -60,7 +60,7 @@ const teamMembers = [
   },
   {
     name: "Rafael Virador",
-    title: "",
+    title: "Process Engineer",
     links: [
       { label: "GitHub", href: "https://github.com/rjmvirador" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/rafael-virador-304758290/" },

@@ -31,6 +31,13 @@ const features = [
     useIndustrial: true,
     label: "INDUSTRIAL",
     link: "/industrial-agriculture"
+  },
+  {
+    title: "",
+    description: "",
+    useVineyard: true,
+    label: "AGRICULTURE",
+    link: "/aip"
   }
 ];
 
@@ -70,6 +77,12 @@ export function FeatureCarousel() {
             <div className="w-full h-full">
               <IndustrialAgricultureScene />
             </div>
+          ) : features[currentIndex].useVineyard ? (
+            <img 
+              src="/vineyard.png" 
+              alt="Agriculture" 
+              className="w-full h-full object-contain"
+            />
           ) : null}
         </div>
       </div>
