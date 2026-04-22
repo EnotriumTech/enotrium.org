@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { HUDReticle } from "@/components/ui/HUDReticle";
-import { VineyardScene } from "@/components/ui/VineyardScene";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
@@ -63,9 +62,11 @@ export function FeatureCarousel() {
               <HUDReticle />
             </div>
           ) : features[currentIndex].useVineyard ? (
-            <div className="w-full h-full">
-              <VineyardScene />
-            </div>
+            <img 
+              src="/vineyard.png" 
+              alt="Vineyard" 
+              className="w-full h-full object-cover"
+            />
           ) : null}
         </div>
       </div>
