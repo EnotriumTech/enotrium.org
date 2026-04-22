@@ -25,8 +25,8 @@ const features = [
     label: "INDUSTRIAL"
   },
   {
-    title: "Restoring American Agriculture",
-    description: "Enotrium AIP transforms farming with AI-powered intelligence.",
+    title: "",
+    description: "",
     useVineyard: true,
     label: "AGRICULTURE",
     link: "/aip"
@@ -65,7 +65,7 @@ export function FeatureCarousel() {
             <img 
               src="/vineyard.png" 
               alt="Vineyard" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain scale-90"
             />
           ) : null}
         </div>
@@ -101,42 +101,46 @@ export function FeatureCarousel() {
                   </p>
                 </>
               )}
-              {/* Navigation arrows */}
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={goToPrevious}
-                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all duration-300"
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="w-5 h-5 text-white/70" />
-                </button>
-                <button
-                  onClick={goToNext}
-                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all duration-300"
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="w-5 h-5 text-white/70" />
-                </button>
-              </div>
-
-              {/* Carousel indicators */}
-              <div className="flex gap-2 mt-8">
-                {features.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`h-1 rounded-full transition-all duration-300 ${
-                      index === currentIndex
-                        ? "bg-white w-8"
-                        : "bg-white/30 w-4 hover:bg-white/50"
-                    }`}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
-              </div>
             </div>
           </div>
         </ScrollReveal>
+      </div>
+
+      {/* Navigation controls - bottom right */}
+      <div className="absolute bottom-8 right-8 z-20 flex flex-col items-end gap-4">
+        {/* Carousel indicators */}
+        <div className="flex gap-2">
+          {features.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`h-1 rounded-full transition-all duration-300 ${
+                index === currentIndex
+                  ? "bg-white w-8"
+                  : "bg-white/30 w-4 hover:bg-white/50"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+        
+        {/* Navigation arrows */}
+        <div className="flex items-center gap-4">
+          <button
+            onClick={goToPrevious}
+            className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all duration-300"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-5 h-5 text-white/70" />
+          </button>
+          <button
+            onClick={goToNext}
+            className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all duration-300"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-5 h-5 text-white/70" />
+          </button>
+        </div>
       </div>
 
       {/* Background gradient effect */}
