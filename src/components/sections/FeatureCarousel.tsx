@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { HUDReticle } from "@/components/ui/HUDReticle";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 const features = [
   {
@@ -65,16 +66,31 @@ export function FeatureCarousel() {
         <ScrollReveal animation="fade-up" duration={1}>
           <div className="px-6 lg:px-16 py-12">
             <div className="max-w-xl">
-              <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-4 font-[family-name:var(--font-inter)] font-medium">
-                {features[currentIndex].label}
-              </p>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white mb-6 font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
-                {features[currentIndex].title}
-              </h2>
-              <p className="text-lg md:text-xl text-white/50 leading-relaxed font-[family-name:var(--font-inter)] font-light mb-8">
-                {features[currentIndex].description}
-              </p>
-              
+              {currentIndex === 0 ? (
+                <Link href="/uav" className="block group">
+                  <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-4 font-[family-name:var(--font-inter)] font-medium group-hover:text-neutral-400 transition-colors">
+                    {features[currentIndex].label}
+                  </p>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white mb-6 font-[family-name:var(--font-inter)] text-balance leading-[1.1] group-hover:text-white/90 transition-colors">
+                    {features[currentIndex].title}
+                  </h2>
+                  <p className="text-lg md:text-xl text-white/50 leading-relaxed font-[family-name:var(--font-inter)] font-light mb-8 group-hover:text-white/60 transition-colors">
+                    {features[currentIndex].description}
+                  </p>
+                </Link>
+              ) : (
+                <>
+                  <p className="text-[11px] tracking-[0.3em] uppercase text-neutral-500 mb-4 font-[family-name:var(--font-inter)] font-medium">
+                    {features[currentIndex].label}
+                  </p>
+                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-white mb-6 font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
+                    {features[currentIndex].title}
+                  </h2>
+                  <p className="text-lg md:text-xl text-white/50 leading-relaxed font-[family-name:var(--font-inter)] font-light mb-8">
+                    {features[currentIndex].description}
+                  </p>
+                </>
+              )}
               {/* Navigation arrows */}
               <div className="flex items-center gap-4">
                 <button
