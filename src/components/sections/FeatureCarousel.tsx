@@ -27,7 +27,8 @@ const features = [
     description: "Run offline with minimal power. Industrial sovereignty. Independence from centralized infrastructure.",
     label: "INDUSTRIAL",
     useSVG: true,
-    svgSrc: "/carousel3.svg"
+    svgSrc: "/carousel3.svg",
+    textPosition: "bottom-left"
   },
   {
     title: "",
@@ -104,9 +105,9 @@ export function FeatureCarousel() {
       </div>
 
       {/* Text content in top corner */}
-      <div className="relative z-20 w-full">
+      <div className={`relative z-20 w-full ${features[currentIndex].textPosition === 'bottom-left' ? 'absolute bottom-12 left-0' : ''}`}>
         <ScrollReveal animation="fade-up" duration={1}>
-          <div className="px-6 lg:px-16 py-12">
+          <div className={`px-6 lg:px-16 ${features[currentIndex].textPosition === 'bottom-left' ? '' : 'py-12'}`}>
             <div className="max-w-xl">
               {features[currentIndex].link ? (
                 <div className="group">
