@@ -122,7 +122,7 @@ export const posts = [
   {
     slug: "what-enotrium-does",
     title: "What Enotrium Does",
-    date: "2026",
+    date: "2025",
     author: "Enotrium",
     excerpt:
       "The same land that once made families independent is now an extraction colony run by chemical companies and grain cartels. That ends in this decade.",
@@ -137,7 +137,7 @@ export const posts = [
   {
     slug: "economics-of-decentralization",
     title: "The Economics of Decentralization",
-    date: "2026",
+    date: "2025",
     author: "Enotrium",
     excerpt:
       "Industrial freedom precedes political freedom.",
@@ -153,7 +153,7 @@ export const posts = [
   {
     slug: "americas-return-to-industrial-freedom",
     title: "America's Return to Industrial Freedom",
-    date: "2026",
+    date: "2025",
     author: "Enotrium",
     excerpt:
       "A strong agrarian economy and the underground industrial grid.",
@@ -168,7 +168,7 @@ export const posts = [
   {
     slug: "the-enotrium-ai-platform",
     title: "The Enotrium AI Platform",
-    date: "2026",
+    date: "2025",
     author: "Enotrium",
     excerpt:
       "A contracts platform for the future agrarian economy, encrypted supply chains, and decentralized commodity futures.",
@@ -184,7 +184,7 @@ export const posts = [
   {
     slug: "rebuilding-americas-agrarian-industrial-base",
     title: "Rebuilding America's Agrarian Industrial Base",
-    date: "2026",
+    date: "2025",
     author: "Enotrium",
     excerpt:
       "Agriculture and the autonomous supply chain revolution.",
