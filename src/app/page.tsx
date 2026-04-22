@@ -44,6 +44,14 @@ export default function Home() {
       <div className="relative z-10">
         <HeroSection />
         <MissionSection />
+        
+        {/* AI Intelligence Section */}
+        <section className="px-6 lg:px-16 max-w-[1400px] mx-auto py-24">
+          <p className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-white font-[family-name:var(--font-inter)]">
+            Enotrium models power real‑world, AI‑driven intelligence deployed in autonomous drones, and distributed sensing fleets—turning raw hardware into self-learning, intelligent agents <span className="text-silver-400">in the sky</span>
+          </p>
+        </section>
+
         <InvectiveSection />
         <div className="mb-36">
           <SupplyChainSection />
