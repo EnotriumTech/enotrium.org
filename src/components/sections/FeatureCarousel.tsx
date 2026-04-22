@@ -18,7 +18,9 @@ const features = [
   {
     title: "Edge Deployed Intelligence",
     description: "Deploy on drones, in manufacturing facilities, across real industrial systems. No cloud dependency.",
-    label: "COMMERCIAL"
+    label: "COMMERCIAL",
+    useImage: true,
+    imageSrc: "/carousel2.png"
   },
   {
     title: "Locally Hosted LLMs",
@@ -82,6 +84,12 @@ export function FeatureCarousel() {
               src="/vineyard.png" 
               alt="Agriculture" 
               className="w-full h-full object-contain"
+            />
+          ) : features[currentIndex].useImage ? (
+            <img 
+              src={features[currentIndex].imageSrc} 
+              alt="Carousel" 
+              className="w-full h-full object-cover"
             />
           ) : null}
         </div>
