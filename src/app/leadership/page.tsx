@@ -83,10 +83,10 @@ export default function LeadershipPage() {
         <header className="mb-16 relative">
           <div className="flex flex-col items-start">
             <div className="flex items-end gap-4 mb-2">
-              <span className="font-semibold text-base tracking-[0.05em] uppercase text-white pb-4">
+              <span className="font-semibold text-sm tracking-[0.05em] uppercase text-white pb-4">
                 Team
               </span>
-              <h1 className="font-[family-name:var(--font-tektur)] font-normal text-[120px] md:text-[150px] lg:text-[200px] leading-none">
+              <h1 className="font-[family-name:var(--font-tektur)] font-normal text-[60px] md:text-[80px] lg:text-[100px] leading-none">
                 Enotrium
               </h1>
             </div>
@@ -103,7 +103,7 @@ export default function LeadershipPage() {
         <section className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 mt-16 max-w-4xl ml-auto">
           {teamMembers.map((member, index) => (
             <div key={index} className="text-left">
-              <h3 className="text-xl font-semibold mb-1">
+              <h3 className="text-lg font-semibold mb-1">
                 {member.name}
               </h3>
               {member.title && (

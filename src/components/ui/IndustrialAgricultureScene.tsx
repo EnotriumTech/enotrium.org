@@ -14,8 +14,8 @@ export function IndustrialAgricultureScene() {
           <stop offset="100%" stopColor="#0a0a0a" />
         </linearGradient>
         <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="rgba(6,182,212,0.1)" />
-          <stop offset="100%" stopColor="rgba(124,58,237,0.1)" />
+          <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
+          <stop offset="100%" stopColor="rgba(128,128,128,0.1)" />
         </linearGradient>
       </defs>
 
@@ -40,16 +40,16 @@ export function IndustrialAgricultureScene() {
 
       {/* Central accent circle */}
       <circle cx="400" cy="300" r="200" fill="url(#accentGradient)" opacity="0.5" />
-      <circle cx="400" cy="300" r="150" fill="rgba(6,182,212,0.05)" />
+      <circle cx="400" cy="300" r="150" fill="rgba(255,255,255,0.05)" />
 
       {/* Decorative geometric elements */}
-      <g stroke="rgba(6,182,212,0.2)" strokeWidth="1" fill="none">
+      <g stroke="rgba(255,255,255,0.2)" strokeWidth="1" fill="none">
         <rect x="200" y="200" width="400" height="200" rx="4" />
-        <rect x="220" y="220" width="360" height="160" rx="4" stroke="rgba(6,182,212,0.1)" />
+        <rect x="220" y="220" width="360" height="160" rx="4" stroke="rgba(255,255,255,0.1)" />
       </g>
 
       {/* Corner accents */}
-      <g stroke="rgba(6,182,212,0.3)" strokeWidth="2">
+      <g stroke="rgba(255,255,255,0.3)" strokeWidth="2">
         <line x1="50" y1="50" x2="100" y2="50" />
         <line x1="50" y1="50" x2="50" y2="100" />
         <line x1="750" y1="50" x2="700" y2="50" />
@@ -83,7 +83,7 @@ export function IndustrialAgricultureScene() {
       </text>
 
       {/* Decorative line */}
-      <line x1="250" y1="480" x2="550" y2="480" stroke="rgba(6,182,212,0.3)" strokeWidth="1" />
+      <line x1="250" y1="480" x2="550" y2="480" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
     </svg>
   );
 }
