@@ -134,4 +134,20 @@ export const posts = [
       "This ends where it should: with an America that feeds, fuels, and builds itself again — profitably, independently, and on its own terms. With small and mid-sized farms running circles around monoculture giants because they finally have better data, faster settlement, and direct access to domestic manufacturers who pay premiums for verified American fiber, fuel, and food. With rural counties that tax bio-refineries instead of begging for ethanol subsidies. With a countryside that is once again the strongest check on centralized power — because it owns its land, its data, and its future.",
     ],
   },
+  {
+    slug: "economics-of-decentralization",
+    title: "The Economics of Decentralization",
+    date: "2026",
+    author: "Enotrium",
+    excerpt:
+      "Industrial freedom precedes political freedom.",
+    body: [
+      "When in the course of history a free nation diverts from the image of its founding, it is the responsibility of its people to return it to the remembrance of its beginnings.",
+      "It has become cliché to say our founders would not recognize America today, though perhaps they understood that the path on which America treads has always been thinner than the edge of a knife. The ideals of America's founding are all but lost. The question now is whether the founding ideals — less cherished and less developed in the minds of most Americans today — will be adequate to face what Hamilton called \"the unequivocal experience of the inefficacy of the subsisting federal government.\" How far in the direction of socialism have we moved — not purely governmental, but economic? Most young Americans are welfare recipients of corporations, asking only: what salary can I get? What offer can I get? What elite pocket of society can I enter?",
+      "This spirit of receptivity is far gone from the self-willing Emersonian spirit that built America. No young person looks out today and asks what can I make, what service can I do? Henry Ford lived by the philosophy that money comes naturally from service. That spirit is all but extinguished. Our economy is purely salary-based. Starting a company to make drones has become a renegade practice. People are rightly scared that AI will replace them, because most tasks are seemingly at risk of automation. This is serfdom.",
+      "F.A. Hayek wrote in The Road to Serfdom: \"We have progressively abandoned that freedom in economic affairs without which personal and political freedom has never existed in the past.\" The temptation of a high salary has left half of America behind, and with it, the industries that made the nation sovereign.",
+      "Enotrium is in favor of industrial liberty. The right to work is a right to liberty. We seek a revolution of exchange at the intersection of agriculture and manufacturing. The spirit that built America and led it to global dominance in the mid-twentieth century was agrarian and industrial. If our strength as a nation becomes purely financial and digital, we are prone to countless geopolitical risks.",
+      "Dominance of industrial commodities is a function of personal liberty and national security. Paper, textiles, concrete, construction, grain, minerals — commodity markets the U.S. has neglected, and in neglecting, has failed to innovate. These are the basic industries that form the foundation of economic liberty. If you are working in one of these fields, Enotrium will defend you and America. Our software and hardware is designed to make American agriculture dominate.",
+    ],
+  },
 ];
