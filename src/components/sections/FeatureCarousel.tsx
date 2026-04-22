@@ -30,7 +30,8 @@ const features = [
     label: "INDUSTRIAL",
     useSVG: true,
     svgSrc: "/carousel3.svg",
-    textPosition: "bottom-left"
+    textPosition: "bottom-left",
+    hasTextBox: true
   },
   {
     title: "",
