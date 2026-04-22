@@ -800,7 +800,7 @@ function SpikingNeuralNetworksSection() {
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
             <p className="text-2xl md:text-3xl lg:text-4xl text-white/60 font-extralight leading-[1.5] font-[family-name:var(--font-inter)] text-center text-balance">
-              Transformer based Models are capital intensive and waste. Spiking neural nets follow patterns of elegance and efficency. On edge devices, the choice is obvious.
+              Transformer based Models are capital intensive and centralized. Spiking neural nets follow patterns of elegance and efficency. On edge devices, the choice is obvious.
             </p>
 
             <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />

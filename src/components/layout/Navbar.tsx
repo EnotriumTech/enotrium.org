@@ -47,7 +47,7 @@ const megaMenuColumns = [
     links: [
       { label: "Careers", href: "/careers" },
       { label: "Leadership", href: "/leadership" },
-      { label: "Research", href: "https://www.enotriumai.org" },
+      { label: "Research", href: "https://www.enotriumai.org/research" },
       { label: "Farmers", href: "/farmers" },
     ],
   },

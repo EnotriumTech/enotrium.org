@@ -22,8 +22,8 @@ export default function CareersPage() {
             Join Us
           </p>
           <p className="text-base sm:text-lg leading-relaxed font-medium text-black max-w-2xl">
-            Today&apos;s industrial markets can&apos;t keep up with demand — we need a new approach, where AI works with industry and deployed in live settings. We&apos;ve
-            built a new kind of AI powered economic system for agricultural prosperity, delivering
+            Today&apos;s agriculture and industrial markets can&apos;t keep up with demand — we need a new approach, where AI works with industry and is deployed in live settings. We&apos;ve
+            built a new class of AI powered systems designed for agricultural prosperity, delivering
             an order-of-magnitude better products in agriculture, manufacturing, compute, industrial production and farming. We&apos;re solving the hardest problems in global supply chains
             to unlock faster, more rural economic systems for individuals around the world.
           </p>
