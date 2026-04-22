@@ -10,7 +10,7 @@ import Link from "next/link";
 const features = [
   {
     title: "Edge Compute Infrastructure",
-    description: "To put AI onboard drones in the physical world.",
+    description: "AI onboard drones in the physical world.",
     useHUD: true,
     label: "DEFENSE",
     link: "/arthedain"
