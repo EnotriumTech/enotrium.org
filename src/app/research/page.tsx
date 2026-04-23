@@ -48,7 +48,7 @@ export default function ResearchPage() {
             Enotrium
           </div>
         </div>
-        <nav className="space-y-4">
+        <nav className="flex items-center gap-4">
           <a href="https://enotrium.org" target="_blank" rel="noopener noreferrer" className="block text-gray-500 hover:text-gray-900 transition-colors font-[family-name:var(--font-inter)]">
             enotrium.org
           </a>
