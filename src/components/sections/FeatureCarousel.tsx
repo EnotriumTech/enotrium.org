@@ -114,7 +114,7 @@ export function FeatureCarousel() {
       </div>
 
       {/* Text content in top corner */}
-      <div className={`relative z-20 w-full ${features[currentIndex].textPosition === 'bottom-left' ? 'absolute bottom-12 left-0' : features[currentIndex].textPosition === 'center-left' ? 'absolute top-1/2 -translate-y-1/2 left-0' : ''}`}>
+      <div className={`relative z-20 w-full ${features[currentIndex].textPosition === 'bottom-left' ? 'absolute bottom-16 left-0' : features[currentIndex].textPosition === 'center-left' ? 'absolute top-1/2 -translate-y-1/2 left-0' : ''}`}>
         <ScrollReveal animation="fade-up" duration={1}>
           <div className={`${features[currentIndex].hasTextBox ? 'px-4' : 'px-6 lg:px-16'} ${features[currentIndex].textPosition === 'bottom-left' ? '' : features[currentIndex].textPosition === 'center-left' ? '' : 'py-12'}`}>
             <div className={`${features[currentIndex].hasTextBox ? 'max-w-fit' : 'max-w-xl'} ${features[currentIndex].textPosition === 'center-left' ? 'ml-16' : ''}`}>
