@@ -28,7 +28,7 @@ const features = [
   },
   {
     title: "Locally Hosted LLMs",
-    description: "Run offline with minimal power. Industrial sovereignty.<br />&nbsp;&nbsp;&nbsp;&nbsp;Independence from centralized infrastructure.",
+    description: "Run offline with minimal power. Industrial sovereignty;Independence from centralized infrastructure.",
     label: "INDUSTRIAL",
     useSVG: true,
     svgSrc: "/carousel3.svg",

@@ -2,6 +2,7 @@
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import Image from "next/image";
 
 export default function EdgeAIPage() {
   return (
@@ -183,6 +184,15 @@ export default function EdgeAIPage() {
           <p className="text-base sm:text-lg leading-relaxed font-medium text-black mt-8">
             Enotrium's SNNs are circuit-level, fixed-point designs that map cleanly to FPGA- and neuromorphic-class accelerators, enabling implantable, drone-mounted, and industrial-IoT deployments from the same core architecture.
           </p>
+          <div className="mt-8">
+            <Image
+              src="/edge-ai-architecture-diagram.png"
+              alt="Edge AI Architecture Diagram"
+              width={1200}
+              height={600}
+              className="w-full h-auto"
+            />
+          </div>
         </div>
 
         {/* Use cases section */}
