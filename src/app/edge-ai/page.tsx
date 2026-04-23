@@ -135,7 +135,7 @@ export default function EdgeAIPage() {
         {/* Why SNNs section */}
         <div className="max-w-3xl mb-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8">
-            Why SNNs change the edge
+            Architecting Enotrium
           </h2>
           <p className="text-base sm:text-lg leading-relaxed font-medium text-black mb-8">
             Where traditional transformers and CNNs are static, batch-heavy, and GPU-dependent, Enotrium Edge AI SNNs are built for the edge:
