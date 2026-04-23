@@ -17,7 +17,7 @@ const researchProjects = [
     date: "March 2026",
   },
   {
-    title: "Questions Concerning Technology",
+    title: "Questions Concerning the Future of Technology",
     href: "/research/questions-technology",
     date: "February 2026",
   },

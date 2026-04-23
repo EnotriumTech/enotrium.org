@@ -29,7 +29,7 @@ export default function QuestionsTechnologyPage() {
         {/* Project Header */}
         <div className="mb-8">
           <h1 className="text-6xl md:text-8xl font-extralight text-gray-900 font-[family-name:var(--font-iceland)] mb-4">
-            Questions Concerning Technology
+            Questions Concerning the Future of Technology
           </h1>
           <p className="text-xl md:text-2xl text-gray-500 font-[family-name:var(--font-inter)]">
             Technology & Philosophy
