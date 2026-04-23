@@ -18,7 +18,7 @@ export default function WorkWithUsPage() {
         <p className="text-[10px] font-semibold tracking-[0.15em] uppercase text-black mb-8 font-[family-name:var(--font-inter)]">
           Farmers
         </p>
-        <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold leading-tight max-w-4xl font-[family-name:var(--font-inter)]">
+        <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-medium leading-tight max-w-4xl font-[family-name:var(--font-inter)]">
           Join Us in Transforming Agricultural Economies
         </h1>
       </section>
