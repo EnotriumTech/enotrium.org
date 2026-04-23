@@ -129,10 +129,10 @@ export function FeatureCarousel() {
               className="w-full h-full object-contain"
             />
           ) : features[currentIndex].useImage ? (
-            <img 
-              src={features[currentIndex].imageSrc} 
-              alt="Carousel" 
-              className="w-full h-full object-cover"
+            <img
+              src={features[currentIndex].imageSrc}
+              alt="Carousel"
+              className={`w-full h-full object-cover ${currentIndex === 8 ? "scale-95" : ""}`}
             />
           ) : null}
         </div>
