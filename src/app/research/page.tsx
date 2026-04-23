@@ -84,7 +84,7 @@ export default function ResearchPage() {
                   className="block group"
                 >
                   <h2 className="text-2xl md:text-3xl text-gray-900 font-light font-[family-name:var(--font-inter)] group-hover:text-gray-600 transition-colors mb-2 tracking-tight">
-                    {project.title}
+                    {project.title.split(' — ')[0]} — <span className="text-gray-500 text-xl md:text-2xl">{project.title.split(' — ')[1]}</span>
                   </h2>
                   <div className="text-xs text-gray-300 font-serif">
                     {project.date}
