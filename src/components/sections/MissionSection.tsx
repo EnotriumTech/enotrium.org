@@ -4,9 +4,9 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { siteConfig } from "@/config/content";
 
 const FLIP_WORDS = [
-  "Orpheus", "Agriculture", "Technology", "Agri-Base",
-  "A New", "Mesopotamia", "Farming", "Arthedain",
-  "Industry", "AIP", "Enotrium",
+  "ORPH1", "AGI01", "ENTR", "AGRI",
+  "E0API", "1MESO", "Farming", "I5SNN",
+  "SF342", "AIP00", "Enotrium",
 ];
 const FINAL_WORD = "Enotrium";
 

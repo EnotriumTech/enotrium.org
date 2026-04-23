@@ -44,61 +44,101 @@ export default function EdgeAIPage() {
         {/* Opening */}
         <div className="max-w-3xl mb-20">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8">
-            Live-thinking UAVs with SNNs
+            Spiking intelligence for autonomous drones
           </h2>
-          <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed font-medium text-black">
-            Enotrium Edge AI runs spiking neural networks (SNNs) directly on UAVs and edge sensors, enabling on-device learning via local plasticity rules instead of backpropagation, ultra-low-power event-driven inference tailored for drone payloads, and dual-timescale adaptation that stabilizes long-term memory while responding instantly to environmental shifts.
+          <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed font-medium text-black mb-4">
+            Real-time, on-device learning that thinks while it flies.
           </p>
-        </div>
-
-        {/* Callout */}
-        <div className="border-l-2 border-black pl-8 mb-20 max-w-3xl">
-          <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80">
-            Rather than relying on pre-trained, static models, Enotrium's UAVs continuously adapt to changing fields, lighting, atmospheric conditions, and sensor drift — all without re-training or cloud connectivity.
-          </p>
-        </div>
-
-        {/* Body Paragraphs */}
-        <div className="space-y-10 max-w-3xl mb-24">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8">
-            Edge AI architecture for drones
-          </h2>
           <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
-            Enotrium Edge AI sits between your drone hardware and your Agri-Intelligence Platform (AIP), forming a real-time perception-to-action loop:
+            Enotrium Edge AI is a spiking-neural-network (SNN)–powered intelligence layer for UAVs and edge systems. It replaces static, cloud-dependent models with live-thinking AI that adapts continuously during deployment — without backpropagation, without re-training, and without sacrificing latency or power.
+          </p>
+          <p className="text-base sm:text-lg leading-relaxed font-medium text-black mt-4">
+            Deployed on drones and industrial sensors, Enotrium Edge AI turns raw hyperspectral, RGB, and IoT data into autonomous decisions in austere, low-bandwidth environments.
+          </p>
+        </div>
+
+        {/* Live-thinking UAVs section */}
+        <div className="max-w-3xl mb-20">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8">
+            Live-thinking UAVs, powered by SNNs
+          </h2>
+          <p className="text-base sm:text-lg leading-relaxed font-medium text-black mb-6">
+            Enotrium Edge AI gives UAVs a real-time nervous system:
+          </p>
+          <ul className="space-y-4 pl-6 list-disc">
+            <li className="text-base sm:text-lg leading-relaxed font-medium text-black">
+              On-device learning via local plasticity rules, not backpropagation.
+            </li>
+            <li className="text-base sm:text-lg leading-relaxed font-medium text-black">
+              Event-driven, low-power SNNs tailored to hyperspectral payloads and UAV-class hardware.
+            </li>
+            <li className="text-base sm:text-lg leading-relaxed font-medium text-black">
+              Dual-timescale adaptation that stabilizes long-term memory while reacting instantly to new soil conditions, atmospheric interference, or sensor drift.
+            </li>
+          </ul>
+          <p className="text-base sm:text-lg leading-relaxed font-medium text-black mt-6">
+            Rather than relying on pre-trained models, Enotrium UAVs continuously adapt to changing fields and environments, enabling autonomous resampling, anomaly detection, and material-routing decisions that close the loop between percepts and production.
+          </p>
+        </div>
+
+        {/* Architecture section */}
+        <div className="max-w-3xl mb-24">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8">
+            Architecture: perception, adaptation, action
+          </h2>
+          <p className="text-base sm:text-lg leading-relaxed font-medium text-black mb-8">
+            Enotrium Edge AI is a three-layer system that runs directly on the edge:
           </p>
 
-          <div className="space-y-6 pl-6">
+          <div className="space-y-8 pl-6">
             <div>
-              <h3 className="text-xl font-bold text-black mb-2">Perception</h3>
+              <h3 className="text-xl font-bold text-black mb-3">Perception</h3>
               <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80">
-                Hyperspectral, RGB, and auxiliary sensors on UAVs feed raw spectral-spatial cubes into a custom 3D SNN that processes full wavelength stacks in real time.
+                Hyperspectral (400–2500 nm, SWIR-focused), RGB, and auxiliary sensors feed spectral-spatial cubes into a custom 3D SNN.
+              </p>
+              <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80 mt-2">
+                The SNN processes full wavelength stacks in real time, detecting subtle chemical signatures, contaminants, and phytoremediation patterns that conventional models miss.
               </p>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-black mb-2">Online learning</h3>
+              <h3 className="text-xl font-bold text-black mb-3">Online learning & adaptation</h3>
               <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80">
-                SNNs use local error-modulated plasticity (e.g., dual-timescale Hebbian accumulators) to update internal weights as contamination, soil chemistry, or weather shifts occur mid-flight.
+                SNNs use local error-modulated plasticity (e.g., dual-timescale Hebbian accumulators) to update internal weights as distributions shift.
+              </p>
+              <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80 mt-2">
+                Models recover performance 3–10× faster than standard online baselines while maintaining deterministic, real-time latency.
               </p>
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-black mb-2">Decision & actuation</h3>
+              <h3 className="text-xl font-bold text-black mb-3">Decision & actuation</h3>
               <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80">
-                Edge-AI agents onboard the UAV generate low-latency decisions such as which sub-fields to rescan at higher resolution, when to trigger soil-remediation alerts, and how to route raw material directly to processing based on real-time spectral quality.
+                Edge-AI agents onboard the UAV generate low-latency decisions:
+              </p>
+              <ul className="space-y-2 pl-6 list-disc mt-2">
+                <li className="text-base sm:text-lg leading-relaxed font-medium text-black/80">which sub-fields to rescan at higher resolution,</li>
+                <li className="text-base sm:text-lg leading-relaxed font-medium text-black/80">when to trigger soil-remediation or bio-security alerts,</li>
+                <li className="text-base sm:text-lg leading-relaxed font-medium text-black/80">how to route raw material directly to processing based on real-time spectral quality.</li>
+              </ul>
+              <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80 mt-2">
+                Metadata-only streams (coordinates, anomaly type, confidence) can be sent to command centers, preserving bandwidth while enabling closed-loop operations.
               </p>
             </div>
           </div>
 
-          <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
-            This architecture keeps data localized, minimizes bandwidth, and enables deterministically bounded latency — critical for autonomous, safety-critical UAV operations.
+          <p className="text-base sm:text-lg leading-relaxed font-medium text-black mt-8">
+            This architecture keeps data localized, minimizes bandwidth, and ensures deterministic latency — critical for autonomous, safety-critical UAV missions.
           </p>
+        </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8 mt-16">
-            Why SNNs change the game
+        {/* Why SNNs section */}
+        <div className="max-w-3xl mb-24">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8">
+            Why SNNs change the edge
           </h2>
-          <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
-            Compared with traditional transformers or deep CNNs, Enotrium Edge AI SNNs provide:
+          <p className="text-base sm:text-lg leading-relaxed font-medium text-black mb-8">
+            Where traditional transformers and CNNs are static, batch-heavy, and GPU-dependent, Enotrium Edge AI SNNs are built for the edge:
           </p>
 
           <div className="border border-black/20 rounded-lg overflow-hidden">
@@ -107,7 +147,7 @@ export default function EdgeAIPage() {
                 <tr>
                   <th className="text-left p-4 text-sm font-bold text-black">Aspect</th>
                   <th className="text-left p-4 text-sm font-bold text-black">Transformers / CNNs</th>
-                  <th className="text-left p-4 text-sm font-bold text-black">Enotrium SNN Edge AI</th>
+                  <th className="text-left p-4 text-sm font-bold text-black">Enotrium Edge AI SNNs</th>
                 </tr>
               </thead>
               <tbody>
@@ -119,7 +159,7 @@ export default function EdgeAIPage() {
                 <tr className="border-t border-black/10">
                   <td className="p-4 text-sm text-black">Power consumption</td>
                   <td className="p-4 text-sm text-black/80">High (often GPU-class)</td>
-                  <td className="p-4 text-sm text-black/80">Orders of magnitude lower; fits UAV power budgets</td>
+                  <td className="p-4 text-sm text-black/80">Orders of magnitude lower; fits UAV budgets</td>
                 </tr>
                 <tr className="border-t border-black/10">
                   <td className="p-4 text-sm text-black">Memory footprint</td>
@@ -134,57 +174,93 @@ export default function EdgeAIPage() {
                 <tr className="border-t border-black/10">
                   <td className="p-4 text-sm text-black">Handling sensor drift</td>
                   <td className="p-4 text-sm text-black/80">Degrades with distribution shift</td>
-                  <td className="p-4 text-sm text-black/80">Recovers 3–10× faster via dual-timescale rules</td>
+                  <td className="p-4 text-sm text-black/80">Fast recovery via dual-timescale plasticity</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
-            Enotrium's SNNs are not just "neural models on small hardware"; they are circuit-level, fixed-point designs that map cleanly to FPGA- or neuromorphic-class accelerators, enabling implantable, drone-mounted, and industrial-IoT deployments from the same core architecture.
+          <p className="text-base sm:text-lg leading-relaxed font-medium text-black mt-8">
+            Enotrium's SNNs are not a research demo; they are circuit-level, fixed-point designs that map cleanly to FPGA- and neuromorphic-class accelerators, enabling implantable, drone-mounted, and industrial-IoT deployments from the same core architecture.
           </p>
+        </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8 mt-16">
-            Live-thinking use cases
+        {/* Use cases section */}
+        <div className="max-w-3xl mb-24">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8">
+            Use cases: SNNs in action on UAVs
           </h2>
 
           <div className="space-y-8">
             <div className="border-l-2 border-black pl-6">
-              <h3 className="text-xl font-bold text-black mb-2">1. Autonomous, hyperspectral UAVs</h3>
+              <h3 className="text-xl font-bold text-black mb-2">Autonomous hyperspectral UAVs</h3>
               <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80">
-                Drones equipped with Enotrium Edge AI fly austere routes, continuously updating soil-chemistry and contaminant maps in real time. When a field's spectral signature suddenly shifts (e.g., new pesticide runoff or PFAS spill), the SNN triggers targeted resampling and routes the data to the AIP's contracting layer, which can renegotiate offtake terms or reroute biomass to bio-remediation processing.
+                Drones fly austere routes, continuously updating soil-chemistry and contaminant maps in real time.
+              </p>
+              <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80 mt-2">
+                When a field's spectral signature suddenly shifts (e.g., new pesticide runoff or PFAS spill), the SNN triggers targeted resampling and routes the data to the Enotrium AIP's contracting layer, which can renegotiate offtake terms or reroute biomass to bio-remediation processing.
               </p>
             </div>
 
             <div className="border-l-2 border-black pl-6">
-              <h3 className="text-xl font-bold text-black mb-2">2. Real-time anomaly detection & find-fix-track</h3>
+              <h3 className="text-xl font-bold text-black mb-2">Real-time anomaly detection & find-fix-track</h3>
               <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80">
-                Edge-AI SNNs on UAVs detect spectral anomalies indicative of agroterrorism, microbial contamination, or engineered biological agents. Metadata-only streams (coordinates, anomaly type, confidence) are sent to command centers, preserving bandwidth while enabling rapid, closed-loop decision-making.
+                Edge-AI SNNs detect spectral anomalies indicative of agroterrorism, microbial contamination, or engineered biological threats.
+              </p>
+              <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80 mt-2">
+                Metadata-only streams are sent to command centers, preserving bandwidth while enabling rapid, closed-loop decision-making.
               </p>
             </div>
 
             <div className="border-l-2 border-black pl-6">
-              <h3 className="text-xl font-bold text-black mb-2">3. Predictive maintenance & system health</h3>
+              <h3 className="text-xl font-bold text-black mb-2">Predictive maintenance & system health</h3>
               <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80">
-                SNNs on UAV motors, batteries, and payload systems learn normal operating signatures and detect incipient failures. Alerts queue preventive maintenance without waiting for offline model retraining, extending fleet life and reducing downtime.
+                SNNs on UAV motors, batteries, and payload systems learn normal operating signatures and detect incipient failures.
+              </p>
+              <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80 mt-2">
+                Alerts queue preventive maintenance without waiting for offline model retraining, extending fleet life and reducing downtime.
               </p>
             </div>
           </div>
+        </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8 mt-16">
-            Cloud dependency: the edge-AI story
+        {/* From soil to sovereignty section */}
+        <div className="max-w-3xl mb-24">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8">
+            From soil to sovereignty: AI at the edge
           </h2>
-          <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
-            Enotrium Edge AI is more than a drone-side accelerator; it is the live-thinking nervous system that closes the loop between raw hyperspectral percepts, economic incentives in the AIP, and physical material flows in downstream manufacturing.
+          <p className="text-base sm:text-lg leading-relaxed font-medium text-black mb-6">
+            Enotrium Edge AI is not just a UAV-side accelerator. It is the live-thinking nervous system that connects:
           </p>
+          <ul className="space-y-2 pl-6 list-disc mb-6">
+            <li className="text-base sm:text-lg leading-relaxed font-medium text-black">Raw hyperspectral percepts,</li>
+            <li className="text-base sm:text-lg leading-relaxed font-medium text-black">Economic incentives in the Enotrium AIP,</li>
+            <li className="text-base sm:text-lg leading-relaxed font-medium text-black">And physical material flows in downstream manufacturing.</li>
+          </ul>
+          <p className="text-base sm:text-lg leading-relaxed font-medium text-black mb-6">
+            By pushing SNN-based intelligence to the edge, Enotrium ensures:
+          </p>
+          <ul className="space-y-2 pl-6 list-disc mb-6">
+            <li className="text-base sm:text-lg leading-relaxed font-medium text-black">Resilience against sensor drift and distribution shift,</li>
+            <li className="text-base sm:text-lg leading-relaxed font-medium text-black">Autonomy in low-bandwidth or disconnected environments,</li>
+            <li className="text-base sm:text-lg leading-relaxed font-medium text-black">Sovereign control over the agri-industrial supply chain — from soil to fiber, from drones to decarbonization.</li>
+          </ul>
+        </div>
 
-          <p className="text-base sm:text-lg leading-relaxed font-medium text-black">
-            By pushing SNN-based intelligence to the edge, Enotrium ensures resilience against sensor drift and distribution shift, autonomy in low-bandwidth or disconnected environments, and sovereign control over the agri-industrial supply chain — from soil to fiber, from drones to decarbonization.
+        {/* CTA section */}
+        <div className="max-w-3xl mx-auto text-center mt-24 mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-6">
+            Build the next generation of live-thinking UAVs
+          </h2>
+          <p className="text-base sm:text-lg leading-relaxed font-medium text-black/80 mb-8 max-w-2xl mx-auto">
+            Integrate Enotrium Edge AI into your drone stack and deploy spiking neural networks that adapt in real time, without cloud dependency.
           </p>
-
-          <p className="text-base sm:text-lg leading-relaxed font-bold text-black mt-8">
-            This is what Enotrium is building. Not for today, for the next century.
-          </p>
+          <a
+            href="/contact"
+            className="inline-block px-8 py-4 bg-black text-white text-base sm:text-lg font-medium rounded-lg hover:bg-black/90 transition-colors"
+          >
+            Schedule a UAV-AI demo
+          </a>
         </div>
 
       </main>
