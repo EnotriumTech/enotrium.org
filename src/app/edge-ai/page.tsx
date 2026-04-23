@@ -188,7 +188,7 @@ export default function EdgeAIPage() {
         {/* Use cases section */}
         <div className="max-w-3xl mb-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-black mb-8">
-            Use cases: SNNs in action on UAVs
+            Intelligence on the Edge
           </h2>
 
           <div className="space-y-8">
