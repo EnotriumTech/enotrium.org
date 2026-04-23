@@ -172,7 +172,7 @@ function HeroSection() {
           </p>
 
           <h1 className="text-5xl sm:text-6xl lg:text-8xl font-extralight leading-[0.95] max-w-5xl text-black mb-10 font-[family-name:var(--font-inter)] text-balance">
-            Acquisition
+            Data Acquisition
           </h1>
         </ScrollReveal>
 
@@ -701,7 +701,7 @@ function NewsletterSection() {
 export default function AcquisitionPage() {
   return (
     <main className="relative min-h-screen bg-white text-black font-[family-name:var(--font-inter)]">
-      <Navbar darkText />
+      <Navbar darkText logoSrc="/whitelogo.png" />
 
       <HeroSection />
       <MetricsSection />

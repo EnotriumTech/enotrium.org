@@ -68,12 +68,14 @@ export function Navbar({
   lightScrollBg = false,
   darkText = false,
   lightMegaMenu = false,
+  logoSrc,
 }: {
   invertLogo?: boolean;
   noScrollBg?: boolean;
   lightScrollBg?: boolean;
   darkText?: boolean;
   lightMegaMenu?: boolean;
+  logoSrc?: string;
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -252,7 +254,7 @@ export function Navbar({
             <Link href="/" target="_self" className="z-10" aria-label="Enotrium home">
               <div className="flex flex-row items-center">
                 <Image
-                  src="/logo.jpg"
+                  src={logoSrc || "/logo.jpg"}
                   alt=""
                   width={120}
                   height={32}
