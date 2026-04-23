@@ -46,7 +46,7 @@ const features = [
     description: "",
     useVineyard: true,
     label: "AGRICULTURE",
-    link: "/aip"
+    link: "https://www.enotrium.org/farmers"
   },
   {
     title: "Autonomous Drone Fleet Coordination",
