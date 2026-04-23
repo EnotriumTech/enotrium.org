@@ -132,7 +132,7 @@ export function FeatureCarousel() {
             <img
               src={features[currentIndex].imageSrc}
               alt="Carousel"
-              className={`w-full h-full object-cover ${currentIndex === 8 ? "scale-95" : ""}`}
+              className={`w-full h-full object-cover ${currentIndex === 8 ? "scale-85" : ""}`}
             />
           ) : null}
         </div>
