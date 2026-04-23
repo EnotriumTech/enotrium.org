@@ -72,6 +72,52 @@ export default function RootLayout({
           <BackgroundGrid />
           {children}
         </ThemeProvider>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Prevent right-click context menu
+              document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+              });
+
+              // Prevent keyboard shortcuts for copying (Ctrl+C, Cmd+C, Ctrl+X, Cmd+X, Ctrl+A, Cmd+A)
+              document.addEventListener('keydown', function(e) {
+                if (
+                  (e.ctrlKey || e.metaKey) && 
+                  (e.key === 'c' || e.key === 'x' || e.key === 'a' || e.key === 's' || e.key === 'p')
+                ) {
+                  e.preventDefault();
+                  return false;
+                }
+              });
+
+              // Prevent drag events
+              document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+              });
+
+              // Prevent copy events
+              document.addEventListener('copy', function(e) {
+                e.preventDefault();
+                return false;
+              });
+
+              // Prevent cut events
+              document.addEventListener('cut', function(e) {
+                e.preventDefault();
+                return false;
+              });
+
+              // Prevent paste events
+              document.addEventListener('paste', function(e) {
+                e.preventDefault();
+                return false;
+              });
+            `,
+          }}
+        />
       </body>
     </html>
   );
