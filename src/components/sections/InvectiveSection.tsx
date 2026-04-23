@@ -59,21 +59,21 @@ export function InvectiveSection() {
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                                         {/* Click to Read */}
                                         <div>
-                                            <p className="text-base md:text-lg lg:text-xl text-foreground group-hover:text-foreground transition-colors font-[family-name:var(--font-space-grotesk)]">
+                                            <p className="text-base md:text-lg lg:text-xl text-foreground group-hover:text-foreground transition-colors font-[family-name:var(--font-inter)]">
                                                 Click to<br />Read
                                             </p>
                                         </div>
 
                                         {/* Author */}
                                         <div>
-                                            <p className="text-base md:text-lg lg:text-xl text-foreground/80 font-[family-name:var(--font-space-grotesk)]">
+                                            <p className="text-base md:text-lg lg:text-xl text-foreground/80 font-[family-name:var(--font-inter)]">
                                                 Enotrium's Founders
                                             </p>
                                         </div>
 
                                         {/* Published Date */}
                                         <div>
-                                            <p className="text-base md:text-lg lg:text-xl text-foreground/80 font-[family-name:var(--font-space-grotesk)]">
+                                            <p className="text-base md:text-lg lg:text-xl text-foreground/80 font-[family-name:var(--font-inter)]">
                                                 Published<br />
                                                 <span className="text-foreground/60">{siteConfig.invective.date}</span>
                                             </p>
