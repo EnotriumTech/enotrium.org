@@ -27,6 +27,15 @@ const features = [
     hasTextBox: true
   },
   {
+    title: "Supply Chain Intelligence",
+    description: "Real-time tracking and optimization of agricultural supply chains from farm to market.",
+    label: "COMMERCIAL",
+    useImage: true,
+    imageSrc: "/CarouselSupplyChainMap.png",
+    link: "https://www.enotrium.org/aip",
+    hasTextBox: true
+  },
+  {
     title: "Locally Hosted LLMs",
     description: "Run offline with minimal power. Industrial sovereignty;Independence from centralized infrastructure.",
     label: "INDUSTRIAL",
