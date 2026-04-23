@@ -20,7 +20,6 @@ const navItems = [
   { title: "Invective", href: "/invective" },
   { title: "Forum", href: "/forum" },
   { title: "Badlands", href: "/badlands" },
-  { title: "Farmers", href: "/farmers" },
 ];
 
 const megaMenuColumns = [
@@ -47,7 +46,7 @@ const megaMenuColumns = [
     links: [
       { label: "Careers", href: "/careers" },
       { label: "Founders", href: "/Founders" },
-      { label: "Research", href: "https://www.enotriumai.org/research" },
+      { label: "Research", href: "/research" },
       { label: "Farmers", href: "/farmers" },
     ],
   },
