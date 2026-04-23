@@ -141,40 +141,40 @@ export default function EdgeAIPage() {
             Where traditional transformers and CNNs are static, batch-heavy, and GPU-dependent, Enotrium Edge AI SNNs are built for the edge:
           </p>
 
-          <div className="border border-black/20 rounded-lg overflow-hidden">
+          <div className="border border-black overflow-hidden">
             <table className="w-full">
-              <thead className="bg-black/5">
+              <thead className="bg-black text-white">
                 <tr>
-                  <th className="text-left p-4 text-sm font-bold text-black">Aspect</th>
-                  <th className="text-left p-4 text-sm font-bold text-black">Transformers / CNNs</th>
-                  <th className="text-left p-4 text-sm font-bold text-black">Enotrium Edge AI SNNs</th>
+                  <th className="text-left p-4 text-sm font-bold">Aspect</th>
+                  <th className="text-left p-4 text-sm font-bold">Transformers / CNNs</th>
+                  <th className="text-left p-4 text-sm font-bold">Enotrium Edge AI SNNs</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-black/10">
-                  <td className="p-4 text-sm text-black">Compute paradigm</td>
-                  <td className="p-4 text-sm text-black/80">Dense, batched, static inference</td>
-                  <td className="p-4 text-sm text-black/80">Event-driven, streaming, on-device adaptation</td>
+                <tr className="border-t border-black">
+                  <td className="p-4 text-sm text-black font-medium">Compute paradigm</td>
+                  <td className="p-4 text-sm text-black/70">Dense, batched, static inference</td>
+                  <td className="p-4 text-sm text-black/70">Event-driven, streaming, on-device adaptation</td>
                 </tr>
-                <tr className="border-t border-black/10">
-                  <td className="p-4 text-sm text-black">Power consumption</td>
-                  <td className="p-4 text-sm text-black/80">High (often GPU-class)</td>
-                  <td className="p-4 text-sm text-black/80">Orders of magnitude lower; fits UAV budgets</td>
+                <tr className="border-t border-black">
+                  <td className="p-4 text-sm text-black font-medium">Power consumption</td>
+                  <td className="p-4 text-sm text-black/70">High (often GPU-class)</td>
+                  <td className="p-4 text-sm text-black/70">Orders of magnitude lower; fits UAV budgets</td>
                 </tr>
-                <tr className="border-t border-black/10">
-                  <td className="p-4 text-sm text-black">Memory footprint</td>
-                  <td className="p-4 text-sm text-black/80">Growing with model size</td>
-                  <td className="p-4 text-sm text-black/80">Constant-memory, fixed-point SNNs</td>
+                <tr className="border-t border-black">
+                  <td className="p-4 text-sm text-black font-medium">Memory footprint</td>
+                  <td className="p-4 text-sm text-black/70">Growing with model size</td>
+                  <td className="p-4 text-sm text-black/70">Constant-memory, fixed-point SNNs</td>
                 </tr>
-                <tr className="border-t border-black/10">
-                  <td className="p-4 text-sm text-black">Learning at deployment</td>
-                  <td className="p-4 text-sm text-black/80">Static after deployment</td>
-                  <td className="p-4 text-sm text-black/80">Continuous online learning without backprop</td>
+                <tr className="border-t border-black">
+                  <td className="p-4 text-sm text-black font-medium">Learning at deployment</td>
+                  <td className="p-4 text-sm text-black/70">Static after deployment</td>
+                  <td className="p-4 text-sm text-black/70">Continuous online learning without backprop</td>
                 </tr>
-                <tr className="border-t border-black/10">
-                  <td className="p-4 text-sm text-black">Handling sensor drift</td>
-                  <td className="p-4 text-sm text-black/80">Degrades with distribution shift</td>
-                  <td className="p-4 text-sm text-black/80">Fast recovery via dual-timescale plasticity</td>
+                <tr className="border-t border-black">
+                  <td className="p-4 text-sm text-black font-medium">Handling sensor drift</td>
+                  <td className="p-4 text-sm text-black/70">Degrades with distribution shift</td>
+                  <td className="p-4 text-sm text-black/70">Fast recovery via dual-timescale plasticity</td>
                 </tr>
               </tbody>
             </table>
