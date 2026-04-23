@@ -113,7 +113,7 @@ export default function ArthedainPage() {
             The Eligibility Propagation Factorization
           </h3>
           <p style={{ fontSize: '18px', color: '#374151', lineHeight: '1.625', marginBottom: '16px' }}>
-            For a recurrent spiking network with spikes z_j^t in the set {0,1} and hidden states h_j^t, the loss gradient decomposes as:
+            For a recurrent spiking network with spikes z_j^t in the set &#123;0,1&#125; and hidden states h_j^t, the loss gradient decomposes as:
           </p>
           <div style={{ fontSize: '15px', lineHeight: '2', margin: '25px 0', padding: '20px 0', color: '#374151', textAlign: 'center' }}>
             ∂E/∂W_ji = Σ_t L_j^t · e_ji^t
