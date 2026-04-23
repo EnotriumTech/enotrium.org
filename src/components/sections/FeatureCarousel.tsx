@@ -53,7 +53,8 @@ const features = [
     label: "DEFENSE",
     useImage: true,
     imageSrc: "/vegard-carousel.png",
-    link: "/research/vegard"
+    link: "/research/vegard",
+    hasTextBox: true
   }
 ];
 
