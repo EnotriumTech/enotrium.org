@@ -65,6 +65,14 @@ const features = [
     imageSrc: "/vegard-carousel.png",
     link: "/research/vegard",
     hasTextBox: true
+  },
+  {
+    title: "",
+    description: "",
+    label: "",
+    useImage: true,
+    imageSrc: "/carousel8-restore-american-agriculture.png",
+    link: "https://www.enotrium.org/forum/one-farm-one-nation"
   }
 ];
 
