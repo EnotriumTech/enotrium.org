@@ -125,10 +125,10 @@ export function FeatureCarousel() {
                       <p className="text-[10px] tracking-[0.2em] uppercase text-neutral-500 mb-2 font-[family-name:var(--font-inter)] font-medium group-hover:text-neutral-400 transition-colors">
                         {features[currentIndex].label}
                       </p>
-                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-extralight text-white mb-2 font-[family-name:var(--font-inter)] text-balance leading-[1.1] group-hover:text-white/90 transition-colors">
+                      <h2 className="text-xl md:text-2xl lg:text-3xl font-extralight text-white mb-2 font-[family-name:var(--font-inter)] text-balance leading-[1.1] group-hover:text-white/90 transition-colors">
                         {features[currentIndex].title}
                       </h2>
-                      <p className="text-sm md:text-base text-white/50 leading-relaxed font-[family-name:var(--font-inter)] font-light mb-2 group-hover:text-white/60 transition-colors">
+                      <p className="text-xs md:text-sm text-white/50 leading-relaxed font-[family-name:var(--font-inter)] font-light mb-2 group-hover:text-white/60 transition-colors">
                         {features[currentIndex].description}
                       </p>
                     </div>
@@ -137,10 +137,10 @@ export function FeatureCarousel() {
                       <p className="text-[10px] tracking-[0.2em] uppercase text-neutral-500 mb-2 font-[family-name:var(--font-inter)] font-medium">
                         {features[currentIndex].label}
                       </p>
-                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-extralight text-white mb-2 font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
+                      <h2 className="text-xl md:text-2xl lg:text-3xl font-extralight text-white mb-2 font-[family-name:var(--font-inter)] text-balance leading-[1.1]">
                         {features[currentIndex].title}
                     </h2>
-                      <p className="text-sm md:text-base text-white/50 leading-relaxed font-[family-name:var(--font-inter)] font-light mb-2">
+                      <p className="text-xs md:text-sm text-white/50 leading-relaxed font-[family-name:var(--font-inter)] font-light mb-2">
                         {features[currentIndex].description}
                       </p>
                     </>
