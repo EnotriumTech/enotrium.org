@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Iceland, Inter, Tektur, DM_Serif_Display, DM_Mono } from "next/font/google";
+import { Space_Grotesk, Iceland, Inter, Tektur } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/config/content";
@@ -29,20 +29,6 @@ const tektur = Tektur({
   subsets: ["latin"],
   variable: "--font-tektur",
   display: "block",
-});
-
-const dmSerifDisplay = DM_Serif_Display({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-dm-serif",
-  display: "swap",
-});
-
-const dmMono = DM_Mono({
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-dm-mono",
-  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -75,7 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.variable} ${iceland.variable} ${inter.variable} ${tektur.variable} ${dmSerifDisplay.variable} ${dmMono.variable} font-sans antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${iceland.variable} ${inter.variable} ${tektur.variable} font-sans antialiased`}>
         <LinkBehavior />
         <ThemeProvider
           attribute="class"
