@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
@@ -28,20 +29,33 @@ function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-16 py-32 w-full">
-        <ScrollReveal animation="fade-up" duration={1}>
-          <p className="text-[11px] tracking-[0.3em] uppercase text-gray-500 mb-6 font-[family-name:var(--font-inter)] font-medium">
-            Edge AI
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <ScrollReveal animation="fade-up" duration={1}>
+            <p className="text-[11px] tracking-[0.3em] uppercase text-gray-500 mb-6 font-[family-name:var(--font-inter)] font-medium">
+              Edge AI
+            </p>
 
-          <h1 className="text-5xl sm:text-7xl lg:text-9xl font-normal leading-[0.95] max-w-5xl text-white mb-8 font-[family-name:var(--font-tektur)] text-balance">
-            Nanosystems
-          </h1>
+            <h1 className="text-5xl sm:text-7xl lg:text-9xl font-normal leading-[0.95] max-w-5xl text-white mb-8 font-[family-name:var(--font-tektur)] text-balance">
+              Nanosystems
+            </h1>
 
-          <p className="text-xl md:text-2xl text-gray-400 leading-[1.6] max-w-3xl mb-12 font-[family-name:var(--font-inter)] font-light">
-            Biomimetic nanotechnology for ultra-efficient, real-time distributed intelligence.
-          </p>
+            <p className="text-xl md:text-2xl text-gray-400 leading-[1.6] max-w-3xl mb-12 font-[family-name:var(--font-inter)] font-light">
+              Biomimetic nanotechnology for ultra-efficient, real-time distributed intelligence.
+            </p>
+          </ScrollReveal>
 
-        </ScrollReveal>
+          <ScrollReveal animation="fade-up" delay={0.2} duration={1}>
+            <div className="relative w-full aspect-square lg:aspect-auto lg:h-[600px]">
+              <Image
+                src="/Nanosystems.png"
+                alt="Nanosystems"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </ScrollReveal>
+        </div>
       </div>
     </section>
   );
