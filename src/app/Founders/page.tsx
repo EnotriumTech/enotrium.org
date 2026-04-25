@@ -51,22 +51,6 @@ const teamMembers = [
       { label: "GitHub", href: "https://github.com/burlibu" },
     ],
   },
-  {
-    name: "Jaydon Christen",
-    title: "Full Stack AI Engineer",
-    links: [
-      { label: "GitHub", href: "https://github.com/Jaydon54" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/jaydon-christen-681407294/" },
-    ],
-  },
-  {
-    name: "Rafael Virador",
-    title: "Process Engineer",
-    links: [
-      { label: "GitHub", href: "https://github.com/rjmvirador" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/rafael-virador-304758290/" },
-    ],
-  },
 ];
 
 export default function LeadershipPage() {

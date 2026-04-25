@@ -87,7 +87,7 @@ function SNNVisualizer() {
         setStats({
           spikes: Math.floor(800 + Math.random() * 100),
           neurons: 2048,
-          latency: (1.0 + Math.random() * 0.4).toFixed(1),
+          latency: parseFloat((1.0 + Math.random() * 0.4).toFixed(1)),
           efficiency: Math.floor(92 + Math.random() * 4),
         });
       }
