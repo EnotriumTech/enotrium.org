@@ -33,7 +33,7 @@ const megaMenuColumns = [
     ],
   },
   {
-    heading: "PRODUCTS",
+    heading: "PRODUCT",
     links: [
       { label: "Nanosystems", href: "/nanosystems" },
       { label: "AIP", href: "/aip" },

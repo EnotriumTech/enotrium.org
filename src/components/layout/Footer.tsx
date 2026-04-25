@@ -37,7 +37,7 @@ const footerColumns = [
     ],
   },
   {
-    heading: "PRODUCTS",
+    heading: "PRODUCT",
     links: [
       { label: "Nanosystems", href: "/nanosystems" },
       { label: "AIP", href: "/aip" },
@@ -93,7 +93,7 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row gap-4 pb-12 text-center sm:text-left">
           {footerColumns.map((col) => (
             <div key={col.heading} className="flex-1">
-              <p className="text-[10px] text-neutral-500 uppercase mb-4">
+              <p className="text-xs text-neutral-500 uppercase mb-4 font-medium">
                 {col.heading}
               </p>
               <ul className="space-y-1">
@@ -105,7 +105,7 @@ export function Footer() {
                         href={link.href}
                         target={isSocialMedia ? "_blank" : "_self"}
                         rel={isSocialMedia ? "noopener noreferrer" : undefined}
-                        className="text-sm text-white hover:text-neutral-400 transition-colors"
+                        className="text-xs text-white hover:text-neutral-400 transition-colors font-medium"
                       >
                         {link.label}
                       </Link>
