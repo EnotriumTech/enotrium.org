@@ -33,10 +33,10 @@ const footerColumns = [
       { label: "Mission", href: "/mission" },
       { label: "Forum", href: "/forum" },
       { label: "Solutions", href: "/solutions" },
+      { label: "Mesopotamia", href: "/mesopotamia" },
       { label: "Industrial Agriculture", href: "/industrial-agriculture" },
       { label: "Food and Agriculture", href: "/food-and-agriculture" },
       { label: "Badlands", href: "/badlands" },
-      { label: "Mesopotamia", href: "/mesopotamia" },
     ],
   },
   {
