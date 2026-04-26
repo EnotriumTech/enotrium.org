@@ -58,7 +58,7 @@ export function HeroSection() {
             height={110}
             className="opacity-95 shrink-0"
           />
-          <div className="text-left font-[family-name:var(--font-space-grotesk)] leading-tight">
+          <div className="text-left font-[family-name:var(--font-inter)] leading-tight">
             <div className="text-white/70 text-sm font-bold tracking-[0.2em]">EST. 2025</div>
             <div className="text-white/50 text-sm">Edge Deployed AI</div>
           </div>

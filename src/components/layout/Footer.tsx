@@ -124,10 +124,10 @@ export function Footer() {
         {/* Bottom row */}
         <div className="border-t border-neutral-800 pt-8 flex flex-col sm:flex-row sm:justify-between gap-6 text-center sm:text-left">
           <div>
-            <p className="text-[10px] text-white uppercase mb-1 font-[family-name:var(--font-inter)]">
+            <p className="text-xs text-white uppercase mb-1 font-[family-name:var(--font-inter)]">
               Copyright &copy; Enotrium 2026
             </p>
-            <p className="text-[10px] text-neutral-500 uppercase mb-4">
+            <p className="text-xs text-neutral-500 uppercase mb-4 font-[family-name:var(--font-inter)]">
               All Rights Reserved
             </p>
             <ul className="space-y-0 leading-none">
