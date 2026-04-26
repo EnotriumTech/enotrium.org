@@ -373,7 +373,7 @@ export default function MesopotamiaPage() {
           style={{ fontFamily: "var(--font-tektur, Georgia, serif)" }}
         >
           Mesopotamia,<br />
-          <em className="text-[#9ab868] not-italic">the Cradle of Civilization</em>
+          <em className="text-[#c8e898] not-italic">the Cradle of Civilization</em>
         </h1>
 
         <p className="text-neutral-400 text-lg font-light leading-relaxed mb-5">
