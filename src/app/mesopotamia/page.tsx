@@ -395,7 +395,7 @@ export default function FutureOfAgriculturePage() {
 
           {/* LEFT SIDEBAR — Farmer Count */}
           <div className="hidden lg:block relative">
-            <div className="fixed top-24 left-6 z-40 bg-[#0a0a0a] pr-8 border-r border-neutral-800/60 w-[260px] max-h-[calc(100vh-120px)] overflow-y-auto">
+            <div className="sticky top-24 pr-8 border-r border-neutral-800/60">
               <p className="text-[9px] font-mono tracking-[0.25em] uppercase text-neutral-600 mb-5">
                 US farm operations
               </p>
@@ -424,15 +424,6 @@ export default function FutureOfAgriculturePage() {
                 <Sparkline activePop={hasPopData ? displayPop : null} />
               </div>
 
-              {/* Legend */}
-              <div className="mb-6 space-y-1.5">
-                {(["TECHNOLOGY","CORPORATE","LEGISLATION","CHEMICAL"] as TagType[]).map((t) => (
-                  <div key={t} className="flex items-center gap-2">
-                    <span className={`inline-block px-1.5 py-0.5 text-[8px] font-mono tracking-wider ${tagColors[t]}`}>{t}</span>
-                  </div>
-                ))}
-              </div>
-
               {/* Contextual note */}
               <div className="border-t border-neutral-800 pt-4">
                 <p
@@ -446,7 +437,7 @@ export default function FutureOfAgriculturePage() {
           </div>
 
           {/* CENTER — Timeline */}
-          <div className="lg:px-12 lg:pl-[272px]">
+          <div className="lg:px-12">
             {milestones.map((milestone, index) => (
               <div
                 key={`${milestone.year}-${index}`}
@@ -502,12 +493,6 @@ export default function FutureOfAgriculturePage() {
                 "The agricultural economy must make changes to its internal structure which will change the relative prices of new and different products. Reliance on bailouts prevents our necessary evolution."
               </p>
               <p className="text-neutral-700 text-xs font-mono mt-3">— Enotrium</p>
-              <Link
-                href="/aip"
-                className="inline-block mt-8 text-[10px] font-mono tracking-[0.15em] uppercase text-[#6a7e4a] border-b border-[#6a7e4a]/40 pb-0.5 hover:text-[#9ab868] hover:border-[#9ab868] transition-colors"
-              >
-                Join Enotrium →
-              </Link>
             </div>
           </div>
 
