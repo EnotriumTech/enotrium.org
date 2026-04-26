@@ -385,13 +385,6 @@ export default function MesopotamiaPage() {
         <p className="text-neutral-400 text-lg font-light leading-relaxed mb-10">
           With Enotrium, we are building the technology necessary to recreate the cradle of civilization. There is great work to be done. And you&apos;re part of it.
         </p>
-
-        <Link
-          href="/aip"
-          className="text-[10px] font-mono tracking-[0.18em] uppercase text-[#6a7e4a] border-b border-[#6a7e4a]/40 pb-0.5 hover:text-[#9ab868] hover:border-[#9ab868] transition-colors"
-        >
-          What could we grow together? →
-        </Link>
       </section>
 
       {/* ── TWO-COLUMN BODY (like HTML reference) ── */}
