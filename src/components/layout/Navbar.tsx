@@ -26,6 +26,7 @@ const megaMenuColumns = [
       { label: "Solutions", href: "/solutions" },
       { label: "Industrial Agriculture", href: "/industrial-agriculture" },
       { label: "Food and Agriculture", href: "/food-and-agriculture" },
+      { label: "Badlands", href: "/badlands" },
     ],
   },
   {

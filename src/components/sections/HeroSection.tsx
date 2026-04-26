@@ -60,7 +60,7 @@ export function HeroSection() {
           />
           <div className="text-left font-[family-name:var(--font-space-grotesk)] leading-tight">
             <div className="text-white/70 text-sm font-bold tracking-[0.2em]">EST. 2025</div>
-            <div className="text-white/50 text-sm">The Future of Farming</div>
+            <div className="text-white/50 text-sm">Edge Deployed AI</div>
           </div>
         </div>
 
