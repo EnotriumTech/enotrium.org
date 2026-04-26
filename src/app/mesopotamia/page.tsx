@@ -24,7 +24,7 @@ const milestones: Milestone[] = [
   {
     year: "10000 BC",
     who: "Fertile Crescent peoples",
-    description: "Neolithic Revolution — agriculture and the birth of civilization",
+    description: "Mesopotamia — agriculture and the birth of civilization",
     tag: "TECHNOLOGY",
     globalFarmers: null,
     note: "Humans transition from hunter-gatherers to farmers. Wild grains become crops. The foundation of civilization — and its first dependency on the land.",
@@ -357,8 +357,8 @@ export default function MesopotamiaPage() {
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <Navbar />
 
-      {/* ── HERO (Cursor-style: centered, generous whitespace) ── */}
-      <section className="pt-36 pb-24 px-6 max-w-2xl mx-auto">
+      {/* ── HERO ── */}
+      <section className="pt-36 pb-24 px-6 max-w-[1400px] mx-auto">
         <p className="text-[10px] font-mono tracking-[0.28em] uppercase text-neutral-600 mb-6">
           Enotrium — A new civilization
         </p>
@@ -400,7 +400,7 @@ export default function MesopotamiaPage() {
               keeps the panel visible at all times while scrolling.
               The inner content transitions as activeMilestone changes.
             */}
-            <div className="sticky top-24 pr-8 border-r border-neutral-800/50 min-h-[calc(100vh-6rem)] flex flex-col">
+            <div className="sticky top-24 pr-8 border-r border-neutral-800/50">
               <p className="text-[9px] font-mono tracking-[0.28em] uppercase text-neutral-700 mb-6">
                 Active event
               </p>
@@ -530,7 +530,7 @@ export default function MesopotamiaPage() {
 
           {/* ── RIGHT SIDEBAR: farmer count + sparkline, sticky, full height ── */}
           <aside className="hidden lg:block">
-            <div className="sticky top-24 pl-8 border-l border-neutral-800/50 min-h-[calc(100vh-6rem)] flex flex-col">
+            <div className="sticky top-24 pl-8 border-l border-neutral-800/50">
               <p className="text-[9px] font-mono tracking-[0.28em] uppercase text-neutral-700 mb-6">
                 Global farmers
               </p>
