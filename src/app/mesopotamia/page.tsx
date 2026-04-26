@@ -22,7 +22,7 @@ const milestones: Milestone[] = [
   {
     year: "10000 BC",
     who: "Fertile Crescent peoples",
-    description: "Neolithic Revolution — the birth of cultivation",
+    description: "Mesopotamia — agriculture and the birth of cililization",
     tag: "TECHNOLOGY",
     farmPopulation: 0,
     note: "Humans transition from hunter-gatherers to farmers. Wild grains become crops. The foundation of civilization — and its first dependency.",
@@ -398,8 +398,7 @@ export default function FutureOfAgriculturePage() {
 
           {/* LEFT SIDEBAR — Farmer Count */}
           <div className="hidden lg:block relative">
-            {/* Fixed graph panel - always visible */}
-            <div className="fixed top-24 left-6 z-40 bg-[#0a0a0a] pr-8 border-r border-neutral-800/60 w-[260px]">
+            <div className="sticky top-24 pr-8 border-r border-neutral-800/60">
               <p className="text-[9px] font-mono tracking-[0.25em] uppercase text-neutral-600 mb-5">
                 US farm operations
               </p>
@@ -450,7 +449,7 @@ export default function FutureOfAgriculturePage() {
           </div>
 
           {/* CENTER — Timeline */}
-          <div className="lg:px-12 lg:pl-[272px]">
+          <div className="lg:px-12">
             {milestones.map((milestone, index) => (
               <div
                 key={`${milestone.year}-${index}`}
