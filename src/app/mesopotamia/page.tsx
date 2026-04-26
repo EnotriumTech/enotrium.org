@@ -212,9 +212,9 @@ const milestones: Milestone[] = [
     note: "The FBA program allocated up to $11B for row crop producers and $1B for specialty crops, capped at $155,000 per farm. Sector-wide losses estimated at $35–44 billion. Most farmers agree: subsidies cannot fix a broken and manipulated market. The takeover of agriculture has been a slow encroachment of centralized power.",
   },
   {
-    year: "Future",
+    year: "2026",
     who: "Enotrium",
-    description: "The new order — bridging agriculture to real industry",
+    description: "The new economic order — Enotrium establishes the bioeconomy",
     tag: "TECHNOLOGY",
     farmPopulation: 1.9,
     note: "A parity of agricultural crops not to cheap commodity markets, but to America's most important industries — defense, construction, housing, and energy. Enotrium is the new order which will bridge agriculture to real industry. USDA can have the century off.",
@@ -377,8 +377,8 @@ export default function FutureOfAgriculturePage() {
           Enotrium — The Future of Agriculture
         </p>
         <h1 className="text-5xl sm:text-7xl font-light leading-tight text-neutral-100 mb-8" style={{ fontFamily: "var(--font-tektur, serif)" }}>
-          From the soil,<br />
-          <em className="text-[#9ab868] not-italic">a reckoning</em>
+          Mesopotamia,<br />
+          <em className="text-[#9ab868] not-italic">the Cradle of Civilization</em>
         </h1>
         <p className="max-w-xl text-neutral-400 text-lg font-light leading-relaxed mb-4">
           For a century, the distance between a farmer and his own harvest has been filled by the administrative state — its subsidies, its price floors, its corporate beneficiaries.
@@ -398,7 +398,8 @@ export default function FutureOfAgriculturePage() {
 
           {/* LEFT SIDEBAR — Farmer Count */}
           <div className="hidden lg:block relative">
-            <div ref={sidebarRef} className="sticky top-24 pr-8 border-r border-neutral-800/60">
+            {/* Fixed graph panel - always visible */}
+            <div className="fixed top-24 left-6 z-40 bg-[#0a0a0a] pr-8 border-r border-neutral-800/60 w-[260px]">
               <p className="text-[9px] font-mono tracking-[0.25em] uppercase text-neutral-600 mb-5">
                 US farm operations
               </p>
@@ -449,7 +450,7 @@ export default function FutureOfAgriculturePage() {
           </div>
 
           {/* CENTER — Timeline */}
-          <div className="lg:px-12">
+          <div className="lg:px-12 lg:pl-[272px]">
             {milestones.map((milestone, index) => (
               <div
                 key={`${milestone.year}-${index}`}
