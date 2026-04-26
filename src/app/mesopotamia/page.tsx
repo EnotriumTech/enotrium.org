@@ -393,53 +393,62 @@ export default function MesopotamiaPage() {
       <section className="max-w-[1320px] mx-auto px-6 pb-40">
         <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr_240px] gap-0">
 
-          {/* ── LEFT SIDEBAR: active event context, sticky the full height ── */}
+          {/* ── LEFT SIDEBAR: Global farmers + sparkline, sticky ── */}
           <aside className="hidden lg:block">
-            {/*
-              The trick: position:sticky + top + min-height on the outer div
-              keeps the panel visible at all times while scrolling.
-              The inner content transitions as activeMilestone changes.
-            */}
             <div className="sticky top-24 pr-8 border-r border-neutral-800/50">
               <p className="text-[9px] font-mono tracking-[0.28em] uppercase text-neutral-700 mb-6">
-                Active event
+                Global farmers
               </p>
 
-              {activeMilestone ? (
-                <div className="space-y-4 transition-all duration-500">
-                  {/* year */}
-                  <p className="text-[11px] font-mono text-[#6a7e4a]">
-                    {activeMilestone.year}
-                  </p>
-                  {/* who */}
-                  <p className="text-xs text-neutral-500 leading-relaxed">
-                    {activeMilestone.who}
-                  </p>
-                  {/* tag dot */}
-                  <div className="flex items-center gap-2">
+              {/* Big animated number */}
+              <div className="mb-6">
+                <div
+                  className="font-light leading-none mb-2 transition-all duration-500"
+                  style={{
+                    fontFamily: "var(--font-tektur, Georgia, serif)",
+                    fontSize: hasPop ? "48px" : "32px",
+                    color: hasPop ? "#c8e898" : "#2a2a2a",
+                  }}
+                >
+                  {hasPop ? `${pop!.toFixed(2)}B` : "—"}
+                </div>
+                <p className="text-[10px] font-mono text-neutral-700">
+                  {activeMilestone && hasPop
+                    ? `est. ${activeMilestone.year}`
+                    : "scroll to reveal"}
+                </p>
+              </div>
+
+              {/* Sparkline */}
+              <div className="mb-6 w-full">
+                <Sparkline active={hasPop ? pop : null} />
+                <p className="text-[8px] font-mono text-neutral-800 mt-1">
+                  global agricultural workers (est.)
+                </p>
+              </div>
+
+              {/* Legend */}
+              <div className="space-y-2 mb-6">
+                {(["TECHNOLOGY", "CORPORATE", "LEGISLATION", "CHEMICAL"] as TagType[]).map((t) => (
+                  <div key={t} className="flex items-center gap-2">
                     <span
                       className="w-1.5 h-1.5 rounded-full shrink-0"
-                      style={{ background: tagColors[activeMilestone.tag].dot }}
+                      style={{ background: tagColors[t].dot }}
                     />
-                    <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-700">
-                      {activeMilestone.tag}
+                    <span className="text-[9px] font-mono tracking-[0.12em] uppercase text-neutral-700">
+                      {t}
                     </span>
                   </div>
+                ))}
+              </div>
 
-                  <div className="h-px w-full bg-neutral-800" />
+              <div className="h-px w-full bg-neutral-800/60 mb-4" />
 
-                  <p className="text-[9px] font-mono tracking-[0.2em] uppercase text-neutral-700">
-                    context
-                  </p>
-                  <p className="text-[11px] text-neutral-500 leading-[1.7]">
-                    {activeMilestone.note}
-                  </p>
-                </div>
-              ) : (
-                <p className="text-[11px] text-neutral-800 italic">
-                  Scroll to explore the timeline
-                </p>
-              )}
+              {/* Hayek pullquote — static */}
+              <p className="text-[10px] text-neutral-700 leading-[1.7] italic">
+                &ldquo;Few people will deny that the main problem has become that of how policy can extricate itself from the situation it has produced.&rdquo;
+              </p>
+              <p className="text-[9px] font-mono text-neutral-800 mt-2">— F.A. Hayek</p>
             </div>
           </aside>
 
@@ -528,62 +537,48 @@ export default function MesopotamiaPage() {
             </div>
           </main>
 
-          {/* ── RIGHT SIDEBAR: farmer count + sparkline, sticky, full height ── */}
+          {/* ── RIGHT SIDEBAR: active event context, sticky ── */}
           <aside className="hidden lg:block">
             <div className="sticky top-24 pl-8 border-l border-neutral-800/50">
               <p className="text-[9px] font-mono tracking-[0.28em] uppercase text-neutral-700 mb-6">
-                Global farmers
+                Active event
               </p>
 
-              {/* Big animated number */}
-              <div className="mb-6">
-                <div
-                  className="font-light leading-none mb-2 transition-all duration-500"
-                  style={{
-                    fontFamily: "var(--font-tektur, Georgia, serif)",
-                    fontSize: hasPop ? "48px" : "32px",
-                    color: hasPop ? "#c8e898" : "#2a2a2a",
-                  }}
-                >
-                  {hasPop ? `${pop!.toFixed(2)}B` : "—"}
-                </div>
-                <p className="text-[10px] font-mono text-neutral-700">
-                  {activeMilestone && hasPop
-                    ? `est. ${activeMilestone.year}`
-                    : "scroll to reveal"}
-                </p>
-              </div>
-
-              {/* Sparkline */}
-              <div className="mb-6 w-full">
-                <Sparkline active={hasPop ? pop : null} />
-                <p className="text-[8px] font-mono text-neutral-800 mt-1">
-                  global agricultural workers (est.)
-                </p>
-              </div>
-
-              {/* Legend */}
-              <div className="space-y-2 mb-6">
-                {(["TECHNOLOGY", "CORPORATE", "LEGISLATION", "CHEMICAL"] as TagType[]).map((t) => (
-                  <div key={t} className="flex items-center gap-2">
+              {activeMilestone ? (
+                <div className="space-y-4 transition-all duration-500">
+                  {/* year */}
+                  <p className="text-[11px] font-mono text-[#6a7e4a]">
+                    {activeMilestone.year}
+                  </p>
+                  {/* who */}
+                  <p className="text-xs text-neutral-500 leading-relaxed">
+                    {activeMilestone.who}
+                  </p>
+                  {/* tag dot */}
+                  <div className="flex items-center gap-2">
                     <span
                       className="w-1.5 h-1.5 rounded-full shrink-0"
-                      style={{ background: tagColors[t].dot }}
+                      style={{ background: tagColors[activeMilestone.tag].dot }}
                     />
-                    <span className="text-[9px] font-mono tracking-[0.12em] uppercase text-neutral-700">
-                      {t}
+                    <span className="text-[9px] font-mono tracking-widest uppercase text-neutral-700">
+                      {activeMilestone.tag}
                     </span>
                   </div>
-                ))}
-              </div>
 
-              <div className="h-px w-full bg-neutral-800/60 mb-4" />
+                  <div className="h-px w-full bg-neutral-800" />
 
-              {/* Hayek pullquote — static */}
-              <p className="text-[10px] text-neutral-700 leading-[1.7] italic">
-                &ldquo;Few people will deny that the main problem has become that of how policy can extricate itself from the situation it has produced.&rdquo;
-              </p>
-              <p className="text-[9px] font-mono text-neutral-800 mt-2">— F.A. Hayek</p>
+                  <p className="text-[9px] font-mono tracking-[0.2em] uppercase text-neutral-700">
+                    context
+                  </p>
+                  <p className="text-[11px] text-neutral-500 leading-[1.7]">
+                    {activeMilestone.note}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-[11px] text-neutral-800 italic">
+                  Scroll to explore the timeline
+                </p>
+              )}
             </div>
           </aside>
         </div>
