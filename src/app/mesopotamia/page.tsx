@@ -324,7 +324,12 @@ export default function MesopotamiaPage() {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll tracker — finds entry closest to viewport center
+  // Hover handler — update sidebar on timeline entry hover
+  const handleMouseEnter = useCallback((index: number) => {
+    setActiveMilestone(milestones[index]);
+  }, []);
+
+  // Scroll tracker — finds entry closest to viewport center (only if not hovering)
   const onScroll = useCallback(() => {
     if (frameRef.current) cancelAnimationFrame(frameRef.current);
     frameRef.current = requestAnimationFrame(() => {
@@ -462,7 +467,8 @@ export default function MesopotamiaPage() {
                   key={`${m.year}-${i}`}
                   ref={(el) => { entryRefs.current[i] = el; }}
                   data-index={i}
-                  className={`transition-all duration-700 ease-out ${
+                  onMouseEnter={() => handleMouseEnter(i)}
+                  className={`transition-all duration-700 ease-out cursor-pointer ${
                     visibleItems.has(i) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
                   }`}
                 >
@@ -470,7 +476,7 @@ export default function MesopotamiaPage() {
                     className={`
                       flex items-start gap-5 py-6 border-b border-neutral-800/60
                       transition-colors duration-300
-                      ${activeMilestone?.year === m.year ? "bg-neutral-900/25" : ""}
+                      ${activeMilestone?.year === m.year ? "bg-neutral-900/25" : "hover:bg-neutral-900/15"}
                       ${m.highlight ? "pt-10 pb-10" : ""}
                     `}
                   >
