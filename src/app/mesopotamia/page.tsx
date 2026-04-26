@@ -331,7 +331,7 @@ export default function FutureOfAgriculturePage() {
           }
         });
       },
-      { threshold: 0.08 }
+      { threshold: 0.05 }
     );
     entryRefs.current.forEach((el) => el && observer.observe(el));
     return () => observer.disconnect();
@@ -374,7 +374,7 @@ export default function FutureOfAgriculturePage() {
       {/* Hero */}
       <section className="pt-32 pb-16 px-6 max-w-[1400px] mx-auto">
         <p className="text-[10px] font-mono tracking-[0.25em] uppercase text-neutral-500 mb-4">
-          Enotrium — The Future of Agriculture
+          Enotrium — The A new civilization
         </p>
         <h1 className="text-5xl sm:text-7xl font-light leading-tight text-neutral-100 mb-8" style={{ fontFamily: "var(--font-tektur, serif)" }}>
           Mesopotamia,<br />
@@ -384,7 +384,7 @@ export default function FutureOfAgriculturePage() {
           For a century, the distance between a farmer and his own harvest has been filled by the administrative state — its subsidies, its price floors, its corporate beneficiaries.
         </p>
         <p className="max-w-xl text-neutral-400 text-lg font-light leading-relaxed mb-12">
-          With Enotrium, we are building the bridge back to sovereign agriculture. There is great work to be done. And you're part of it.
+          With Enotrium, we are building the technology necessary to recreaddle the brith of civilization. There is great work to be done. And Enotrium is a New Mesopotamia. 
         </p>
         <div className="mt-16 h-px w-full bg-neutral-800" />
       </section>
@@ -393,46 +393,27 @@ export default function FutureOfAgriculturePage() {
       <section className="px-6 max-w-[1400px] mx-auto pb-32">
         <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_260px] gap-0">
 
-          {/* LEFT SIDEBAR — Farmer Count */}
-          <div className="hidden lg:block relative">
+          {/* LEFT SIDEBAR — Active event */}
+          <div className="hidden lg:block">
             <div className="sticky top-24 pr-8 border-r border-neutral-800/60">
               <p className="text-[9px] font-mono tracking-[0.25em] uppercase text-neutral-600 mb-5">
-                US farm operations
+                Active event
               </p>
-
-              {/* Big number */}
-              <div className="mb-6">
-                <div
-                  className="font-light leading-none mb-1 transition-all duration-500"
-                  style={{
-                    fontFamily: "var(--font-tektur, serif)",
-                    fontSize: hasPopData ? "52px" : "36px",
-                    color: hasPopData ? "#c8e898" : "#3a3a3a",
-                  }}
-                >
-                  {hasPopData ? `${displayPop!.toFixed(1)}M` : "—"}
+              {activeMilestone ? (
+                <div className="space-y-3">
+                  <p className="text-[11px] font-mono text-[#6a7e4a]">{activeMilestone.year}</p>
+                  <p className="text-xs text-neutral-400 leading-relaxed">{activeMilestone.who}</p>
+                  <div className={`h-px w-full my-3 bg-neutral-800`} />
+                  <div className="space-y-2">
+                    <p className="text-[9px] font-mono tracking-[0.2em] uppercase text-neutral-700">context</p>
+                    <p className="text-[11px] text-neutral-500 leading-relaxed">
+                      {activeMilestone.note}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-[11px] font-mono text-neutral-600">
-                  {activeMilestone && hasPopData
-                    ? `circa ${activeMilestone.year}`
-                    : "scroll to reveal"}
-                </p>
-              </div>
-
-              {/* Sparkline */}
-              <div className="mb-6">
-                <Sparkline activePop={hasPopData ? displayPop : null} />
-              </div>
-
-              {/* Contextual note */}
-              <div className="border-t border-neutral-800 pt-4">
-                <p
-                  className="text-[11px] leading-relaxed text-neutral-500 transition-all duration-500"
-                  style={{ fontStyle: activeMilestone ? "italic" : "normal" }}
-                >
-                  {activeMilestone?.note ?? "Scroll through the timeline to track how US farm populations changed at each inflection point in history."}
-                </p>
-              </div>
+              ) : (
+                <p className="text-[11px] text-neutral-700 italic">Scroll to explore the timeline</p>
+              )}
             </div>
           </div>
 
@@ -496,27 +477,56 @@ export default function FutureOfAgriculturePage() {
             </div>
           </div>
 
-          {/* RIGHT SIDEBAR — mobile farm count (visible on mobile as bottom bar) */}
-          <div className="hidden lg:block">
+          {/* RIGHT SIDEBAR — US farm operations */}
+          <div className="hidden lg:block relative">
             <div className="sticky top-24 pl-8 border-l border-neutral-800/60">
               <p className="text-[9px] font-mono tracking-[0.25em] uppercase text-neutral-600 mb-5">
-                Active event
+                Global Farmer Count
               </p>
-              {activeMilestone ? (
-                <div className="space-y-3">
-                  <p className="text-[11px] font-mono text-[#6a7e4a]">{activeMilestone.year}</p>
-                  <p className="text-xs text-neutral-400 leading-relaxed">{activeMilestone.who}</p>
-                  <div className={`h-px w-full my-3 bg-neutral-800`} />
-                  <div className="space-y-2">
+
+              {/* Big number */}
+              <div className="mb-6">
+                <div
+                  className="font-light leading-none mb-1 transition-all duration-500"
+                  style={{
+                    fontFamily: "var(--font-tektur, serif)",
+                    fontSize: hasPopData ? "52px" : "36px",
+                    color: hasPopData ? "#c8e898" : "#3a3a3a",
+                  }}
+                >
+                  {hasPopData ? `${displayPop!.toFixed(1)}M` : "—"}
+                </div>
+                <p className="text-[11px] font-mono text-neutral-600">
+                  {activeMilestone && hasPopData
+                    ? `circa ${activeMilestone.year}`
+                    : "scroll to reveal"}
+                </p>
+              </div>
+
+              {/* Sparkline */}
+              <div className="mb-6">
+                <Sparkline activePop={hasPopData ? displayPop : null} />
+              </div>
+
+              {/* Contextual note */}
+              <div className="border-t border-neutral-800 pt-4">
+                {activeMilestone ? (
+                  <div className="space-y-3">
+                    <p className="text-[11px] font-mono text-[#6a7e4a]">{activeMilestone.year}</p>
+                    <p className="text-[11px] font-mono text-neutral-400">{activeMilestone.who}</p>
+                    <p className="text-xs text-neutral-300 leading-relaxed">{activeMilestone.description}</p>
+                    <div className="h-px w-full my-3 bg-neutral-800" />
                     <p className="text-[9px] font-mono tracking-[0.2em] uppercase text-neutral-700">context</p>
                     <p className="text-[11px] text-neutral-500 leading-relaxed">
                       {activeMilestone.note}
                     </p>
                   </div>
-                </div>
-              ) : (
-                <p className="text-[11px] text-neutral-700 italic">Scroll to explore the timeline</p>
-              )}
+                ) : (
+                  <p className="text-[11px] leading-relaxed text-neutral-500">
+                    Scroll through the timeline to track how US farm populations changed at each inflection point in history.
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -526,7 +536,7 @@ export default function FutureOfAgriculturePage() {
       <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-[#0a0a0a]/95 backdrop-blur-sm border-t border-neutral-800 px-6 py-3 z-50">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[9px] font-mono tracking-[0.2em] uppercase text-neutral-600">US farms</p>
+            <p className="text-[9px] font-mono tracking-[0.2em] uppercase text-neutral-600">Global farmers</p>
             <p className="text-2xl font-light text-[#c8e898]" style={{ fontFamily: "var(--font-tektur, serif)" }}>
               {hasPopData ? `${displayPop!.toFixed(1)}M` : "—"}
             </p>
