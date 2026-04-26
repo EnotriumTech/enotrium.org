@@ -297,7 +297,7 @@ function Sparkline({ active }: { active: number | null }) {
 export default function MesopotamiaPage() {
   const [visibleItems, setVisibleItems] = useState<Set<number>>(new Set());
   const [activeMilestone, setActiveMilestone] = useState<Milestone | null>(null);
-  const entryRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const entryRefs = useRef<(HTMLLIElement | null)[]>([]);
   const frameRef = useRef<number | null>(null);
 
   // Dark background on mount
