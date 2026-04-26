@@ -180,25 +180,16 @@ export default function AIPPage() {
 
         {/* Header text */}
         <div className="relative z-20 pt-28 px-6 lg:px-16 max-w-[1400px] mx-auto w-full">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-[10px] tracking-[0.25em] uppercase text-neutral-400 mb-5">
-                Enotrium AIP
-              </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight max-w-3xl">
-                Secure Your Supply Chain with Enotrium's Agri-Intelligence Platform
-              </h1>
-              <p className="text-lg text-white mt-6 max-w-2xl font-light leading-relaxed font-[family-name:var(--font-inter)]">
-                AIP maps the world's farmland down to the acre — ownership, crops, yield history, supply chain relationships. Source smarter. Prove quality, while preserving privacy.
-              </p>
-            </div>
-            <Link
-              href="/"
-              target="_self"
-              className="flex items-center gap-2 text-sm tracking-wide text-white hover:text-neutral-400 transition-colors mt-1 shrink-0"
-            >
-              Access Here <span className="text-lg">↗</span>
-            </Link>
+          <div>
+            <p className="text-[10px] tracking-[0.25em] uppercase text-neutral-400 mb-5">
+              Enotrium AIP
+            </p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight max-w-3xl">
+              Secure Your Supply Chain with Enotrium's Agri-Intelligence Platform
+            </h1>
+            <p className="text-lg text-white mt-6 max-w-2xl font-light leading-relaxed font-[family-name:var(--font-inter)]">
+              AIP maps the world's farmland down to the acre — ownership, crops, yield history, supply chain relationships. Source smarter. Prove quality, while preserving privacy.
+            </p>
           </div>
         </div>
 
