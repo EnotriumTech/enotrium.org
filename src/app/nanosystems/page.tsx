@@ -128,7 +128,7 @@ function NeuromorphicMCUSection() {
               Heterogeneous Single-Chip Platform
             </h3>
             <p className="text-gray-400 text-lg leading-[1.8] max-w-3xl mb-8 font-[family-name:var(--font-inter)] font-light">
-              The Enotrium MCU (Pulsar) integrates three specialized processing domains to handle end-to-end sensor data with maximum flexibility:
+              The Enotrium MCU integrates three specialized processing domains to handle end-to-end sensor data with maximum flexibility:
             </p>
 
             <div className="overflow-x-auto">
