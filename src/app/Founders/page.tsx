@@ -51,6 +51,14 @@ const teamMembers = [
       { label: "GitHub", href: "https://github.com/burlibu" },
     ],
   },
+  {
+    name: "John Giaudrone",
+    title: "Software Engineer",
+    links: [
+      { label: "GitHub", href: "https://github.com/giaudrone" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/johngiaudrone" },
+    ],
+  },
 ];
 
 export default function LeadershipPage() {
