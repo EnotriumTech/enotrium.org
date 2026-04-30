@@ -11,8 +11,6 @@ const features = [
   {
     title: "Edge Compute Infrastructure",
     description: "AI onboard drones in the physical world.",
-    useSVG: true,
-    svgSrc: "/carousel1.svg",
     label: "DEFENSE",
     link: "/arthedain",
     hasTextBox: true
