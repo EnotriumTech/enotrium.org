@@ -14,7 +14,7 @@ const teamMembers = [
   },
   {
     name: "Wilson Smith",
-    title: "Co-Founder, Chief Engineering Officer",
+    title: "Co-Founder, Chief Technology Officer",
     links: [
       { label: "GitHub", href: "https://github.com/0mWh" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/wilson--smith/" },
@@ -22,7 +22,7 @@ const teamMembers = [
   },
   {
     name: "David Shukhin",
-    title: "Co-Founder, Chief Technology Officer",
+    title: "Co-Founder, Chief Product Officer",
     links: [
       { label: "GitHub", href: "https://github.com/davidshukhin" },
       { label: "LinkedIn", href: "https://www.linkedin.com/in/david-shukhin/" },
