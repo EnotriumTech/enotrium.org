@@ -5,8 +5,8 @@ import { Footer } from "@/components/layout/Footer";
 const announcements = [
   {
     date: "Saturday, May 9, 2026",
-    title: "Enotrium x Do Quantum Hackathon",
-    description: "Join the Enotrium x DO Quantum Hackathon! Saturday, May 9 at 1:00 PM",
+    title: "Enotrium Do Quantum Hackathon",
+    description: "Join the Enotrium x DO Quantum Hackathon",
     link: "/quantum-hackathon",
   },
 ];
