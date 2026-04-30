@@ -9,13 +9,6 @@ import Link from "next/link";
 
 const features = [
   {
-    title: "Edge Compute Infrastructure",
-    description: "AI onboard drones in the physical world.",
-    label: "DEFENSE",
-    link: "/arthedain",
-    hasTextBox: true
-  },
-  {
     title: "Edge Deployed Intelligence",
     description: "Deploy on drones, in manufacturing facilities, across real industrial systems. No cloud dependency.",
     label: "COMMERCIAL",
@@ -79,6 +72,13 @@ const features = [
     useImage: true,
     imageSrc: "/carousel9-eco.png",
     link: "/aquisition"
+  },
+  {
+    title: "Edge Compute Infrastructure",
+    description: "AI onboard drones in the physical world.",
+    label: "DEFENSE",
+    link: "/arthedain",
+    hasTextBox: true
   }
 ];
 
