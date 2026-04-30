@@ -18,6 +18,7 @@ export default function QuantumHackathonPage() {
     github: "",
     interest: "",
   });
+  const [noLinkedin, setNoLinkedin] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
@@ -30,7 +31,7 @@ export default function QuantumHackathonPage() {
       const response = await fetch("/api/register-hackathon", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, noLinkedin }),
       });
 
       if (response.ok) {
@@ -47,6 +48,7 @@ export default function QuantumHackathonPage() {
           github: "",
           interest: "",
         });
+        setNoLinkedin(false);
       } else {
         setSubmitStatus("error");
       }
@@ -60,13 +62,29 @@ export default function QuantumHackathonPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const handleNoLinkedinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked;
+    setNoLinkedin(checked);
+    if (checked) {
+      setFormData((prev) => ({ ...prev, linkedin: "" }));
+    }
+  };
+
+  // Shared input/select class — uniform navy blue across all fields
+  const fieldClass =
+    "w-full bg-[#0d1b3e]/70 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors";
+
   return (
     <main className="min-h-screen bg-black text-white font-[family-name:var(--font-inter)]">
       <Navbar darkText />
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-16 py-32">
         {/* Back Link */}
-        <Link href="/announcements" className="inline-block text-white/60 hover:text-white transition-colors mb-16 font-light">
+        <Link
+          href="/announcements"
+          className="inline-block text-white/60 hover:text-white transition-colors mb-16 font-light"
+        >
           ← Back to Announcements
         </Link>
 
@@ -96,14 +114,26 @@ export default function QuantumHackathonPage() {
 
           <div className="border-b border-white/20 pb-8">
             <h2 className="text-2xl font-semibold mb-4">About</h2>
+            <p className="text-white/80 leading-relaxed mb-4">
+              Join the Enotrium x DO Quantum Hackathon! This exciting event brings together developers, researchers,
+              and quantum computing enthusiasts to collaborate on innovative projects at the intersection of quantum
+              computing and AI.
+            </p>
+            <p className="text-white/80 leading-relaxed mb-4">
+              Enotrium and DO Quantum are working together in solving humanity's most pressing technological and
+              civilizational problems: edge AI, sustainability, biomaterials, sensor integration, edge device
+              controllers, drone operations, and more.
+            </p>
             <p className="text-white/80 leading-relaxed">
-              Join the Enotrium x DO Quantum Hackathon! This exciting event brings together developers, researchers, and quantum computing enthusiasts to collaborate on innovative projects at the intersection of quantum computing and AI.
+              We are excited to partner with DO Quantum for an epic hackathon! —The winner gets an on-the-spot offer
+              to join Enotrium.
             </p>
           </div>
 
           <div>
             <h2 className="text-2xl font-semibold mb-4">Registration</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs tracking-[0.05em] text-white/60 mb-2">First Name</label>
@@ -113,7 +143,7 @@ export default function QuantumHackathonPage() {
                     value={formData.firstName}
                     onChange={handleChange}
                     required
-                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className={fieldClass}
                   />
                 </div>
                 <div>
@@ -124,11 +154,12 @@ export default function QuantumHackathonPage() {
                     value={formData.lastName}
                     onChange={handleChange}
                     required
-                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className={fieldClass}
                   />
                 </div>
               </div>
 
+              {/* Email */}
               <div>
                 <label className="block text-xs tracking-[0.05em] text-white/60 mb-2">Email</label>
                 <input
@@ -137,10 +168,11 @@ export default function QuantumHackathonPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                  className={fieldClass}
                 />
               </div>
 
+              {/* Age + Year */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs tracking-[0.05em] text-white/60 mb-2">Age</label>
@@ -150,7 +182,7 @@ export default function QuantumHackathonPage() {
                     value={formData.age}
                     onChange={handleChange}
                     required
-                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className={fieldClass}
                   />
                 </div>
                 <div>
@@ -160,7 +192,7 @@ export default function QuantumHackathonPage() {
                     value={formData.year}
                     onChange={handleChange}
                     required
-                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className={fieldClass}
                   >
                     <option value="">Select Year</option>
                     <option value="Freshman">Freshman</option>
@@ -173,6 +205,7 @@ export default function QuantumHackathonPage() {
                 </div>
               </div>
 
+              {/* Major + Minor */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs tracking-[0.05em] text-white/60 mb-2">Major</label>
@@ -182,7 +215,7 @@ export default function QuantumHackathonPage() {
                     value={formData.major}
                     onChange={handleChange}
                     required
-                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className={fieldClass}
                   />
                 </div>
                 <div>
@@ -192,11 +225,13 @@ export default function QuantumHackathonPage() {
                     name="minor"
                     value={formData.minor}
                     onChange={handleChange}
-                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    required
+                    className={fieldClass}
                   />
                 </div>
               </div>
 
+              {/* LinkedIn + GitHub */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs tracking-[0.05em] text-white/60 mb-2">LinkedIn</label>
@@ -205,8 +240,21 @@ export default function QuantumHackathonPage() {
                     name="linkedin"
                     value={formData.linkedin}
                     onChange={handleChange}
-                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    required={!noLinkedin}
+                    disabled={noLinkedin}
+                    placeholder={noLinkedin ? "N/A" : "https://linkedin.com/in/..."}
+                    className={`${fieldClass} disabled:opacity-40 disabled:cursor-not-allowed`}
                   />
+                  {/* "No LinkedIn" checkbox */}
+                  <label className="inline-flex items-center gap-2 mt-2 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={noLinkedin}
+                      onChange={handleNoLinkedinChange}
+                      className="w-4 h-4 rounded border border-white/30 bg-[#0d1b3e]/70 accent-white cursor-pointer"
+                    />
+                    <span className="text-xs text-white/50">I don't have a LinkedIn</span>
+                  </label>
                 </div>
                 <div>
                   <label className="block text-xs tracking-[0.05em] text-white/60 mb-2">GitHub</label>
@@ -215,19 +263,24 @@ export default function QuantumHackathonPage() {
                     name="github"
                     value={formData.github}
                     onChange={handleChange}
-                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    required
+                    placeholder="https://github.com/..."
+                    className={fieldClass}
                   />
                 </div>
               </div>
 
+              {/* Interest */}
               <div>
-                <label className="block text-xs tracking-[0.05em] text-white/60 mb-2">Are you interested in joining Enotrium or Do Quantum?</label>
+                <label className="block text-xs tracking-[0.05em] text-white/60 mb-2">
+                  Are you interested in joining Enotrium or Do Quantum?
+                </label>
                 <select
                   name="interest"
                   value={formData.interest}
                   onChange={handleChange}
                   required
-                  className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                  className={fieldClass}
                 >
                   <option value="">Select Option</option>
                   <option value="Enotrium">Enotrium</option>
