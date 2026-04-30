@@ -27,14 +27,6 @@ const features = [
     hasTextBox: true
   },
   {
-    title: "Locally Hosted LLMs",
-    description: "Run offline with minimal power. Industrial sovereignty;Independence from centralized infrastructure.",
-    label: "INDUSTRIAL",
-    useSVG: true,
-    svgSrc: "/carousel3.svg",
-    textPosition: "bottom-left"
-  },
-  {
     title: "",
     description: "",
     useIndustrial: true,
@@ -110,13 +102,7 @@ export function FeatureCarousel() {
       {/* Full-screen visual background */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-full h-full flex items-center justify-center">
-          {features[currentIndex].useSVG ? (
-            <img 
-              src={features[currentIndex].svgSrc} 
-              alt="Carousel" 
-              className="w-full h-full object-contain"
-            />
-          ) : features[currentIndex].useIndustrial ? (
+          {features[currentIndex].useIndustrial ? (
             <div className="w-full h-full">
               <IndustrialAgricultureScene />
             </div>
@@ -130,17 +116,17 @@ export function FeatureCarousel() {
             <img
               src={features[currentIndex].imageSrc}
               alt="Carousel"
-              className={`w-full h-full ${currentIndex === 8 ? "object-contain scale-92" : currentIndex === 7 ? "object-cover scale-93" : "object-cover"}`}
+              className={`w-full h-full ${currentIndex === 7 ? "object-contain scale-92" : currentIndex === 6 ? "object-cover scale-93" : "object-cover"}`}
             />
           ) : null}
         </div>
       </div>
 
       {/* Text content in top corner */}
-      <div className={`relative z-20 w-full ${features[currentIndex].textPosition === 'bottom-left' ? 'absolute bottom-24 left-0' : features[currentIndex].textPosition === 'center-left' ? 'absolute top-1/2 -translate-y-1/2 left-0' : ''}`}>
+      <div className="relative z-20 w-full">
         <ScrollReveal animation="fade-up" duration={1}>
-          <div className={`${features[currentIndex].hasTextBox ? 'px-4' : 'px-6 lg:px-16'} ${features[currentIndex].textPosition === 'bottom-left' ? '' : features[currentIndex].textPosition === 'center-left' ? '' : 'py-12'}`}>
-            <div className={`${features[currentIndex].hasTextBox ? 'max-w-fit' : 'max-w-xl'} ${features[currentIndex].textPosition === 'center-left' ? 'ml-16' : ''}`}>
+          <div className={`${features[currentIndex].hasTextBox ? 'px-4' : 'px-6 lg:px-16'} py-12`}>
+            <div className={`${features[currentIndex].hasTextBox ? 'max-w-fit' : 'max-w-xl'}`}>
               {features[currentIndex].hasTextBox ? (
                 <div className="bg-neutral-800 border border-neutral-600 p-3 rounded-lg inline-block">
                   {features[currentIndex].link ? (
