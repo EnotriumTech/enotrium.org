@@ -72,8 +72,8 @@ export default function QuantumHackathonPage() {
 
         {/* Page Header */}
         <header className="mb-16">
-          <h1 className="font-[family-name:var(--font-tektur)] font-normal text-[60px] md:text-[80px] lg:text-[100px] leading-none mb-4">
-            Enotrium x Do Quantum Hackathon
+          <h1 className="font-[family-name:var(--font-iceland)] font-normal text-[60px] md:text-[80px] lg:text-[100px] leading-none mb-4">
+            Enotrium xx Do Quantum Hackathon
           </h1>
           <div className="h-px bg-white w-full"></div>
         </header>
