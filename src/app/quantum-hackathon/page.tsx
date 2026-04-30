@@ -103,7 +103,7 @@ export default function QuantumHackathonPage() {
             <div className="space-y-3 text-white/80">
               <p>
                 <span className="text-white/60 block text-xs tracking-[0.05em] mb-1">DATE</span>
-                Saturday, May 16, 2026
+                Saturday, May 9, 2026
               </p>
               <p>
                 <span className="text-white/60 block text-xs tracking-[0.05em] mb-1">TIME</span>
