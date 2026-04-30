@@ -305,7 +305,7 @@ export default function QuantumHackathonPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-white text-black font-semibold px-6 py-3 rounded hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gray text-black font-semibold px-6 py-3 rounded hover:bg-white/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? "Submitting..." : "Register"}
               </button>
