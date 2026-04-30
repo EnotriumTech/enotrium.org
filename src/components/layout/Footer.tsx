@@ -55,6 +55,7 @@ const footerColumns = [
     links: [
       { label: "Careers", href: "/careers" },
       { label: "Founders", href: "/Founders" },
+      { label: "Announcements", href: "/announcements" },
       { label: "Research", href: "https://www.enotrium.org/research" },
       { label: "Farmers", href: "/farmers" },
       { label: "Platform", href: "/platform" },
