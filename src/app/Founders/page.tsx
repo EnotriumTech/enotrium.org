@@ -67,6 +67,14 @@ const teamMembers = [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/johngiaudrone" },
     ],
   },
+  {
+    name: "Rafael Virador",
+    title: "Software Engineer",
+    links: [
+      { label: "GitHub", href: "https://github.com/rjmvirador" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/rafael-virador-304758290/" },
+    ],
+  },
 ];
 
 export default function LeadershipPage() {
