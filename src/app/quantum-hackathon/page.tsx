@@ -113,7 +113,7 @@ export default function QuantumHackathonPage() {
                     value={formData.firstName}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
                 <div>
@@ -124,7 +124,7 @@ export default function QuantumHackathonPage() {
                     value={formData.lastName}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
               </div>
@@ -150,7 +150,7 @@ export default function QuantumHackathonPage() {
                     value={formData.age}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
                 <div>
@@ -160,7 +160,7 @@ export default function QuantumHackathonPage() {
                     value={formData.year}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
                   >
                     <option value="">Select Year</option>
                     <option value="Freshman">Freshman</option>
@@ -182,7 +182,7 @@ export default function QuantumHackathonPage() {
                     value={formData.major}
                     onChange={handleChange}
                     required
-                    className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
                 <div>
@@ -192,7 +192,7 @@ export default function QuantumHackathonPage() {
                     name="minor"
                     value={formData.minor}
                     onChange={handleChange}
-                    className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
               </div>
@@ -205,7 +205,7 @@ export default function QuantumHackathonPage() {
                     name="linkedin"
                     value={formData.linkedin}
                     onChange={handleChange}
-                    className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
                 <div>
@@ -215,13 +215,13 @@ export default function QuantumHackathonPage() {
                     name="github"
                     value={formData.github}
                     onChange={handleChange}
-                    className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-gray-800/50 border border-white/20 rounded px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs tracking-[0.05em] text-white/60 mb-2">Are you looking to join Enotrium or Do Quantum?</label>
+                <label className="block text-xs tracking-[0.05em] text-white/60 mb-2">Are you interested in joining Enotrium or Do Quantum?</label>
                 <select
                   name="interest"
                   value={formData.interest}
