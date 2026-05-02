@@ -1,5 +1,6 @@
 <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="400" height="400" fill="none"/>
+<rect width="400" height="400" fill="#313030"/>
+<rect width="400" height="400" fill="black"/>
 <path d="M96.2849 327.486L303.992 76.0141" stroke="url(#paint0_linear_388_2)" stroke-width="22"/>
 <line x1="96.3443" y1="75.0308" x2="304.344" y2="329.031" stroke="url(#paint1_linear_388_2)" stroke-width="22"/>
 <line x1="93.8338" y1="335" x2="93.8455" y2="67.9995" stroke="white" stroke-width="22"/>
